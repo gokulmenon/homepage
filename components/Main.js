@@ -17,38 +17,58 @@ class Main extends React.Component {
           <p>&nbsp;&nbsp;&nbsp;&nbsp;
               My name is Gokul Menon and I work as a Software Engineer
               at Facebook in New York and have over 10 years of software development and engineering experience building enterprise
-              software. Before Facebook I worked in fintech building things like electronic trading systems and algorithmic trading platforms. <br /><br />
-              I am passionate about all things Computer Science , Football ,astronomy &amp; astrophotography.
+              software. I am a full stack developer mostly focussed on backend. Before Facebook I worked in fintech building things like electronic trading systems and algorithmic trading platforms. <br /><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;I am passionate about all things Computer Science , Football ,astronomy &amp; astrophotography.
               I also love to paint acrylic over canvas panels, play video games and travel and read
               and lastly I am ardent Manchester United Fan.
               They say you can change your city, your country, change your religion but you never change your football club.
+              <br /><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;This website is a pet project and I plan to use it as a scratch pad to learn
+              cool web technologies,hack and glue together
+              arbitrary pieces of code to make a simple static homepage. I plan to keep this website purely static
+              and keep it simple. It is running on google app engine platform with a 
+              standard node js environment, running on nextJs and react. It uses the Dimension site template,
+              designed by  <a href="https://html5up.net">HTML5 UP</a>.
+              This version is a full rewrite from the old version which was using the web.py pyton web framework.
               
           </p>
           {close}
         </article>
 
-        <article id="work" className={`${this.props.article === 'blog' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+        <article id="blog" className={`${this.props.article === 'blog' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Blog</h2>
-          <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span>
+          <span className="image main"><img src="/static/images/about_header.jpg" alt="" /></span>
           <p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
           <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
           {close}
         </article>
 
-        <article id="about" className={`${this.props.article === 'about' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
-          <h2 className="major">About</h2>
-          <span className="image main"><img src="/static/images/about_header.jpg" alt="" /></span>
-          
-          <p>
-              &nbsp;&nbsp;&nbsp;&nbsp;This website is a pet project and I plan to use it as a scratch pad to learn
-               cool web technologies,hack and glue together
-              arbitrary pieces of code to make a simple static homepage. I plan to keep this website purely static
-               and keep it simple.<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;It is running on google app engine platform with a standard node js environment, 
-              running on nextJs and react.
-              based on the Dimension site template, designed by  <a href="https://html5up.net">HTML5 UP</a>
-              
+        <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+          <h2 className="major">Gallery</h2>
+          {/* <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span> */}
+          <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography from the time I could get my hands on a
+            camera. Starting from a camera with a limited physical reel to digital cameras to mobile cameras.
+            The best camera is the one you have they say, its very true. <br /><br />
+            This page hosts a collection of my photos starting with some of my most recent Instagram feed photos,
+            followed by some other curated uploads made for this personal website. Please consider copyright and
+            request permission before any usage.
           </p>
+          <script src='https://embedsocial.com/js/iframe.js'></script>
+           <iframe style={{border: 0, width: '100%', height: '100%'}} scrolling='no' src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'></iframe><script>iFrameResize();</script>
+          <p> &nbsp;&nbsp;&nbsp;&nbsp; I have taken a keen interest in astrophotography and amateur astronomy in general.
+            I have travelled to several dark sky parks and enjoyed the cosmic display of the stars.
+            Stargazing became an ever expanding hobby
+            Humbled by my new found knowledge and excited to dig deeper into the field and explore the world of
+            astronomy.<br />
+              <br />&nbsp;&nbsp;&nbsp;&nbsp;  Cities these days block out most but the brightest stars and planets,
+            so we have to make more effort these days to go see the night sky like our ancestors
+            were easily able to before artificial light pollution
+            was even a thing, often driving hours away from cities in search of dark skies.Most people I know
+            have never seen the Milkyway our home galaxy with their naked eyes.
+            <br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp; Chasing the milkyway every remote travel destination I visit now has become a routine
+            and I am still amazed by the beauty of the night sky.
+          </p> 
           {close}
         </article>
 
