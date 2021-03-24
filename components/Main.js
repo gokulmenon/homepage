@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from "react"
+import Gallery from "../components/Gallery"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTwitter, faFacebook, faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons"
 
@@ -44,17 +45,20 @@ class Main extends React.Component {
         </article>
 
         <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
-          <h2 className="major">Gallery</h2>
+          <h2 className="major">Gallery</h2>          
+          <Gallery />
+          <br />
           {/* <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span> */}
-          <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography from the time I could get my hands on a
-            camera. Starting from a camera with a limited physical reel to digital cameras to mobile cameras.
-            The best camera is the one you have they say, its very true. <br /><br />
-            This page hosts a collection of my photos starting with some of my most recent Instagram feed photos,
-            followed by some other curated uploads made for this personal website. Please consider copyright and
-            request permission before any usage.
+          <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography 
+            from the time I could get my hands on a
+            camera. Starting from a camera with a limited physical reel to digital 
+            cameras to mobile cameras.The best camera is the one you have they say, 
+            its very true. <br /><br />
+            &nbsp;&nbsp;&nbsp;&nbsp; This page hosts a collection of my photos starting with
+            some curated photographs above showcasing my best astrophotography exploits, 
+            followed with some of my most recent Instagram feed photos below.
+            Please consider copyright and request permission before any usage.
           </p>
-          <script src='https://embedsocial.com/js/iframe.js'></script>
-           <iframe style={{border: 0, width: '100%', height: '100%'}} scrolling='no' src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'></iframe><script>iFrameResize();</script>
           <p> &nbsp;&nbsp;&nbsp;&nbsp; I have taken a keen interest in astrophotography and amateur astronomy in general.
             I have travelled to several dark sky parks and enjoyed the cosmic display of the stars.
             Stargazing became an ever expanding hobby
@@ -68,7 +72,17 @@ class Main extends React.Component {
             <br /><br />
             &nbsp;&nbsp;&nbsp;&nbsp; Chasing the milkyway every remote travel destination I visit now has become a routine
             and I am still amazed by the beauty of the night sky.
+            
+            'If you look up at the Milky Way through the eyes of Carl Sagan, you get a feeling in your chest of something greater than yourself. And it is. But it\'s not supernatural.' - Richard Dawkins.
           </p> 
+          <h3 className="minor">Instagram Feed</h3>
+          <script src='https://embedsocial.com/js/iframe.js'></script>
+           <iframe 
+              style={{border: 0, width: '100%', height: '100%'}} 
+              scrolling='no' 
+              src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
+            </iframe>
+          <script>iFrameResize();</script>
           {close}
         </article>
 
