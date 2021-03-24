@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from "react"
 import Gallery from "../components/Gallery"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faTwitter, faFacebook, faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons"
+import {faFacebook, faInstagram, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
 class Main extends React.Component {
   render() {
@@ -38,9 +38,15 @@ class Main extends React.Component {
 
         <article id="blog" className={`${this.props.article === 'blog' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Blog</h2>
-          <span className="image main"><img src="/static/images/about_header.jpg" alt="" /></span>
-          <p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
-          <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+          <span className="image main"><img src="/static/images/coming_soon.jpg" alt="" /></span>
+          <p>A big reason for the rewrite of this site was to build my own blog using a headless cms. 
+            This is still work in progress soon below blogger iframe blog will be replaced by
+            my own version built using sanity.io headless cms.</p>
+          <iframe src='https://blogger.gokulmenon.com/'
+            marginwidth='0' marginheight='0' frameborder='no' scrolling='yes'
+            style={{border: 0, background: '#FFF', width: '100%', height: '1920px'}}>  </iframe>
+            {/*  style='border-width:0px; border-color:#333; background:#FFF; border-style:solid;'> */}
+            <script>iFrameResize();</script>
           {close}
         </article>
 
@@ -88,6 +94,10 @@ class Main extends React.Component {
 
         <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Contact</h2>
+          {/* <span className="image main"> */}
+            <img src="/static/images/work-in-progress.png" alt="" width='150px'/>
+            {/* </span> */}
+          <p> This form doesn't work yet as the backend is not yet implemented.</p>
           <form method="post" action="#">
             <div className="field half first">
               <label htmlFor="name">Name</label>
@@ -107,16 +117,16 @@ class Main extends React.Component {
             </ul>
           </form>
           <ul className="icons">
-            <li><a href="#">
-              <FontAwesomeIcon icon={faTwitter} />
+            <li><a href="https://www.linkedin.com/in/gokulmenon/">
+              <FontAwesomeIcon icon={faLinkedin} />
             </a></li>
-            <li><a href="#">
+            <li><a href="https://www.facebook.com/gokulmenon/">
               <FontAwesomeIcon icon={faFacebook} />
             </a></li>
-            <li><a href="#">
+            <li><a href="https://www.instagram.com/gokulsmenon/">
               <FontAwesomeIcon icon={faInstagram} />
             </a></li>
-            <li><a href="#">
+            <li><a href="https://github.com/gokulmenon">
               <FontAwesomeIcon icon={faGithub} />
             </a></li>
           </ul>
