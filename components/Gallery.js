@@ -1,8 +1,14 @@
 import ImageGallery from 'react-image-gallery';
+import PropTypes from 'prop-types';
 import React from "react"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 const PREFIX_IMG_URL = '/static/images/gallery/';
 const PREFIX_THUMBNAIL_URL = '/static/images/gallery/thumbnails/';
+
+
 class Gallery extends React.Component {
   constructor(){
       super();
@@ -172,8 +178,60 @@ class Gallery extends React.Component {
   }
 
   render() {
-    return <ImageGallery items={this.images} showNav={false} />;
+    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
+    return (
+    <div>
+      <h2 className="major">Gallery</h2>          
+      <ImageGallery items={this.images} showNav={false} />;
+      <br />
+      {/* <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span> */}
+      <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography 
+        from the time I could get my hands on a
+        camera. Starting from a camera with a limited physical reel to digital 
+        cameras to mobile cameras.The best camera is the one you have they say, 
+        its very true. <br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp; This page hosts a collection of my photos starting with
+        some curated photographs above showcasing my best astrophotography exploits, 
+        followed with some of my most recent Instagram feed photos below.
+        Please consider copyright and request permission before any usage.
+      </p>
+      <p> &nbsp;&nbsp;&nbsp;&nbsp; I have taken a keen interest in astrophotography and amateur astronomy in general.
+        I have travelled to several dark sky parks and enjoyed the cosmic display of the stars.
+        Stargazing became an ever expanding hobby
+        Humbled by my new found knowledge and excited to dig deeper into the field and explore the world of
+        astronomy.<br />
+          <br />&nbsp;&nbsp;&nbsp;&nbsp;  Cities these days block out most but the brightest stars and planets,
+        so we have to make more effort these days to go see the night sky like our ancestors
+        were easily able to before artificial light pollution
+        was even a thing, often driving hours away from cities in search of dark skies.Most people I know
+        have never seen the Milkyway our home galaxy with their naked eyes.
+        <br /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp; Chasing the milkyway every remote travel destination I visit now has become a routine
+        and I am still amazed by the beauty of the night sky.
+        
+        'If you look up at the Milky Way through the eyes of Carl Sagan, you get a feeling in your chest of something greater than yourself. And it is. But it\'s not supernatural.' - Richard Dawkins.
+      </p> 
+      <h3 className="minor">
+        <a href="https://www.instagram.com/gokulsmenon/">
+          <FontAwesomeIcon icon={faInstagram}  width="16px" />
+          &nbsp;&nbsp; Instagram Feed
+        </a> 
+      </h3>
+      <script src='https://embedsocial.com/js/iframe.js'></script>
+        <iframe 
+          style={{border: 0, width: '100%', height: '100%'}} 
+          scrolling='no' 
+          src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
+        </iframe>
+      <script>iFrameResize();</script>
+      {close}
+    </div>
+    );
   }
+}
+  
+Gallery.propTypes = {
+  onCloseArticle: PropTypes.func
 }
 
 export default Gallery
