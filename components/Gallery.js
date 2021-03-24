@@ -11,44 +11,56 @@ class Gallery extends React.Component {
         {
           original: `${PREFIX_IMG_URL}nyc1_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}nyc1_thumbnail.jpg`,
-          originalTitle: '',
+          originalTitle: 'Jersey Heights, New Jersey',
           description: 'Jersey Heights Skyline , as seen from Manhattan, New York.'
         },
         {
           original: `${PREFIX_IMG_URL}nyc2_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}nyc2_thumbnail.jpg`,
-          originalTitle: '',
+          originalTitle: 'Manhattan, New York',
           description: 'Street View , New York City, New York.'
         },
         {
           original: `${PREFIX_IMG_URL}nyc3_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}nyc3_thumbnail.jpg`,
-          originalTitle: '',
+          originalTitle: 'Manhattan, New York',
           description:  'Central Park as seen from top of the rock, New York'
         },
         {
           original: `${PREFIX_IMG_URL}nyc4_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}nyc4_thumbnail.jpg`,
-          originalTitle: '',
+          originalTitle: 'Manhattan, New York',
           description:'The Empire State, New York'
         },
         {
           original: `${PREFIX_IMG_URL}utah1_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}utah1_thumbnail.jpg`,
-          originalTitle: '',
-          description: ''
+          originalTitle: 'Arches National Park, Utah',
+          description: 'The famous Delicate Arch at the Arches National Park, Utah'
         },
         {
           original: `${PREFIX_IMG_URL}utah2_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}utah2_thumbnail.jpg`,
-          originalTitle: '',
-          description: ''
+          originalTitle: 'Antelope Canyon, Arizona',
+          description: 'The Lower Antelope Canyon is a photographers dream destination.'
+        },
+        {
+          original: `${PREFIX_IMG_URL}hawaii1_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}hawaii1_thumbnail.jpg`,
+          originalTitle: 'The Kilauea Volcano, Hawaii',
+          description: 'Located in the Hawaii Volcanos National Park on the Big Island in Hawaii, Kilauea is an active shield volcano, one of the most active volcanos amongst the five volcanoes in the park.'
         },
         {
           original: `${PREFIX_IMG_URL}hawaii2_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}hawaii2_thumbnail.jpg`,
           originalTitle: 'Haleakala Crater in Maui, Hawaii',
           description: 'Taken at the Haleakala Crater in Maui, Hawai while trying to capture the sunrise. One of the most beautiful sunrises Ive ever seen.'
+        },
+        {
+          original: `${PREFIX_IMG_URL}hawaii3_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}hawaii3_thumbnail.jpg`,
+          originalTitle: 'Mauna Kea, Hawaii',
+          description: 'This is sunset at the famous Mauna Kea summit on the big island, Hawaii'
         },
         {
           original: `${PREFIX_IMG_URL}grand_canyon1_small.jpg`,
@@ -63,22 +75,52 @@ class Gallery extends React.Component {
           description: 'Taken during totality during the 2017 total solar eclipse close to Smoky Mountain National Park, Tennesse',
         },
         {
+          original: `${PREFIX_IMG_URL}norway1_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}norway1_thumbnail.jpg`,
+          originalTitle: 'Gudvangen, Norway',
+          description: 'An old viking style boat on the premises of Gudvangen Fjordtttell hotel.',
+        },
+        {
           original: `${PREFIX_IMG_URL}iceland1_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}iceland1_thumbnail.jpg`,
-          originalTitle: '',
-          description: ''
+          originalTitle: 'Snaefellsnes Peninsula, Iceland',
+          description: 'An old picnic bench near the coast Snaefellsnes Peninsula, in southern short of Iceland'
         },
         {
           original: `${PREFIX_IMG_URL}iceland2_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}iceland2_thumbnail.jpg`,
-          originalTitle: '',
-          description: ''
+          originalTitle: 'Reykjavik, Iceland',
+          description: 'Street view, Reykjavik, capital city of Iceland.'
         },
         {
           original: `${PREFIX_IMG_URL}iceland3_small.jpg`,
           thumbnail: `${PREFIX_THUMBNAIL_URL}iceland3_thumbnail.jpg`,
-          originalTitle: '',
-          description: ''
+          originalTitle: 'Hallgrímskirkja , Reykjavik, Iceland',
+          description: 'Hallgrímskirkja is a church built on a small hilltop, easily the most identifiable landmark in the city of Reyjkavik in Iceland.'
+        },
+        {
+          original: `${PREFIX_IMG_URL}iceland4_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland4_thumbnail.jpg`,
+          originalTitle: 'Gatklettur, Iceland',
+          description: 'Gatklettur or Arch of Hellnar is found between the villages of Helnar and Arnarstapi, on the southern shore of Iceland.'
+        },
+        {
+          original: `${PREFIX_IMG_URL}iceland5_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland5_thumbnail.jpg`,
+          originalTitle: 'Thingvellir National Park, Iceland',
+          description: 'Part of the golden circle, Thingvellir National Park on a good clear night can have spectacular northern lights show on display.'
+        },
+        {
+          original: `${PREFIX_IMG_URL}alaska1_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}alaska1_thumbnail.jpg`,
+          originalTitle: 'Denali National Park, Alaska',
+          description: 'Stood on top of a glacier to take this picture, a scene that looks from an ice age.'
+        },
+        {
+          original: `${PREFIX_IMG_URL}alaska2_small.jpg`,
+          thumbnail: `${PREFIX_THUMBNAIL_URL}alaska2_thumbnail.jpg`,
+          originalTitle: 'Whittier Glacier, Alaska',
+          description: 'Taken on Glacier Cruise on the protected waters of Prrrince William Sound, Whittier, Alaska.'
         },
       ];
       this.images = milkyway_images.concat(other_images);
