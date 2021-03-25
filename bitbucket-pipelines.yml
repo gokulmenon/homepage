@@ -1,0 +1,56 @@
+image: node:14.16.0
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: Build and Test
+          caches:
+            - node
+          script:
+            - npm install
+            - npm test
+      - step:
+          name: Lint the node package
+          script:
+            - npm install eslint
+            - npx eslint .
+          caches:
+            - node
+  branches:
+    master:
+      - parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - node
+            script:
+              - npm install
+              - npm run build
+        - step:
+            name: Security Scan
+            script:
+              # Run a security scan for sensitive data.
+              # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+              - pipe: atlassian/git-secrets-scan:0.4.3
+      - step:
+          name: Deploy to Production
+          deployment: Production
+          script:
+            # About to Install NextJs app and dependencies
+            - npm install
+            # About to build NextJs app
+            - npm run build
+            # About to install gcloud sdk
+            - echo "About to install gcloud sdk v288.0.0"
+            - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-288.0.0-linux-x86_64.tar.gz
+            - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
+            - /tmp/google-cloud-sdk/install.sh -q
+            - source /tmp/google-cloud-sdk/path.bash.inc
+            - echo ${GOOGLE_CLIENT_SECRET} > ./gcloud-api-key.json
+            - gcloud auth activate-service-account --key-file gcloud-api-key.json
+            - gcloud config set project $CLOUDSDK_CORE_PROJECT
+            # Deployment of the application
+            - echo "Attempting to deploy to gcloud"
+            - gcloud --verbosity=error app deploy app.yaml --promote --version beta
+            - echo "Deploy attempt done, check https://nextjs-homepage.uc.r.appspot.com"
