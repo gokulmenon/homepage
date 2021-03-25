@@ -1,0 +1,64 @@
+
+// React-Image-Gallery css ads 20px padding for fullscreen and play buttons
+// this seems to interfere with html5 dimension theme css
+// so adding hack to patch padding on top here
+/* Image Gallery */
+
+$ig-small-screen: 768px !default;
+$ig-xsmall-screen: 480px !default;
+
+.image-gallery-fullscreen-button,
+.image-gallery-play-button {
+  bottom: 0;
+  padding: 10px;
+  
+
+  .image-gallery-svg {
+    height: 36px;
+    width: 36px;
+  }
+
+  @media (max-width:  $ig-small-screen) {
+    padding: 5px 1px 1px 1px;
+
+    .image-gallery-svg {
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  @media (max-width:  $ig-xsmall-screen) {
+    padding: 5px 1px 1px 1px;
+
+    .image-gallery-svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
+}
+
+.image-gallery-left-nav .image-gallery-svg, .image-gallery-right-nav .image-gallery-svg {
+    height: 90px;
+    width: 45px;
+}
+
+.image-gallery-left-nav, .image-gallery-right-nav {
+    padding:25px 0px 75px 0px;
+    top: 40%;
+    transform: translateY(-50%);
+
+    @media (max-width: $ig-small-screen) {
+      .image-gallery-svg {
+        height: 60px;
+        width: 30px;
+      }
+    }
+  
+    @media (max-width: $ig-xsmall-screen) {
+    padding:25px 0px 50px 0px;
+      .image-gallery-svg {
+        height: 36px;
+        width: 18px;
+      }
+    }
+}

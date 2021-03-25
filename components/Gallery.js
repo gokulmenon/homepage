@@ -182,7 +182,7 @@ class Gallery extends React.Component {
     return (
     <div>
       <h2 className="major">Gallery</h2>          
-      <ImageGallery items={this.images} showNav={false} />;
+      <ImageGallery items={this.images} showNav={true}/>
       <br />
       {/* <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span> */}
       <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography 
