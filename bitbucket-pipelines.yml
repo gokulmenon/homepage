@@ -2,7 +2,7 @@ image: node:14.16.0
 
 definitions:
   caches:
-    nextcache: .next/cache
+    nextcache: .build/cache
 pipelines:
   default:
     - parallel:

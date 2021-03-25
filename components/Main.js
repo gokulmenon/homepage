@@ -18,6 +18,7 @@ class Main extends React.Component {
   }
   
   handleKeyDown(event) {
+    if( this.props.article == "") return;
     const ESC_KEY = 27;
     const key = parseInt(event.keyCode || event.which || 0, 10);
     if (key===ESC_KEY){
