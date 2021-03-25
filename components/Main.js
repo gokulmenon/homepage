@@ -6,6 +6,25 @@ import PropTypes from 'prop-types';
 import React from "react"
 
 class Main extends React.Component {
+
+  constructor(props){
+    super(props);
+    // bindings
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+  
+  handleKeyDown(event) {
+    const ESC_KEY = 27;
+    const key = parseInt(event.keyCode || event.which || 0, 10);
+    if (key===ESC_KEY){
+      this.props.onCloseArticle();
+    }
+  }
+
   render() {
 
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>
