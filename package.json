@@ -1,11 +1,33 @@
 {
   "name": "gokul_nextjs_homepage",
-  "version": "0.2.0",
+  "version": "0.3.0",
+  "description": "Simple Next.js v10 application running on Google App Ennginie's Standard Environment",
+  "author": {
+    "name": "Gokul Menon",
+    "email": "catchgokul@gmail.com"
+  },
+  "liscence": "ISC",
+  "keywords": [
+    "node",
+    "nodejs",
+    "next",
+    "nextjs",
+    "google",
+    "app",
+    "engine",
+    "gae",
+    "cloud",
+    "isomorphic",
+    "ssr",
+    "universal",
+    "app"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 8080",
+    "deploy": "npm run build && gcloud app deploy --project nextjs-homepage --version beta"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
