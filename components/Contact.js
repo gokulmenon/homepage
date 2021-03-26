@@ -80,21 +80,23 @@ function Contact(props) {
         };
 
         setFormSubmitted({ title: 'Sending message...', paragraph: '' });
-         //TODO use process.env instead of hardcoding below
-        let user_id = 'user_oA6PTE3FlD8eJswfCFb3l'; 
+        let user_id = process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID;
         init(user_id);
-        emailjs.send("service_ofg13kp", "template_dr4p8c8", params)
-            .then(({ status }) => {
-                if (status === 200) {
-                    setFormSubmitted({ title: 'Message has been sent', paragraph: 'Gokul will be in contact with you soon.' });
-                } else {
-                    setFormSubmitted({ title: 'Unexpected status code returned from EmailJS, try again later', paragraph: 'Please contact Gokul on either of the below social channels.' });
-                }
-            }, (err) => {
-                // eslint-disable-next-line no-console
-                console.log(err);
-                setFormSubmitted({ title: 'Error sending message, try again later', paragraph: 'Please contact Gokul on either of the social channels.' });
-            });
+        emailjs.send(
+            process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID,
+            process.env.EMAIL_JS_TEMPLATE_ID,
+            params
+        ).then(({ status }) => {
+            if (status === 200) {
+                setFormSubmitted({ title: 'Message has been sent', paragraph: 'Gokul will be in contact with you soon.' });
+            } else {
+                setFormSubmitted({ title: 'Unexpected status code returned from EmailJS, try again later', paragraph: 'Please contact Gokul on either of the below social channels.' });
+            }
+        }, (err) => {
+            // eslint-disable-next-line no-console
+            console.log(err);
+            setFormSubmitted({ title: 'Error sending message, try again later', paragraph: 'Please contact Gokul on either of the social channels.' });
+        });
     };
 
     return formSubmitted.title === 'Send me a message' ? (
@@ -123,14 +125,13 @@ function Contact(props) {
                     </div>
                     <ul className="actions">
                         <li><input type="submit" value="Send Message" className="special" /></li>
-                        <li><input type="reset" value="Reset" onClick={resetForm}/>
+                        <li><input type="reset" value="Reset" onClick={resetForm} />
                         </li>
                     </ul>
                 </form>
             ) : (
                 <ReCAPTCHA
-                    //TODO use process.env instead of hardcoding below
-                    sitekey="6LcAEI8aAAAAANPNCrQiyM4rXiuJnIB3RiB9LuMi"
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY}
                     onChange={sendEmail}
                 />
             )

@@ -2,7 +2,7 @@ image: node:14.16.0
 
 definitions:
   caches:
-    nextcache: $BUILD_DIR/cache
+    nextcache: .build/cache
 pipelines:
   default:
     - parallel:
@@ -14,6 +14,12 @@ pipelines:
           script:
             - npm install
             - npm test
+      - step:
+          name: Security Scan
+          script:
+            # Run a security scan for sensitive data.
+            # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+            - pipe: atlassian/git-secrets-scan:0.4.3
       - step:
           name: Lint the node package
           script:
@@ -30,6 +36,19 @@ pipelines:
               - node
               - nextcache
             script:
+              - NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID
+              - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
+              - NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID
+              - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
+              - NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID
+              - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
+              - NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY
+              - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
+              - echo "export NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$NEXT_PUBLIC_EMAIL_JS_SERVICE_ID"
+              - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID"
+              - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$NEXT_PUBLIC_EMAIL_JS_USER_ID"
+              - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY"
+              - printenv > .env.production.local
               - npm install
               - npm run build
         - step:
@@ -45,6 +64,12 @@ pipelines:
             - nextcache
           deployment: Production
           script:
+            #verify .env.production.local file is there
+            - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+            - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
+            - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
+            - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
+            - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
             # About to Install NextJs app and dependencies
             - npm install
             # About to build NextJs app
