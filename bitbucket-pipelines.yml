@@ -44,11 +44,10 @@ pipelines:
               - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
               - NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY
               - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
-              - echo "export NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$NEXT_PUBLIC_EMAIL_JS_SERVICE_ID"
-              - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID"
-              - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$NEXT_PUBLIC_EMAIL_JS_USER_ID"
-              - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY"
-              - printenv > .env.production.local
+              - echo "export NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$NEXT_PUBLIC_EMAIL_JS_SERVICE_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$NEXT_PUBLIC_EMAIL_JS_USER_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY" >> .env.production.local
               - npm install
               - npm run build
             artifacts: # define the artifacts to be passed to each future step
@@ -66,6 +65,12 @@ pipelines:
             - nextcache
           deployment: Production
           script:
+            #verify .env.production.local file is there
+            - export $(cat .env.production.local | xargs)
+            - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
+            - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
+            - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
+            - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
             # About to Install NextJs app and dependencies
             - npm install
             # About to build NextJs app
