@@ -36,19 +36,14 @@ pipelines:
               - node
               - nextcache
             script:
-              - NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID
-              - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
-              - NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID
-              - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
-              - NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID
-              - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
-              - NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY
-              - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
-              - echo "export NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$NEXT_PUBLIC_EMAIL_JS_SERVICE_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$NEXT_PUBLIC_EMAIL_JS_USER_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY" >> .env.production.local
+              # Populate .env.production.local file
+              - echo "export NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY" >> .env.production.local
+              # About to Install NextJs app and dependencies
               - npm install
+              # About to build NextJs app
               - npm run build
             artifacts: # define the artifacts to be passed to each future step
               - .env.production.local
@@ -84,7 +79,7 @@ pipelines:
             - echo ${GOOGLE_CLIENT_SECRET} > ./gcloud-api-key.json
             - gcloud auth activate-service-account --key-file gcloud-api-key.json
             - gcloud config set project $CLOUDSDK_CORE_PROJECT
-            # Deployment of the application
+            # Deployment of the application to glcoud
             - echo "Attempting to deploy to gcloud"
             - gcloud --verbosity=error app deploy app.yaml --promote --version beta
             - echo "Deploy attempt done, check https://nextjs-homepage.uc.r.appspot.com"
