@@ -66,12 +66,6 @@ pipelines:
             - nextcache
           deployment: Production
           script:
-            #verify .env.production.local file is there
-            - export $(cat .env.production.local | xargs)
-            - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
-            - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
-            - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
-            - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
             # About to Install NextJs app and dependencies
             - npm install
             # About to build NextJs app
