@@ -65,7 +65,7 @@ pipelines:
           deployment: Production
           script:
             #verify .env.production.local file is there
-            - export $(cat ENVIRONMENT_VARIABLES.txt | xargs)
+            - export $(cat .env.production.local | xargs)
             - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
             - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
             - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
