@@ -53,19 +53,24 @@ function Contact(props) {
     const [formSubmitted, setFormSubmitted] = useState({ title: 'Send me a message', paragraph: '' });
     const [showCaptcha, setShowCaptcha] = useState(false);
     const { name, email, message } = formState;
-
     const submitFormAndShowCaptcha = (e) => {
         e.preventDefault();
         setShowCaptcha(true);
     };
 
-    const resetForm = (event) => {
+    const clearForm = (ev) => {
         dispatch({ type: 'name', value: "" });
         dispatch({ type: 'email', value: "" });
         dispatch({ type: 'message', value: "" });
-        setFormSubmitted({ title: 'Send me a message', paragraph: '' });
-        setShowCaptcha(false);
-        setShowFormErr(false);
+    }
+
+    const resetForm = () => {
+        if(showCaptcha){
+            setFormSubmitted({ title: 'Send me a message', paragraph: '' });
+            setShowCaptcha(false);
+            setShowFormErr(false);
+            clearForm(null);
+        }
     }
 
     const sendEmail = (captchaValue) => {
@@ -76,6 +81,7 @@ function Contact(props) {
 
         const params = {
             ...formState,
+            'to_name':'Gokul',
             'g-recaptcha-response': captchaValue,
         };
 
@@ -84,7 +90,7 @@ function Contact(props) {
         init(user_id);
         emailjs.send(
             process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID,
-            process.env.EMAIL_JS_TEMPLATE_ID,
+            process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID,
             params
         ).then(({ status }) => {
             if (status === 200) {
@@ -125,7 +131,7 @@ function Contact(props) {
                     </div>
                     <ul className="actions">
                         <li><input type="submit" value="Send Message" className="special" /></li>
-                        <li><input type="reset" value="Reset" onClick={resetForm} />
+                        <li><input type="reset" value="Reset" onClick={clearForm} />
                         </li>
                     </ul>
                 </form>
