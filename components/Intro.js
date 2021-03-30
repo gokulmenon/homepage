@@ -31,9 +31,11 @@ class Intro extends React.Component {
                 and keep it simple. It is running on google app engine platform with a 
                 standard node js environment, running on nextJs and react. It uses a template designed by 
                 <a href="https://html5up.net">HTML5 UP</a> and released for free under the 
-                <a href="https://html5up.net/license">Creative Commons</a> license.
-                This version is a full rewrite from an <a href="https://deprecated.gokulmenon.com">  old version</a> 
-                which was using the web.py pyton web framework and jinja2 templating engine.
+                <a href="https://html5up.net/license"> Creative Commons</a> license.<br /><br />
+                &nbsp;&nbsp;&nbsp;&nbsp;This version is a full rewrite from an <a href="https://deprecated.gokulmenon.com"> old version </a> 
+                 which was using the web.py python web framework and jinja2 templating engine also running on 
+                 google app engine using the python standard environment. I plan to put up the source code on github 
+                 as a template for anyone else to use for their own personal website very soon.
             </p>
             {close}
         </div>
