@@ -25,6 +25,11 @@ uses next v10 and newer versions of react
 
 ## Deploy on Google App Engine
 
-TBD
-follow  https://medium.com/wesionary-team/deploy-your-next-js-application-on-google-app-engine-in-minutes-cf04c18011ac
-        to setup deploy on gae */}
+```bash
+
+npm run deploy
+# or
+yarn deploy
+```
+
+Note bitbucket-pipelines.yml is setup to auto deploy upon push to master.

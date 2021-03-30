@@ -94,14 +94,14 @@ function Contact(props) {
             params
         ).then(({ status }) => {
             if (status === 200) {
-                setFormSubmitted({ title: 'Message has been sent', paragraph: 'Gokul will be in contact with you soon.' });
+                setFormSubmitted({ title: 'Message has been sent', paragraph: 'I will be in contact with you soon.' });
             } else {
-                setFormSubmitted({ title: 'Unexpected status code returned from EmailJS, try again later', paragraph: 'Please contact Gokul on either of the below social channels.' });
+                setFormSubmitted({ title: 'Unexpected status code returned from EmailJS, try again later', paragraph: 'Please contact me on either of the below social channels.' });
             }
         }, (err) => {
             // eslint-disable-next-line no-console
             console.log(err);
-            setFormSubmitted({ title: 'Error sending message, try again later', paragraph: 'Please contact Gokul on either of the social channels.' });
+            setFormSubmitted({ title: 'Error sending message, try again later', paragraph: 'Please contact me on either of the social channels.' });
         });
     };
 

@@ -24,13 +24,16 @@ class Intro extends React.Component {
                 you never change your football club.
                 <br /><br />
 
-                &nbsp;&nbsp;&nbsp;&nbsp;This website is a pet project and I plan to use it as
-                a scratch pad to learn cool web technologies,hack and glue together
-                arbitrary pieces of code to make a simple static homepage. I plan to keep this website purely static
+                &nbsp;&nbsp;&nbsp;&nbsp;This website is a pet project and 
+                I plan to use it as a scratch pad to learn cool web technologies,
+                hack and glue together arbitrary pieces of code to make a simple static homepage. 
+                I plan to keep this website purely static
                 and keep it simple. It is running on google app engine platform with a 
-                standard node js environment, running on nextJs and react. It uses the Dimension site template,
-                designed by  <a href="https://html5up.net">HTML5 UP</a>.
-                This version is a full rewrite from the old version which was using the web.py pyton web framework.                
+                standard node js environment, running on nextJs and react. It uses a template designed by 
+                <a href="https://html5up.net">HTML5 UP</a> and released for free under the 
+                <a href="https://html5up.net/license">Creative Commons</a> license.
+                This version is a full rewrite from an <a href="https://deprecated.gokulmenon.com">  old version</a> 
+                which was using the web.py pyton web framework and jinja2 templating engine.
             </p>
             {close}
         </div>

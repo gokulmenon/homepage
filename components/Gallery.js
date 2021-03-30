@@ -5,176 +5,38 @@ import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faInstagram } from "@fortawesome/free-brands-svg-icons"
 
-const PREFIX_IMG_URL = '/static/images/gallery/';
-const PREFIX_THUMBNAIL_URL = '/static/images/gallery/thumbnails/';
-
-
 class Gallery extends React.Component {
   constructor(){
       super();
-      let milkyway_images = this._getMilkywayStaticImages()
-      let other_images =  [
-        {
-          original: `${PREFIX_IMG_URL}nyc1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}nyc1_thumbnail.jpg`,
-          originalTitle: 'Jersey Heights, New Jersey',
-          description: 'Jersey Heights Skyline , as seen from Manhattan, New York.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}nyc2_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}nyc2_thumbnail.jpg`,
-          originalTitle: 'Manhattan, New York',
-          description: 'Street View , New York City, New York.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}nyc3_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}nyc3_thumbnail.jpg`,
-          originalTitle: 'Manhattan, New York',
-          description:  'Central Park as seen from top of the rock, New York'
-        },
-        {
-          original: `${PREFIX_IMG_URL}nyc4_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}nyc4_thumbnail.jpg`,
-          originalTitle: 'Manhattan, New York',
-          description:'The Empire State, New York'
-        },
-        {
-          original: `${PREFIX_IMG_URL}utah1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}utah1_thumbnail.jpg`,
-          originalTitle: 'Arches National Park, Utah',
-          description: 'The famous Delicate Arch at the Arches National Park, Utah'
-        },
-        {
-          original: `${PREFIX_IMG_URL}utah2_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}utah2_thumbnail.jpg`,
-          originalTitle: 'Antelope Canyon, Arizona',
-          description: 'The Lower Antelope Canyon is a photographers dream destination.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}hawaii1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}hawaii1_thumbnail.jpg`,
-          originalTitle: 'The Kilauea Volcano, Hawaii',
-          description: 'Located in the Hawaii Volcanos National Park on the Big Island in Hawaii, Kilauea is an active shield volcano, one of the most active volcanos amongst the five volcanoes in the park.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}hawaii2_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}hawaii2_thumbnail.jpg`,
-          originalTitle: 'Haleakala Crater in Maui, Hawaii',
-          description: 'Taken at the Haleakala Crater in Maui, Hawai while trying to capture the sunrise. One of the most beautiful sunrises Ive ever seen.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}hawaii3_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}hawaii3_thumbnail.jpg`,
-          originalTitle: 'Mauna Kea, Hawaii',
-          description: 'This is sunset at the famous Mauna Kea summit on the big island, Hawaii'
-        },
-        {
-          original: `${PREFIX_IMG_URL}grand_canyon1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}grand_canyon1_thumbnail.jpg`,
-          originalTitle: 'Grand Canyon National Park, Arizona',
-          description: 'Some clear blue skies at Grand Canyon National Park, Arizona',
-        },
-        {
-          original: `${PREFIX_IMG_URL}eclipse_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}eclipse_thumbnail.jpg`,
-          originalTitle: 'Smoky Mountain National Park, Tennesse',
-          description: 'Taken during totality during the 2017 total solar eclipse close to Smoky Mountain National Park, Tennesse',
-        },
-        {
-          original: `${PREFIX_IMG_URL}norway1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}norway1_thumbnail.jpg`,
-          originalTitle: 'Gudvangen, Norway',
-          description: 'An old viking style boat on the premises of Gudvangen Fjordtttell hotel.',
-        },
-        {
-          original: `${PREFIX_IMG_URL}iceland1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland1_thumbnail.jpg`,
-          originalTitle: 'Snaefellsnes Peninsula, Iceland',
-          description: 'An old picnic bench near the coast Snaefellsnes Peninsula, in southern short of Iceland'
-        },
-        {
-          original: `${PREFIX_IMG_URL}iceland2_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland2_thumbnail.jpg`,
-          originalTitle: 'Reykjavik, Iceland',
-          description: 'Street view, Reykjavik, capital city of Iceland.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}iceland3_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland3_thumbnail.jpg`,
-          originalTitle: 'Hallgrímskirkja , Reykjavik, Iceland',
-          description: 'Hallgrímskirkja is a church built on a small hilltop, easily the most identifiable landmark in the city of Reyjkavik in Iceland.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}iceland4_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland4_thumbnail.jpg`,
-          originalTitle: 'Gatklettur, Iceland',
-          description: 'Gatklettur or Arch of Hellnar is found between the villages of Helnar and Arnarstapi, on the southern shore of Iceland.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}iceland5_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}iceland5_thumbnail.jpg`,
-          originalTitle: 'Thingvellir National Park, Iceland',
-          description: 'Part of the golden circle, Thingvellir National Park on a good clear night can have spectacular northern lights show on display.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}alaska1_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}alaska1_thumbnail.jpg`,
-          originalTitle: 'Denali National Park, Alaska',
-          description: 'Stood on top of a glacier to take this picture, a scene that looks from an ice age.'
-        },
-        {
-          original: `${PREFIX_IMG_URL}alaska2_small.jpg`,
-          thumbnail: `${PREFIX_THUMBNAIL_URL}alaska2_thumbnail.jpg`,
-          originalTitle: 'Whittier Glacier, Alaska',
-          description: 'Taken on Glacier Cruise on the protected waters of Prrrince William Sound, Whittier, Alaska.'
-        },
-      ];
-      this.images = milkyway_images.concat(other_images);
-  }
-
-  _getMilkuWayTitles(){
-      const titles = [
-          'Anza Borrego State Park, California',
-          'Grand Canyon National Park,Arizona',
-          'Cherry Springs State Park, Pennsylvania',
-          'Cherry Springs State Park, Pennsylvania',
-          'Haleakala Crater in Maui, Hawaii',
-          'Anza Borrego State Park, California',
-          'Zion National Park, Utah',
-          'Cherry Springs State Park, Pennsylvania',
-
+      this.images = [
+        { original: "https://i.ibb.co/3BdtHLH/milkyway1-small.jpg", thumbnail: "https://i.ibb.co/sVJZPqx/milkyway1-thumbnail.jpg", originalTitle: "Anza Borrego State Park, California", description: "The milkyway rising in the Anza Borrego Desert near San Diego in California."},
+        { original: "https://i.ibb.co/NT5L1PT/milkyway2-small.jpg", thumbnail: "https://i.ibb.co/bb845gS/milkyway2-thumbnail.jpg", originalTitle: "Grand Canyon National Park,Arizona", description: "Milkyway rising above the Grand Canyon in Arizona."},
+        { original: "https://i.ibb.co/PMysVx3/milkyway3-small.jpg", thumbnail: "https://i.ibb.co/NZhqNFq/milkyway3-thumbnail.jpg", originalTitle: "Cherry Springs State Park, Pennsylvania", description: "Cherry Springs State Park in Pennsylvania is about 4.5 hours away drive from new york and is one of the best places to see the milkyway on the east coast."},
+        { original: "https://i.ibb.co/bmgZqYc/milkyway4-small.jpg", thumbnail: "https://i.ibb.co/ByTcdCv/milkyway4-thumbnail.jpg", originalTitle: "Cherry Springs State Park, Pennsylvania", description: "Another shot of the milky way rising from Cherry Springs."},
+        { original: "https://i.ibb.co/KhzXSTz/milkyway5-small.jpg", thumbnail: "https://i.ibb.co/V347qjJ/milkyway5-thumbnail.jpg", originalTitle: "Haleakala Crater in Maui, Hawaii", description: "Hawaii is roughly 20 degrees north of equator in latitude, so from this vantage point the milky way appears almost horizontal to the horizon when it sets in the north west region of the sky I captured this in the early hours of the morning just before sun rise Dubbed House of the Sun by native Hawaiians, Haleakala Crater is the worlds largest dormant volcano and the highest peak in Maui."},
+        { original: "https://i.ibb.co/r75g30p/milkyway6-small.jpg", thumbnail: "https://i.ibb.co/jLq1vGb/milkyway6-thumbnail.jpg", originalTitle: "Anza Borrego State Park, California", description: "Another shot taken at the Anza Borrego Desert near San Diego in California"},
+        { original: "https://i.ibb.co/xzg4H71/milkyway7-small.jpg", thumbnail: "https://i.ibb.co/K6SV92Y/milkyway7-thumbnail.jpg", originalTitle: "Zion National Park, Utah", description: "Shot of the milky way at the gates of Zion National Park in Utah"},
+        { original: "https://i.ibb.co/fx1gnqv/milkyway8-small.jpg", thumbnail: "https://i.ibb.co/Fs9bTK5/milkyway8-thumbnail.jpg", originalTitle: "Cherry Springs State Park, Pennsylvania", description: "One of my older milkyway photographs from Cherry Springs State Park, Pensilvania"},
+        { original: "https://i.ibb.co/Sfk55cW/alaska1-small.jpg", thumbnail: "https://i.ibb.co/9yZZ16m/alaska1-thumbnail.jpg", originalTitle: "Denali National Park, Alaska", description: "Stood on top of a glacier to take this picture, a scene that looks from an ice age."},
+        { original: "https://i.ibb.co/k6RmNFw/alaska2-small.jpg", thumbnail: "https://i.ibb.co/p3TRJHt/alaska2-thumbnail.jpg", originalTitle: "Whittier Glacier, Alaska", description: "Taken on Glacier Cruise on the protected waters of Prrrince William Sound, Whittier, Alaska."},
+        { original: "https://i.ibb.co/dbW0Mgm/eclipse-small.jpg", thumbnail: "https://i.ibb.co/VLsBVGF/eclipse-thumbnail.jpg", originalTitle: "Smoky Mountain National Park, Tennesse", description: "Taken during totality during the 2017 total solar eclipse close to Smoky Mountain National Park, Tennesse"},
+        { original: "https://i.ibb.co/P1PLM8D/grand-canyon1-small.jpg", thumbnail: "https://i.ibb.co/dGcqtBn/grand-canyon1-thumbnail.jpg", originalTitle: "Grand Canyon National Park, Arizona", description: "Some clear blue skies at Grand Canyon National Park, Arizona"},
+        { original: "https://i.ibb.co/F4przNd/utah1-small.jpg", thumbnail: "https://i.ibb.co/zQpqKMc/utah1-thumbnail.jpg", originalTitle: "Arches National Park, Utah", description: "The famous Delicate Arch at the Arches National Park, Utah"},
+        { original: "https://i.ibb.co/QjkLDNW/utah2-small.jpg", thumbnail: "https://i.ibb.co/mDqgsjh/utah2-thumbnail.jpg", originalTitle: "Antelope Canyon, Arizona", description: "The Lower Antelope Canyon is a photographers dream destination."},
+        { original: "https://i.ibb.co/wMRLQkz/hawaii1-small.jpg", thumbnail: "https://i.ibb.co/W0BG0Xt/hawaii1-thumbnail.jpg", originalTitle: "The Kilauea Volcano, Hawaii", description: "Located in the Hawaii Volcanos National Park on the Big Island in Hawaii, Kilauea is an active shield volcano, one of the most active volcanos amongst the five volcanoes in the park."},
+        { original: "https://i.ibb.co/cYRqmbP/hawaii2-small.jpg", thumbnail: "https://i.ibb.co/sy767Xs/hawaii2-thumbnail.jpg", originalTitle: "Haleakala Crater in Maui, Hawaii", description: "Taken at the Haleakala Crater in Maui, Hawai while trying to capture the sunrise. One of the most beautiful sunrises Ive ever seen."},
+        { original: "https://i.ibb.co/WsWrvPr/hawaii3-small.jpg", thumbnail: "https://i.ibb.co/VpCSjZr/hawaii3-thumbnail.jpg", originalTitle: "Mauna Kea, Hawaii", description: "This is sunset at the famous Mauna Kea summit on the big island, Hawaii"},
+        { original: "https://i.ibb.co/bQ7vRbd/iceland1-small.jpg", thumbnail: "https://i.ibb.co/QXmBSrj/iceland1-thumbnail.jpg", originalTitle: "Snaefellsnes Peninsula, Iceland", description: "An old picnic bench near the coast Snaefellsnes Peninsula, in southern short of Iceland"},
+        { original: "https://i.ibb.co/JtW7mG7/iceland2-small.jpg", thumbnail: "https://i.ibb.co/fHt6ZG9/iceland2-thumbnail.jpg", originalTitle: "Reykjavik, Iceland", description: "Street view, Reykjavik, capital city of Iceland."},
+        { original: "https://i.ibb.co/2vQHLQj/iceland3-small.jpg", thumbnail: "https://i.ibb.co/xhY1F4t/iceland3-thumbnail.jpg", originalTitle: "Hallgrímskirkja , Reykjavik, Iceland", description: "'Hallgrímskirkja is a church built on a small hilltop, easily the most identifiable landmark in the city of Reyjkavik in Iceland."},
+        { original: "https://i.ibb.co/1vbXRp3/iceland4-small.jpg", thumbnail: "https://i.ibb.co/XXpKZpt/iceland4-thumbnail.jpg", originalTitle: "Gatklettur, Iceland", description: "Gatklettur or Arch of Hellnar is found between the villages of Helnar and Arnarstapi, on the southern shore of Iceland."},
+        { original: "https://i.ibb.co/T1x6DS6/iceland5-small.jpg", thumbnail: "https://i.ibb.co/b2KpfZX/iceland5-thumbnail.jpg", originalTitle: "Thingvellir National Park, Iceland", description: "Part of the golden circle, Thingvellir National Park on a good clear night can have spectacular northern lights show on display."},
+        { original: "https://i.ibb.co/yQstdcJ/norway1-small.jpg", thumbnail: "https://i.ibb.co/6Xc65ns/norway1-thumbnail.jpg", originalTitle: "Gudvangen, Norway", description: "An old viking style boat on the premises of Gudvangen Fjordtttell hotel."},
+        { original: "https://i.ibb.co/QMdmP09/nyc1-small.jpg", thumbnail: "https://i.ibb.co/tpcvXRF/nyc1-thumbnail.jpg", originalTitle: "Jersey Heights, New Jersey", description: "Jersey Heights Skyline , as seen from Manhattan, New York."},
+        { original: "https://i.ibb.co/dMFKCV7/nyc2-small.jpg", thumbnail: "https://i.ibb.co/rM1STwL/nyc2-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "Street View , New York City, New York."},
+        { original: "https://i.ibb.co/CK79SWY/nyc3-small.jpg", thumbnail: "https://i.ibb.co/pyw3kZB/nyc3-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "Central Park as seen from top of the rock, New York"},
+        { original: "https://i.ibb.co/kQvZg9h/nyc4-small.jpg", thumbnail: "https://i.ibb.co/HY814DS/nyc4-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "The Empire State, New York"}
       ]
-    return titles;
-  }
-
-  _getMilkyWayDescriptions(){
-      const descriptions = [
-          'The milkyway rising in the Anza Borrego Desert near San Diego in California.',
-          'Milkyway rising above the Grand Canyon in Arizona.',
-          'Cherry Springs State Park, near Coudersport Pennsylvania is about 4.5 hours away drive from new york and is one of the best places to see the milkyway on the eastern US',
-          'Another shot of the milky way rising from Cherry Springs.',
-          'Hawaii is roughly 20 degrees north of equator in latitude, so from this vantage point the milky way appears almost horizontal to the horizon when it sets in the north west region of the sky I captured this in the early hours of the morning just before sun rise Dubbed House of the Sun by native Hawaiians, Haleakala Crater is the worlds largest dormant volcano and the highest peak in Maui.',
-          'Another shot taken at the Anza Borrego Desert near San Diego in California.',
-          'Shot of the milky way at the gates of Zion National Park in Utah',
-          'One of my older milkyway photographs from Cherry Springs State Park, Pensilvania',
-      ]
-    return descriptions;
-  }
-
-  _getMilkywayStaticImages() {
-    let images = [];
-    const descriptions = this._getMilkyWayDescriptions();
-    const titles = this._getMilkuWayTitles();
-    for (let i = 1; i < 9; i++) {
-      images.push({
-        original: `${PREFIX_IMG_URL}milkyway${i}_small.jpg`,
-        thumbnail: `${PREFIX_THUMBNAIL_URL}milkyway${i}_thumbnail.jpg`,
-        originalTitle: titles[i-1],
-        description: descriptions[i-1],
-      });
-    }
-
-    return images;
   }
 
   render() {
@@ -184,7 +46,6 @@ class Gallery extends React.Component {
       <h2 className="major">Gallery</h2>          
       <ImageGallery items={this.images} showNav={true}/>
       <br />
-      {/* <span className="image main"><img src="/static/images/pic02.jpg" alt="" /></span> */}
       <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography 
         from the time I could get my hands on a
         camera. Starting from a camera with a limited physical reel to digital 

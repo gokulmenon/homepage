@@ -11,9 +11,10 @@ const Header = (props) => (
         <div className="content">
             <div className="inner">
                 <h1>Gokul Menon</h1>
-                <p>Welcome to the little corner of the internet that I can call my home in cyberspace.<br />
-                    Using a template designed by <a href="https://html5up.net">HTML5 UP</a> and released
-                    for free under the <a href="https://html5up.net/license">Creative Commons</a> license.</p>
+                <p>
+                    Welcome to the little corner of the internet that I can call my home in cyberspace.<br />
+                    This is yet another static website with blog built with free (as in free beer) open source software.
+                </p>
             </div>
         </div>
         <nav>
