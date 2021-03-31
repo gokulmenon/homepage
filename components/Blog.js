@@ -9,14 +9,23 @@ class Blog extends React.Component {
       return (
         <div>
             <h2 className="major">Blog</h2>
-            <span className="image main"><img src="/static/images/coming_soon.jpg" alt="" /></span>
+            {/* <span className="image main"><img src="/static/images/coming_soon.jpg" alt="" /></span>
             <p>A big reason for the rewrite of this site was to build my own blog using a headless cms. 
                 This is still work in progress and soon below blogger iframe blog will be replaced by
-                my own version built using sanity.io headless cms.</p>
-            <iframe src='https://blogger.gokulmenon.com/' scrolling='yes'
-                style={{border: 0, background: '#FFF', width: '100%', height: '1920px'}}>  </iframe>
+                my own version built using sanity.io headless cms.</p> */}
+            <iframe 
+              src='/blog' 
+              scrolling='yes'
+              style={
+                {border: 0,
+                background: '#FFF',
+                overflow: 'visible',
+                width: '100%',
+                height: '4920px'}
+              }>
+            </iframe>
                 {/*  style='border-width:0px; border-color:#333; background:#FFF; border-style:solid;'> */}
-                <script>iFrameResize();</script>
+            <script>iFrameResize();</script>
           {close}
         </div>
     );

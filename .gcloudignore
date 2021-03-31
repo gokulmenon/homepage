@@ -19,3 +19,8 @@ node_modules/
 # Next.js source code
 /pages/
 /components/
+
+# sanity blog studio dependencies
+/studio/node_modules
+
+/studio/.gitignore
