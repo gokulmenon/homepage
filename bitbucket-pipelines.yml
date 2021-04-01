@@ -46,6 +46,16 @@ pipelines:
               - echo "export NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
               - echo "export SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
               - echo "export SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
+              - export $(cat .env.production.local | xargs)
+              - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
+              - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
+              - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
+              - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
+              - echo $SANITY_API_TOKEN
+              - echo $NEXT_PUBLIC_SANITY_PROJECT_ID
+              - echo $NEXT_PUBLIC_SANITY_DATASET
+              - echo $SANITY_STUDIO_API_PROJECT_ID
+              - echo $SANITY_STUDIO_API_DATASET
               # About to Install NextJs app and dependencies
               - npm install
               # About to build NextJs app
