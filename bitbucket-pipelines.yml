@@ -19,7 +19,7 @@ pipelines:
           script:
             # Run a security scan for sensitive data.
             # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
-            - pipe: atlassian/git-secrets-scan:0.4.3
+            - pipe: atlassian/git-secrets-scan
       - step:
           name: Lint the node package
           script:
@@ -41,6 +41,11 @@ pipelines:
               - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
               - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
               - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY" >> .env.production.local
+              - echo "export SANITY_API_TOKEN=$SANITY_API_TOKEN" >> .env.production.local
+              - echo "export NEXT_PUBLIC_SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+              - echo "export NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
+              - echo "export SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+              - echo "export SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
               # About to Install NextJs app and dependencies
               - npm install
               # About to build NextJs app
@@ -52,7 +57,7 @@ pipelines:
             script:
               # Run a security scan for sensitive data.
               # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
-              - pipe: atlassian/git-secrets-scan:0.4.3
+              - pipe: atlassian/git-secrets-scan
       - step:
           name: Deploy to Production
           caches:
@@ -66,13 +71,18 @@ pipelines:
             - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
             - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
             - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
+            - echo $SANITY_API_TOKEN
+            - echo $NEXT_PUBLIC_SANITY_PROJECT_ID
+            - echo $NEXT_PUBLIC_SANITY_DATASET
+            - echo $SANITY_STUDIO_API_PROJECT_ID
+            - echo $SANITY_STUDIO_API_DATASET
             # About to Install NextJs app and dependencies
             - npm install
             # About to build NextJs app
             - npm run build
             # About to install gcloud sdk
-            - echo "About to install gcloud sdk v288.0.0"
-            - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-288.0.0-linux-x86_64.tar.gz
+            - echo "About to install gcloud sdk v332.0.0"
+            - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-332.0.0-linux-x86_64.tar.gz
             - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
             - /tmp/google-cloud-sdk/install.sh -q
             - source /tmp/google-cloud-sdk/path.bash.inc
