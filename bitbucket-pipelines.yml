@@ -37,15 +37,15 @@ pipelines:
               - nextcache
             script:
               # Populate .env.production.local file
-              - echo "export NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY" >> .env.production.local
-              - echo "export SANITY_API_TOKEN=$SANITY_API_TOKEN" >> .env.production.local
-              - echo "export NEXT_PUBLIC_SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
-              - echo "export NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
-              - echo "export SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
-              - echo "export SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
+              - echo "NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID" >> .env.production.local
+              - echo "NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
+              - echo "NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
+              - echo "NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY" >> .env.production.local
+              - echo "SANITY_API_TOKEN=$SANITY_API_TOKEN" >> .env.production.local
+              - echo "NEXT_PUBLIC_SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+              - echo "NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
+              - echo "SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+              - echo "SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
               #verify .env.production.local file is there and load env variables for build step
               - export $(cat .env.production.local | xargs)
               - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
