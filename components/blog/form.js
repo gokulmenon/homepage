@@ -10,6 +10,7 @@ export default function Form ({_id}) {
     setIsSubmitting(true)
     let response
     setFormData(data)
+    setIsSubmitting(false)
     try {
       response = await fetch('/api/createComment', {
         method: 'POST',
@@ -24,19 +25,17 @@ export default function Form ({_id}) {
   }
 
   if (isSubmitting) {
-    return <h3>Submitting comment…</h3>
+    return <h6>Submitting comment… Please wait…</h6>
   }
   if (hasSubmitted) {
     return (
     <>
-      <h3>Thanks for your comment!</h3>
-      <ul>
-        <li>
+      <p>Thanks for your comment! It will be posted above once approved. <br /><br />
+          Submitted comment details : <br />
           Name: {formData.name} <br />
           Email: {formData.email} <br />
           Comment: {formData.comment}
-        </li>
-      </ul>
+      </p>
     </>)
   }
 
