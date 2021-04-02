@@ -71,7 +71,8 @@ export async function getStaticPaths() {
     paths:
       allPosts?.map((post) => ({
         params: {
-          slug: post.slug,
+          //TODO remove this arbitory string once bug is fixed for missing slug
+          slug: post.slug || "r",
         },
       })) || [],
     fallback: true,

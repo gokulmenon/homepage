@@ -21,7 +21,7 @@ class Blog extends React.Component {
                 background: '#FFF',
                 overflow: 'visible',
                 width: '100%',
-                height: '1920px'}
+                height: '12800px'}
               }>
             </iframe>
                 {/*  style='border-width:0px; border-color:#333; background:#FFF; border-style:solid;'> */}
