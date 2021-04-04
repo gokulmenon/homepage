@@ -1,40 +1,75 @@
 
 import PropTypes from 'prop-types';
 import React from "react"
+import Container from '../components/blog/container'
+import MoreStories from '../components/blog/more-stories'
+import HeroPost from '../components/blog/hero-post'
+import Intro from '../components/blog/intro'
+import Layout from '../components/blog/layout'
+import Head from 'next/head'
+import { withRouter } from 'next/router'
 
 class Blog extends React.Component {
+  constructor(props) {
+      super(props)
+      this.router = props.router;
+      this.handleCloseArticle = this.handleCloseArticle.bind(this)
+      this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+  
+    componentDidMount() {
+      window.addEventListener('keydown', this.handleKeyDown);
+    }
+    
+    handleKeyDown(event) {
+      const ESC_KEY = 27;
+      const key = parseInt(event.keyCode || event.which || 0, 10);
+      if (key===ESC_KEY){
+        this.handleCloseArticle();
+      }
+    }
 
-  render(){      
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
-      return (
-        <div>
-            <h2 className="major">Blog</h2>
-            {/* <span className="image main"><img src="/static/images/coming_soon.jpg" alt="" /></span>
-            <p>A big reason for the rewrite of this site was to build my own blog using a headless cms. 
-                This is still work in progress and soon below blogger iframe blog will be replaced by
-                my own version built using sanity.io headless cms.</p> */}
-            <iframe 
-              src='/blog' 
-              scrolling='yes'
-              style={
-                {border: 0,
-                background: '#FFF',
-                overflow: 'visible',
-                width: '100%',
-                height: '12800px'}
-              }>
-            </iframe>
-                {/*  style='border-width:0px; border-color:#333; background:#FFF; border-style:solid;'> */}
-            <script>iFrameResize();</script>
-          {close}
-        </div>
+  handleCloseArticle() {
+    this.router.push("/");
+  }
+
+  render() {
+    let close = <div className="close" onClick={() => { this.handleCloseArticle() }}></div>;
+    const heroPost = this.props.allPosts[0]
+    const morePosts = this.props.allPosts.slice(1)
+    return (
+      <div>
+        <h2 className="major">Blog</h2>        
+        <Layout preview={this.props.preview}>
+          <Head>
+            <title>Gokul Menon Blog</title>
+          </Head>
+          <Container>
+            <Intro />
+            {heroPost && (
+              <HeroPost
+                title={heroPost.title}
+                coverImage={heroPost.coverImage}
+                date={heroPost.date}
+                author={heroPost.author}
+                slug={heroPost.slug}
+                excerpt={heroPost.excerpt}
+              />
+            )}
+            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          </Container>
+        </Layout>
+        {close}
+      </div>
     );
   }
 }
 
-  
+
 Blog.propTypes = {
-    onCloseArticle: PropTypes.func
-  }
-  
-export default Blog
+  onCloseArticle: PropTypes.func,
+  allPosts:PropTypes.array,
+  preview:PropTypes.bool
+}
+
+export default withRouter(Blog)

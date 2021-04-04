@@ -85,6 +85,33 @@
 					}
 				}
 			}
+      .back {
+				display: block;
+				position: absolute;
+				top: 0.75rem;
+				left: 0.75rem;
+				width: 4rem;
+				height: 4rem;
+				cursor: pointer;
+				text-indent: 1rem;
+				overflow: hidden;
+				white-space: nowrap;
+
+				&:before {
+					@include vendor('transition', 'background-color #{_duration(transition)} ease-in-out');
+					content: '';
+					display: block;
+					position: absolute;
+					top: 0.75rem;
+					left: 0.75rem;
+					width: 2.5rem;
+					height: 2.5rem;
+					border-radius: 100%;
+					background-position: center;
+					background-size: 30px 30px;
+					background-repeat: no-repeat;
+				}
+			}
 
 		}
 
@@ -95,6 +122,15 @@
 					&:before {
 						top: 0.875rem;
 						left: 0.875rem;
+						width: 2.25rem;
+						height: 2.25rem;
+						background-size: 24px 24px;
+					}
+				}
+				.back {
+					&:before {
+						top: 0.875rem;
+						right: 0.875rem;
 						width: 2.25rem;
 						height: 2.25rem;
 						background-size: 24px 24px;

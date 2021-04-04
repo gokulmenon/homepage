@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
@@ -19,10 +20,10 @@ const Header = (props) => (
         </div>
         <nav>
             <ul>
-                <li><a href="#" onClick={() => {props.onOpenArticle('intro')}}><strong>Intro</strong></a></li>
-                <li><a href="#" onClick={() => {props.onOpenArticle('gallery')}}><strong>Gallery</strong></a></li>
-                <li><a href="#" onClick={() => {props.onOpenArticle('blog')}}><strong>Blog</strong></a></li>
-                <li><a href="#" onClick={() => {props.onOpenArticle('contact')}}><strong>Contact</strong></a></li>
+                <li><Link href="/intro"><a><strong>Intro</strong></a></Link></li>
+                <li><Link href="/gallery"><a><strong>Gallery</strong></a></Link></li>
+                <li><Link href="/blog"><a><strong>Blog</strong></a></Link></li>
+                <li><Link href="/contact"><a><strong>Contact</strong></a></Link></li>
             </ul>
         </nav>
     </header>

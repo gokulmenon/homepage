@@ -10,7 +10,9 @@ import Layout from '../../components/blog/layout'
 import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
 import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
-import { CMS_NAME } from '../../lib/constants'
+import Footer from "../../components/Footer"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import Form from '../../components/blog/form'
 
 export default function Post({ post, morePosts, preview }) {
@@ -18,38 +20,56 @@ export default function Post({ post, morePosts, preview }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
+  let close = <div className="close" onClick={() => { router.push('/') }}></div>
+  let back = <div className="back" onClick={() => { router.back() }}>
+              <FontAwesomeIcon icon={faArrowLeft} width="30px"/>
+            </div>
   return (
-    <Layout preview={preview}>
-      <Container>
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <>
-            <article>
-              <Head>
-                <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
-                </title>
-                {/* <meta property="og:image" content={post.ogImage.url} /> */}
-              </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
-              <PostBody content={post.body} />
+    <div className="body is-article-visible">
+      <div>
+        <Head>
+          <title>{post.title} - Gokul Menon Blog</title>
+          <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i" rel="stylesheet" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="manifest" href="/site.webmanifest"></link>
+        </Head>
+        <div id="wrapper">
+          <div id="main" style={{ display: 'flex' }}>
+            <article id="blog posts" className="active timeout" style={{ display: 'none' }}>
+              <Layout preview={preview}>
+                <Container>
+                  {router.isFallback ? (
+                    <PostTitle>Loading…</PostTitle>
+                  ) : (
+                    <>
+                      <PostHeader
+                        title={post.title}
+                        coverImage={post.coverImage}
+                        date={post.date}
+                        author={post.author}
+                      />
+                      <PostBody content={post.body} />
+
+                      <Comments comments={post.comments} />
+                      <Form _id={post._id} />
+
+                      <SectionSeparator />
+                      {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+                    </>
+                  )}
+                </Container>
+              </Layout>
+              {back}
+              {close}
             </article>
-
-            <Comments comments={post.comments} />
-            <Form _id={post._id} />
-
-            <SectionSeparator />
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          </>
-        )}
-      </Container>
-    </Layout>
+          </div>
+          <Footer timeout={true} />
+        </div>
+        <div id="bg" />
+      </div>
+    </div>
   )
 }
 

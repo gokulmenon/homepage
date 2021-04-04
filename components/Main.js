@@ -7,7 +7,7 @@ import React from "react"
 
 class Main extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     // bindings
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -16,34 +16,49 @@ class Main extends React.Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);
   }
-  
+
   handleKeyDown(event) {
-    if( this.props.article == "") return;
+    if (this.props.article == "" || this.props.article == "blog") return;
     const ESC_KEY = 27;
     const key = parseInt(event.keyCode || event.which || 0, 10);
-    if (key===ESC_KEY){
+    if (key === ESC_KEY) {
       this.props.onCloseArticle();
     }
   }
 
   render() {
 
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>
-
-    return (
-      <div id="main" style={this.props.timeout ? {display: 'flex'} : {display: 'none'}}>
-        <article id="intro" className={`${this.props.article === 'intro' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+    let close = <div className="close" onClick={() => { this.props.onCloseArticle() }}></div>
+    let article_component = null;
+    switch (this.props.article) {
+      case "intro":
+        article_component = <article id="intro" className={`${this.props.article === 'intro' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
           <Intro onCloseArticle={this.props.onCloseArticle} />
-        </article>
-        <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+        </article>;
+        break;
+      case "gallery":
+        article_component = <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
           <Gallery onCloseArticle={this.props.onCloseArticle} />
-        </article>
-        <article id="blog" className={`${this.props.article === 'blog' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
-          <Blog onCloseArticle={this.props.onCloseArticle} />
-        </article>
-        <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+        </article>;
+        break;
+      case "blog":
+        article_component = <article id="blog" className={`${this.props.article === 'blog' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
+          <Blog
+            onCloseArticle={this.props.onCloseArticle}
+            allPosts={this.props.allPosts}
+            preview={this.props.preview}
+          />
+        </article>;
+        break;
+      case "contact":
+        article_component = <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
           <Contact onCloseArticle={this.props.onCloseArticle} />
-        </article>
+        </article>;
+        break;
+    }
+    return (
+      <div id="main" style={this.props.timeout ? { display: 'flex' } : { display: 'none' }}>
+        {article_component}
       </div>
     )
   }

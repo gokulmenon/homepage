@@ -1,34 +1,32 @@
 import React from "react"
 import Base from "../components/Base"
+import { withRouter  } from 'next/router'
 
-class IndexPage extends React.Component {
+class ContactPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             isArticleVisible: false,
             timeout: false,
             articleTimeout: false,
-            article: "",
-            loading: "is-loading"
+            article: "contact",
+            loading: ""
         }
+        this.router = props.router;
+        this.handleOpenArticle = this.handleOpenArticle.bind(this)
         this.handleCloseArticle = this.handleCloseArticle.bind(this)
     }
 
     componentDidMount() {
-        this.timeoutId = setTimeout(() => {
-            this.setState({ loading: "" })
+        setTimeout(() => {
+            this.handleOpenArticle('contact');
         }, 100)
     }
 
-    componentWillUnmount() {
-        if (this.timeoutId) {
-            clearTimeout(this.timeoutId)
-        }
-    }
-
-    handleCloseArticle() {
+    handleOpenArticle(article) {
         this.setState({
-            articleTimeout: !this.state.articleTimeout
+            isArticleVisible: !this.state.isArticleVisible,
+            article
         })
 
         setTimeout(() => {
@@ -39,10 +37,13 @@ class IndexPage extends React.Component {
 
         setTimeout(() => {
             this.setState({
-                isArticleVisible: !this.state.isArticleVisible,
-                article: ""
+                articleTimeout: !this.state.articleTimeout
             })
         }, 350)
+    }
+
+    handleCloseArticle() {
+      this.router.push("/");
     }
     
     render() {
@@ -55,4 +56,4 @@ class IndexPage extends React.Component {
     }
 }
 
-export default IndexPage
+export default withRouter(ContactPage)

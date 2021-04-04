@@ -17,6 +17,7 @@ export default function PostPreview({
         <CoverImage slug={slug} title={title} imageObject={coverImage} url={imageBuilder(coverImage).url()} />
       </div>
       <table>
+        <tbody>
         <tr>
           <td width="75%">
           <h4 className="text-1xl mb-2 leading-snug">
@@ -31,6 +32,7 @@ export default function PostPreview({
           </div>
           </td>
         </tr>
+        </tbody>
       </table>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
       {/* <Avatar name={author?.name} picture={author?.picture} /> */}

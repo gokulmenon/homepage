@@ -1,38 +1,64 @@
-import Container from '../components/blog/container'
-import MoreStories from '../components/blog/more-stories'
-import HeroPost from '../components/blog/hero-post'
-import Intro from '../components/blog/intro'
-import Layout from '../components/blog/layout'
+import React from "react"
+import Base from "../components/Base"
 import { getAllPostsForHome } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import { useReducer } from 'react';
+import { useRouter  } from 'next/router'
 
-export default function Blog({ allPosts, preview }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+const initialState = {
+  isArticleVisible: false,
+  timeout: false,
+  articleTimeout: false,
+  article: "blog",
+  loading: ""
+}
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'isArticleVisible':
+      return { ...state, isArticleVisible: action.value };
+    case 'timeout':
+      return { ...state, timeout: action.value };
+    case 'articleTimeout':
+      return { ...state, articleTimeout: action.value };
+    case 'article':
+      return { ...state, article: action.value };
+    case 'loading':
+      return { ...state, loading: action.value };
+    default:
+      throw new Error();
+  }
+}
+
+export default function BlogPage(props) {
+  const [pageState, dispatch] = useReducer(reducer, initialState);
+  const { isArticleVisible, timeout, articleTimeout, article, loadding } = pageState;
+  const handleCloseArticle = () => {
+    useRouter().push('/')
+  }
+  const handleOpenArticle = (article) => {
+    dispatch({ type: 'isArticleVisible', value: true });
+    dispatch({ type: "article", value: article });
+    setTimeout(() => {
+      dispatch({ type: 'timeout', value: true });
+    }, 325)
+
+    setTimeout(() => {
+      dispatch({ type: 'articleTimeout', value: true });
+    }, 350)
+  }
+
+  setTimeout(() => {
+    handleOpenArticle('blog');
+  }, 100)
+
   return (
-    <>
-      <Layout preview={preview}>
-        <Head>
-          <title>Gokul Menon Blog</title>
-        </Head>
-        <Container>
-          <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      </Layout>
-    </>
-  )
+    <Base
+      state={pageState}
+      handleCloseArticle={handleCloseArticle}
+      allPosts={props.allPosts}
+      preview={props.preview}
+    />
+  );
 }
 
 export async function getStaticProps({ preview = false }) {
