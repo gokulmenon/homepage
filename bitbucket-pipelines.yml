@@ -102,5 +102,5 @@ pipelines:
             - gcloud config set project $CLOUDSDK_CORE_PROJECT
             # Deployment of the application to glcoud
             - echo "Attempting to deploy to gcloud"
-            - gcloud -q --verbosity=error app deploy app.yaml --promote --version beta
+            - gcloud -q --verbosity=error app deploy app.yaml --promote --version prod
             - echo "Deploy attempt done, check https://nextjs-homepage.uc.r.appspot.com"
