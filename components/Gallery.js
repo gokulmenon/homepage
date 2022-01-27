@@ -72,19 +72,40 @@ class Gallery extends React.Component {
         
         'If you look up at the Milky Way through the eyes of Carl Sagan, you get a feeling in your chest of something greater than yourself. And it is. But it\'s not supernatural.' - Richard Dawkins.
       </p> 
-      <h3 className="minor">
-        <a href="https://www.instagram.com/gokulsmenon/">
-          <FontAwesomeIcon icon={faInstagram}  width="16px" />
-          &nbsp;&nbsp; Instagram Feed
-        </a> 
-      </h3>
       <script src='https://embedsocial.com/js/iframe.js'></script>
-        <iframe 
+      <div style={{maxWidth: '900px'}}>
+        <h3 className="minor">
+          <a href="https://www.instagram.com/gokulsmenon/">
+            <FontAwesomeIcon icon={faInstagram}  width="16px" />
+            &nbsp;&nbsp; Instagram Feed
+          </a> 
+        </h3>
+        {/* <iframe 
           style={{border: 0, width: '100%', height: '100%'}} 
           scrolling='no' 
           src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
+        </iframe> */}
+      <script src='https://embedsocial.com/js/iframe.js'>
+      </script>
+        <iframe 
+          style={{border: 0, width: '100%', height: '1800px'}}  
+          scrolling="yes" 
+          src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
         </iframe>
+      </div>
       <script>iFrameResize();</script>
+      
+      {/* <script src='https://embedsocial.com/js/iframe.js'>
+      </script>
+      <div style='max-width: 900px'>
+        <iframe 
+          style={{border: 0, width: '100%', height: '100%'}}  
+          scrolling='no' 
+          src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
+        </iframe>
+      </div>
+      <script>iFrameResize();</script> */}
+
       {close}
     </div>
     );
@@ -94,5 +115,15 @@ class Gallery extends React.Component {
 Gallery.propTypes = {
   onCloseArticle: PropTypes.func
 }
+// function embedSocial(d, s, id)
+//         {
+//           var js; 
+//           if (d.getElementById(id))
+//            {return;} 
+//           js = d.createElement(s); 
+//           js.id = id; 
+//           js.src = "https://embedsocial.com/embedscript/in.js";
+//            d.getElementsByTagName("head")[0].appendChild(js);
+//         };
 
 export default Gallery
