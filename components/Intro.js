@@ -12,7 +12,10 @@ class Intro extends React.Component {
             <p>&nbsp;&nbsp;&nbsp;&nbsp;
                 My name is Gokul Menon and I work as a Software Engineer
                 at  <strike>Facebook</strike> Meta in the New York office and have over 10 years of software development and engineering experience
-                building enterprise software. You can read about some of the work my team and I are doing <a href="https://techcrunch.com/2021/12/09/meta-rolls-out-a-suite-of-new-features-and-discovery-tools-for-facebook-live-creators/">here </a>. I am a full stack developer mostly focussed on backend. 
+                building enterprise software. You can read about some of the work my team and I are doing &nbsp;
+                <a href="https://techcrunch.com/2021/12/09/meta-rolls-out-a-suite-of-new-features-and-discovery-tools-for-facebook-live-creators/">here </a>
+                and an episode of hackerrank radio podcasts series <a href="https://open.spotify.com/playlist/6IxmDVVYOP0mxz0P6dTBxS">here </a>.
+                I am a full stack developer mostly focussed on backend. 
                 Before <strike>Facebook</strike> Meta I worked in fintech building things like electronic trading systems and 
                 algorithmic trading platforms. <br /><br />
 
