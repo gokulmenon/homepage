@@ -16,12 +16,13 @@ const Header = (props) => (
                     Welcome to the little corner of the internet that I can call my home in cyberspace.<br />
                     This is yet another static website with blog built with free (as in free beer) open source software.
                 </p>
-            </div>
+                </div>
         </div>
         <nav>
             <ul>
                 <li><Link href="/intro"><a><strong>Intro</strong></a></Link></li>
                 <li><Link href="/gallery"><a><strong>Gallery</strong></a></Link></li>
+                <li><Link href="/podcasts"><a><strong>Podcasts</strong></a></Link></li>
                 <li><Link href="/blog"><a><strong>Blog</strong></a></Link></li>
                 <li><Link href="/contact"><a><strong>Contact</strong></a></Link></li>
             </ul>

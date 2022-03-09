@@ -2,6 +2,7 @@ import Blog from "../components/Blog"
 import Contact from "../components/Contact"
 import Intro from "../components/Intro"
 import Gallery from "../components/Gallery"
+import Podcasts from "../components/Podcasts"
 import PropTypes from 'prop-types';
 import React from "react"
 
@@ -39,6 +40,11 @@ class Main extends React.Component {
       case "gallery":
         article_component = <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
           <Gallery onCloseArticle={this.props.onCloseArticle} />
+        </article>;
+        break;
+      case "podcasts":
+        article_component = <article id="podcasts" className={`${this.props.article === 'podcasts' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
+          <Podcasts onCloseArticle={this.props.onCloseArticle} />
         </article>;
         break;
       case "blog":
