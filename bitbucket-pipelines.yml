@@ -46,7 +46,7 @@ pipelines:
               - echo "NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
               - echo "SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
               - echo "SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
-              - echo "NEXT_PUBLIC_GOOGLE_ANALYTICS=$GOOGLE_ANALYTICS" >> .env.production.local
+              - echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env.production.local
               #verify .env.production.local file is there and load env variables for build step
               - export $(cat .env.production.local | xargs)
               - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
@@ -58,7 +58,8 @@ pipelines:
               - echo $NEXT_PUBLIC_SANITY_DATASET
               - echo $SANITY_STUDIO_API_PROJECT_ID
               - echo $SANITY_STUDIO_API_DATASET
-              - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS
+              - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+              - echo $GOOGLE_ANALYTICS_ID
               # About to Install NextJs app and dependencies
               - npm install
               # About to build NextJs app
@@ -90,13 +91,14 @@ pipelines:
             - echo $SANITY_STUDIO_API_PROJECT_ID
             - echo $SANITY_STUDIO_API_DATASET
             - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS
+            - echo $GOOGLE_ANALYTICS_ID
             # About to Install NextJs app and dependencies
             - npm install
             # About to build NextJs app
             - npm run build
             # About to install gcloud sdk
-            - echo "About to install gcloud sdk v332.0.0"
-            - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-332.0.0-linux-x86_64.tar.gz
+            - echo "About to install gcloud sdk v379.0.0"
+            - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-379.0.0-linux-x86_64.tar.gz
             - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
             - /tmp/google-cloud-sdk/install.sh -q
             - source /tmp/google-cloud-sdk/path.bash.inc
