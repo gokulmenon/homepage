@@ -46,6 +46,7 @@ pipelines:
               - echo "NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
               - echo "SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
               - echo "SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
+              - echo "NEXT_PUBLIC_GOOGLE_ANALYTICS=$GA_ID" >> .env.production.local
               #verify .env.production.local file is there and load env variables for build step
               - export $(cat .env.production.local | xargs)
               - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
@@ -57,6 +58,7 @@ pipelines:
               - echo $NEXT_PUBLIC_SANITY_DATASET
               - echo $SANITY_STUDIO_API_PROJECT_ID
               - echo $SANITY_STUDIO_API_DATASET
+              - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS
               # About to Install NextJs app and dependencies
               - npm install
               # About to build NextJs app
@@ -87,6 +89,7 @@ pipelines:
             - echo $NEXT_PUBLIC_SANITY_DATASET
             - echo $SANITY_STUDIO_API_PROJECT_ID
             - echo $SANITY_STUDIO_API_DATASET
+            - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS
             # About to Install NextJs app and dependencies
             - npm install
             # About to build NextJs app
