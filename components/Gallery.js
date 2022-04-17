@@ -1,4 +1,4 @@
-import ImageGallery from 'react-image-gallery';
+import ImageGallery  from 'react-image-gallery';
 import PropTypes from 'prop-types';
 import React from "react"
 
@@ -8,6 +8,13 @@ import {faInstagram } from "@fortawesome/free-brands-svg-icons"
 class Gallery extends React.Component {
   constructor(){
       super();
+      this.state = {
+        showPlayButton: true,
+        showGalleryPlayButton: true,
+        showFullscreenButton: true,
+        showGalleryFullscreenButton: true,
+        showVideo: {},
+      };
       this.images = [
         { original: "https://i.ibb.co/3BdtHLH/milkyway1-small.jpg", thumbnail: "https://i.ibb.co/sVJZPqx/milkyway1-thumbnail.jpg", originalTitle: "Anza Borrego State Park, California", description: "The milkyway rising in the Anza Borrego Desert near San Diego in California."},
         { original: "https://i.ibb.co/NT5L1PT/milkyway2-small.jpg", thumbnail: "https://i.ibb.co/bb845gS/milkyway2-thumbnail.jpg", originalTitle: "Grand Canyon National Park,Arizona", description: "Milkyway rising above the Grand Canyon in Arizona."},
@@ -36,15 +43,111 @@ class Gallery extends React.Component {
         { original: "https://i.ibb.co/dMFKCV7/nyc2-small.jpg", thumbnail: "https://i.ibb.co/rM1STwL/nyc2-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "Street View , New York City, New York."},
         { original: "https://i.ibb.co/CK79SWY/nyc3-small.jpg", thumbnail: "https://i.ibb.co/pyw3kZB/nyc3-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "Central Park as seen from top of the rock, New York"},
         { original: "https://i.ibb.co/kQvZg9h/nyc4-small.jpg", thumbnail: "https://i.ibb.co/HY814DS/nyc4-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "The Empire State, New York"}
-      ]
+      ];
+      this.videos = [
+        { original: "https://i9.ytimg.com/vi/Jei5z5Ya58o/mq1.jpg?sqp=CPyB8pIG&rs=AOn4CLBQk5zSWpLSpj4mCKS0U7CYLHNG-g", 
+          thumbnail: "https://i9.ytimg.com/vi/Jei5z5Ya58o/mq1.jpg?sqp=CPyB8pIG&rs=AOn4CLBQk5zSWpLSpj4mCKS0U7CYLHNG-g", 
+          embedUrl: "https://www.youtube.com/embed/Jei5z5Ya58o?autoplay=1&showinfo=0",
+          description: "4K 120 FPS Rainbow Timelapse NYC Skyline",
+          renderItem: this._renderVideo.bind(this)},
+        {
+          original:"https://i9.ytimg.com/vi/srqf_A4umDg/mq2.jpg?sqp=CKiE8pIG&rs=AOn4CLBXBqnoeMrYoG1YbKBYghYaN1fKfQ",
+          thumbnail: "https://i9.ytimg.com/vi/srqf_A4umDg/mq2.jpg?sqp=CKiE8pIG&rs=AOn4CLBXBqnoeMrYoG1YbKBYghYaN1fKfQ",
+          embedUrl: "https://www.youtube.com/embed/srqf_A4umDg?autoplay=1?showinfo=0",
+          description: "Pacman like game made using Blender 3D & Python Scripting",
+          renderItem: this._renderVideo.bind(this)},
+      ];
+  } 
+  
+  _renderVideo(item) {
+    return (
+      <div>
+        {
+          this.state.showVideo[item.embedUrl] ?
+            <div className='video-wrapper'>
+                <a
+                  className='close-video'
+                  onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
+                >
+                </a>
+                <iframe
+                  width='560'
+                  height='315'
+                  src={item.embedUrl}
+                  frameBorder='0'
+                  allowFullScreen
+                >
+                </iframe>
+            </div>
+          :
+            <a onClick={this._toggleShowVideo.bind(this, item.embedUrl)}>
+              <div className='play-button'></div>
+              <img className='image-gallery-image' src={item.original} />
+              {
+                item.description &&
+                  <span
+                    className='image-gallery-description'
+                    style={{right: '0', left: 'initial', bottom: '50px'}}
+                  >
+                    {item.description}
+                  </span>
+              }
+            </a>
+        }
+      </div>
+    );
   }
+
+  _onSlide(index) {
+    this._resetVideo();
+    console.debug('slid to index', index);
+  }
+  
+  _resetVideo() {
+    this.setState({showVideo: {}});
+
+    if (this.state.showPlayButton) {
+      this.setState({showGalleryPlayButton: true});
+    }
+
+    if (this.state.showFullscreenButton) {
+      this.setState({showGalleryFullscreenButton: true});
+    }
+  }
+
+  _toggleShowVideo(url) {
+    this.state.showVideo[url] = !Boolean(this.state.showVideo[url]);
+    this.setState({
+      showVideo: this.state.showVideo
+    });
+
+    if (this.state.showVideo[url]) {
+      if (this.state.showPlayButton) {
+        this.setState({showGalleryPlayButton: false});
+      }
+
+      if (this.state.showFullscreenButton) {
+        this.setState({showGalleryFullscreenButton: false});
+      }
+    }
+  }
+
 
   render() {
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
     return (
     <div>
-      <h2 className="major">Gallery</h2>          
-      <ImageGallery items={this.images} showNav={true}/>
+      <h2 className="major">Gallery</h2>   
+      <h3> Videos </h3>     
+      <ImageGallery items={this.videos} showNav={true}/>
+      <br />  
+      <h3> Photographs </h3>     
+      <ImageGallery 
+        items={this.images} 
+        showNav={true}
+        showFullscreenButton={this.state.showFullscreenButton && this.state.showGalleryFullscreenButton}
+        showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
+      />
       <br />
       <p> &nbsp;&nbsp;&nbsp;&nbsp; I have always been interested in photography 
         from the time I could get my hands on a
@@ -80,11 +183,6 @@ class Gallery extends React.Component {
             &nbsp;&nbsp; Instagram Feed
           </a> 
         </h3>
-        {/* <iframe 
-          style={{border: 0, width: '100%', height: '100%'}} 
-          scrolling='no' 
-          src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
-        </iframe> */}
       <script src='https://embedsocial.com/js/iframe.js'>
       </script>
         <iframe 
@@ -93,18 +191,7 @@ class Gallery extends React.Component {
           src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
         </iframe>
       </div>
-      <script>iFrameResize();</script>
-      
-      {/* <script src='https://embedsocial.com/js/iframe.js'>
-      </script>
-      <div style='max-width: 900px'>
-        <iframe 
-          style={{border: 0, width: '100%', height: '100%'}}  
-          scrolling='no' 
-          src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
-        </iframe>
-      </div>
-      <script>iFrameResize();</script> */}
+      <script>iFrameResize();</script> 
 
       {close}
     </div>
@@ -115,15 +202,5 @@ class Gallery extends React.Component {
 Gallery.propTypes = {
   onCloseArticle: PropTypes.func
 }
-// function embedSocial(d, s, id)
-//         {
-//           var js; 
-//           if (d.getElementById(id))
-//            {return;} 
-//           js = d.createElement(s); 
-//           js.id = id; 
-//           js.src = "https://embedsocial.com/embedscript/in.js";
-//            d.getElementsByTagName("head")[0].appendChild(js);
-//         };
 
 export default Gallery
