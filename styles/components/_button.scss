@@ -22,11 +22,10 @@
 		display: inline-block;
 		font-size: 0.8rem;
 		font-weight: _font(weight);
-		height: _size(element-height);
 		letter-spacing: _font(letter-spacing);
 		line-height: _size(element-height);
 		outline: 0;
-		padding: 0 1.25rem 0 (1.25rem + (_font(letter-spacing) * 0.5));
+		padding: 0.25rem 0.5rem 0 (0.5rem + (_font(letter-spacing) * 0.5));
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;

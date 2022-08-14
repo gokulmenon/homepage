@@ -26,7 +26,6 @@ class Main extends React.Component {
       this.props.onCloseArticle();
     }
   }
-
   render() {
 
     let close = <div className="close" onClick={() => { this.props.onCloseArticle() }}></div>
@@ -39,7 +38,7 @@ class Main extends React.Component {
         break;
       case "gallery":
         article_component = <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
-          <Gallery onCloseArticle={this.props.onCloseArticle} />
+          <Gallery onCloseArticle={this.props.onCloseArticle} youtubeVideos={this.props.youtubeVideos}/>
         </article>;
         break;
       case "podcasts":
@@ -75,7 +74,8 @@ Main.propTypes = {
   article: PropTypes.string,
   articleTimeout: PropTypes.bool,
   onCloseArticle: PropTypes.func,
-  timeout: PropTypes.bool
+  timeout: PropTypes.bool,
+  youtubeVideos: PropTypes.object,
 }
 
 export default Main

@@ -30,6 +30,7 @@ const Base = (props) => (
           onCloseArticle={props.handleCloseArticle}
           allPosts={props.allPosts}
           preview={props.preview}
+          youtubeVideos={props.youtubeVideos}
         />
         <Footer timeout={props.state.timeout} />
       </div>
@@ -43,7 +44,8 @@ Base.propTypes = {
   state: PropTypes.object,
   handleCloseArticle: PropTypes.func,
   allPosts: PropTypes.array,
-  preview: PropTypes.bool
+  preview: PropTypes.bool,
+  youtubeVideos: PropTypes.object,
 }
 
 export default Base

@@ -1,6 +1,7 @@
 import React from "react"
 import Base from "../components/Base"
 import { withRouter  } from 'next/router'
+import { getChannelInfo, getAllPlaylistItems } from "../lib/youtube";
 
 class GalleryPage extends React.Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class GalleryPage extends React.Component {
         this.router = props.router;
         this.handleOpenArticle = this.handleOpenArticle.bind(this)
         this.handleCloseArticle = this.handleCloseArticle.bind(this)
+        this.youtubeVideos = props.youtubeVideos;
     }
 
     componentDidMount() {
@@ -51,9 +53,22 @@ class GalleryPage extends React.Component {
             <Base 
               state={this.state}
               handleCloseArticle={this.handleCloseArticle}
+              youtubeVideos={this.youtubeVideos}
               />
         )
     }
 }
 
 export default withRouter(GalleryPage)
+
+
+
+export async function getServerSideProps({ }) {
+  const youtubeVideos = await getAllPlaylistItems();
+  console.log(typeof youtubeVideos);
+  return {
+    props: {
+      youtubeVideos,
+    },
+  };
+}

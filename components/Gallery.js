@@ -5,6 +5,8 @@ import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faInstagram } from "@fortawesome/free-brands-svg-icons"
 
+import Youtube from '../components/gallery/Youtube'
+
 class Gallery extends React.Component {
   constructor(){
       super();
@@ -44,60 +46,8 @@ class Gallery extends React.Component {
         { original: "https://i.ibb.co/CK79SWY/nyc3-small.jpg", thumbnail: "https://i.ibb.co/pyw3kZB/nyc3-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "Central Park as seen from top of the rock, New York"},
         { original: "https://i.ibb.co/kQvZg9h/nyc4-small.jpg", thumbnail: "https://i.ibb.co/HY814DS/nyc4-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "The Empire State, New York"}
       ];
-      this.videos = [
-        { original: "https://i9.ytimg.com/vi/Jei5z5Ya58o/mq1.jpg?sqp=CPyB8pIG&rs=AOn4CLBQk5zSWpLSpj4mCKS0U7CYLHNG-g", 
-          thumbnail: "https://i9.ytimg.com/vi/Jei5z5Ya58o/mq1.jpg?sqp=CPyB8pIG&rs=AOn4CLBQk5zSWpLSpj4mCKS0U7CYLHNG-g", 
-          embedUrl: "https://www.youtube.com/embed/Jei5z5Ya58o?autoplay=1&showinfo=0",
-          description: "4K 120 FPS Rainbow Timelapse NYC Skyline",
-          renderItem: this._renderVideo.bind(this)},
-        {
-          original:"https://i9.ytimg.com/vi/srqf_A4umDg/mq2.jpg?sqp=CKiE8pIG&rs=AOn4CLBXBqnoeMrYoG1YbKBYghYaN1fKfQ",
-          thumbnail: "https://i9.ytimg.com/vi/srqf_A4umDg/mq2.jpg?sqp=CKiE8pIG&rs=AOn4CLBXBqnoeMrYoG1YbKBYghYaN1fKfQ",
-          embedUrl: "https://www.youtube.com/embed/srqf_A4umDg?autoplay=1?showinfo=0",
-          description: "Pacman like game made using Blender 3D & Python Scripting",
-          renderItem: this._renderVideo.bind(this)},
-      ];
   } 
   
-  _renderVideo(item) {
-    return (
-      <div>
-        {
-          this.state.showVideo[item.embedUrl] ?
-            <div className='video-wrapper'>
-                <a
-                  className='close-video'
-                  onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
-                >
-                </a>
-                <iframe
-                  width='560'
-                  height='315'
-                  src={item.embedUrl}
-                  frameBorder='0'
-                  allowFullScreen
-                >
-                </iframe>
-            </div>
-          :
-            <a onClick={this._toggleShowVideo.bind(this, item.embedUrl)}>
-              <div className='play-button'></div>
-              <img className='image-gallery-image' src={item.original} />
-              {
-                item.description &&
-                  <span
-                    className='image-gallery-description'
-                    style={{right: '0', left: 'initial', bottom: '50px'}}
-                  >
-                    {item.description}
-                  </span>
-              }
-            </a>
-        }
-      </div>
-    );
-  }
-
   _onSlide(index) {
     this._resetVideo();
     console.debug('slid to index', index);
@@ -115,31 +65,13 @@ class Gallery extends React.Component {
     }
   }
 
-  _toggleShowVideo(url) {
-    this.state.showVideo[url] = !Boolean(this.state.showVideo[url]);
-    this.setState({
-      showVideo: this.state.showVideo
-    });
-
-    if (this.state.showVideo[url]) {
-      if (this.state.showPlayButton) {
-        this.setState({showGalleryPlayButton: false});
-      }
-
-      if (this.state.showFullscreenButton) {
-        this.setState({showGalleryFullscreenButton: false});
-      }
-    }
-  }
-
-
   render() {
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
     return (
     <div>
       <h2 className="major">Gallery</h2>   
-      <h3> Videos </h3>     
-      <ImageGallery items={this.videos} showNav={true}/>
+      <h3> Youtube Videos </h3>     
+      <Youtube videos={this.props.youtubeVideos}/>
       <br />  
       <h3> Photographs </h3>     
       <ImageGallery 
@@ -200,7 +132,8 @@ class Gallery extends React.Component {
 }
   
 Gallery.propTypes = {
-  onCloseArticle: PropTypes.func
+  onCloseArticle: PropTypes.func,
+  youtubeVideos: PropTypes.object,
 }
 
 export default Gallery

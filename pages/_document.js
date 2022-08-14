@@ -50,7 +50,7 @@ export default class MyDocument extends Document {
               })(window, document, "clarity", "script", '${process.env.CLARITY_ID}');
               `,
               }}
-          />;
+          />
         </Head>
         <body>
           <script
