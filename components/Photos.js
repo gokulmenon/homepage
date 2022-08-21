@@ -5,9 +5,7 @@ import React from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faInstagram } from "@fortawesome/free-brands-svg-icons"
 
-import Youtube from '../components/gallery/Youtube'
-
-class Gallery extends React.Component {
+class Photos extends React.Component {
   constructor(){
       super();
       this.state = {
@@ -69,11 +67,8 @@ class Gallery extends React.Component {
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
     return (
     <div>
-      <h2 className="major">Gallery</h2>   
-      <h3> Youtube Videos </h3>     
-      <Youtube videos={this.props.youtubeVideos}/>
-      <br />  
-      <h3> Photographs </h3>     
+      <h2 className="major">Photos</h2>   
+      <h3> Photo Gallery </h3>     
       <ImageGallery 
         items={this.images} 
         showNav={true}
@@ -131,9 +126,8 @@ class Gallery extends React.Component {
   }
 }
   
-Gallery.propTypes = {
+Photos.propTypes = {
   onCloseArticle: PropTypes.func,
-  youtubeVideos: PropTypes.object,
 }
 
-export default Gallery
+export default Photos

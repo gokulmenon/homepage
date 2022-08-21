@@ -1,7 +1,8 @@
 import Blog from "../components/Blog"
 import Contact from "../components/Contact"
 import Intro from "../components/Intro"
-import Gallery from "../components/Gallery"
+import Photos from "../components/Photos"
+import Videos from "../components/Videos"
 import Podcasts from "../components/Podcasts"
 import PropTypes from 'prop-types';
 import React from "react"
@@ -36,11 +37,16 @@ class Main extends React.Component {
           <Intro onCloseArticle={this.props.onCloseArticle} />
         </article>;
         break;
-      case "gallery":
-        article_component = <article id="gallery" className={`${this.props.article === 'gallery' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
-          <Gallery onCloseArticle={this.props.onCloseArticle} youtubeVideos={this.props.youtubeVideos}/>
+      case "photos":
+        article_component = <article id="photos" className={`${this.props.article === 'photos' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
+          <Photos onCloseArticle={this.props.onCloseArticle}/>
         </article>;
         break;
+      case "videos":
+          article_component = <article id="videos" className={`${this.props.article === 'videos' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
+            <Videos onCloseArticle={this.props.onCloseArticle} youtubeVideos={this.props.youtubeVideos}/>
+          </article>;
+          break;
       case "podcasts":
         article_component = <article id="podcasts" className={`${this.props.article === 'podcasts' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{ display: 'none' }}>
           <Podcasts onCloseArticle={this.props.onCloseArticle} />

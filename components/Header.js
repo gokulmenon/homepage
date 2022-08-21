@@ -21,7 +21,8 @@ const Header = (props) => (
         <nav>
             <ul>
                 <li><Link href="/intro"><a><strong>Intro</strong></a></Link></li>
-                <li><Link href="/gallery"><a><strong>Gallery</strong></a></Link></li>
+                <li><Link href="/photos"><a><strong>Photos</strong></a></Link></li>
+                <li><Link href="/videos"><a><strong>&nbsp;&nbsp;Videos&nbsp;&nbsp;</strong></a></Link></li>
                 <li><Link href="/podcasts"><a><strong>Podcasts</strong></a></Link></li>
                 <li><Link href="/blog"><a><strong>Blog</strong></a></Link></li>
                 <li><Link href="/contact"><a><strong>Contact</strong></a></Link></li>
