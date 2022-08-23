@@ -8,16 +8,38 @@ class Podcasts extends React.Component {
       return (
         <div
             ><h2 className="major">Podcasts</h2>
-            <span className="image main"><img src="/static/images/podcasts_coming_soon.jpg" alt="" /></span>
+            <span className="image main"><img src="/static/images/podcasts_header.jpg" alt="" /></span>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;
-               I wanted start my podcasts series with some of the work my team and I are doing &nbsp;
-                <a href="https://techcrunch.com/2021/12/09/meta-rolls-out-a-suite-of-new-features-and-discovery-tools-for-facebook-live-creators/">here </a>
-                with an episode of hackerrank radio podcasts series <a href="https://open.spotify.com/playlist/6IxmDVVYOP0mxz0P6dTBxS">here </a>.
-                I Have embedded the spotify radio stream below <br />
+               I wanted start my podcasts series with an episode of 
+               <a href="https://open.spotify.com/playlist/6IxmDVVYOP0mxz0P6dTBxS"> hackerrank radio </a> podcasts series
+               where I talk about how facebook live video backend works.
+               <br />
             </p>
-            <iframe style={{ borderRadius :"12px"
-              }} src="https://open.spotify.com/embed/episode/3QUqS2LbC0vsxuhKxmOY5M?utm_source=generator" width="100%" height="232" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-            
+            <iframe 
+              style={{ borderRadius :"12px"}}
+              src="https://open.spotify.com/embed/episode/3QUqS2LbC0vsxuhKxmOY5M?utm_source=generator&theme=0"
+              width="100%"
+              height="232"
+              frameBorder="0"
+              allowfullScreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+            </iframe>
+
+            <br />
+            <p>
+            Next are podcasts from my series titled <a href="https://open.spotify.com/show/1WC3iJoZslGYic6itLvWqx">'The Final Score'</a>
+            <br />
+            Episode 1:  Discussion & Spoiler cast on the book "The Three Body Problem" by Liu Cixin
+            </p>
+            <iframe 
+              style={{ borderRadius :"12px"}}
+              src="https://open.spotify.com/embed/episode/4d8KUCZQPGKunbbhIPa6V3?utm_source=generator&theme=0"
+              width="100%"
+              height="232"
+              frameBorder="0"
+              allowfullScreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+            </iframe>
             {close}
         </div>
     );
