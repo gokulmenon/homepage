@@ -58,12 +58,12 @@ class Photos extends React.Component {
         {key: 8, original: "https://i.ibb.co/pRyFB75/maskedinvader-knowledge-is-meaningless-without-action-a5870d52-dc8c-49e8-87bc-bbc16f8772d9.png", thumbnail: ""},
         {key: 9, original: "https://i.ibb.co/b2Sq9Y9/maskedinvader-Lord-Vishnu-and-Lord-Shiva-as-one-highly-detaile-5b12efdb-9c2f-4ea1-a6d8-d4ce78f2a469.png", thumbnail: ""},
         {key: 10, original: "https://i.ibb.co/Lnpg4WR/maskedinvader-siddhartha-sitting-alone-under-a-banyan-tree-medi-e52208b3-d2cb-46f6-b176-6314db9fd4eb.png", thumbnail: ""},
-        {key: 11, original: "https://i.ibb.co/Lnpg4WR/maskedinvader-siddhartha-sitting-alone-under-a-banyan-tree-medi-e52208b3-d2cb-46f6-b176-6314db9fd4eb.png", thumbnail: ""},
-        {key: 12, original: "https://i.ibb.co/DRqb1Fk/maskedinvader-the-moons-of-jupiter-all-colliding-and-exploding-d0b01252-4ba9-40bf-a9f1-1862c9a64a67.png", thumbnail: ""},
-        {key: 13, original: "https://i.ibb.co/XkcVkfZ/maskedinvader-the-sun-as-seen-from-pluto-super-photorealistic-966eddaa-c147-43ca-ad7a-6ef53d4e3f9d.png", thumbnail: ""},
-        {key: 14, original: "https://i.ibb.co/3d6Mq1G/maskedinvader-windows-wallpaper-in-2050-87be6791-d5f4-4a3e-b7e8-a32fce07f660.png", thumbnail: ""},
-        {key: 15, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
-        {key: 16, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
+        {key: 11, original: "https://i.ibb.co/DRqb1Fk/maskedinvader-the-moons-of-jupiter-all-colliding-and-exploding-d0b01252-4ba9-40bf-a9f1-1862c9a64a67.png", thumbnail: ""},
+        {key: 12, original: "https://i.ibb.co/XkcVkfZ/maskedinvader-the-sun-as-seen-from-pluto-super-photorealistic-966eddaa-c147-43ca-ad7a-6ef53d4e3f9d.png", thumbnail: ""},
+        {key: 13, original: "https://i.ibb.co/3d6Mq1G/maskedinvader-windows-wallpaper-in-2050-87be6791-d5f4-4a3e-b7e8-a32fce07f660.png", thumbnail: ""},
+        {key: 14, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
+        {key: 15, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
+        {key: 16, original: "https://i.ibb.co/B28RJqs/maskedinvader-two-clocks-in-space-entangled-by-quantum-entangle-c8bd77a9-1da4-49db-93a1-f1d8d62dbef5.png", thumbnail: ""},
       ];
   } 
   
