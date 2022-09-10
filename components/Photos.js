@@ -64,6 +64,7 @@ class Photos extends React.Component {
         {key: 14, original: "https://i.ibb.co/98qNsFb/maskedinvader-A-bee-sitting-under-a-palm-tree-listing-to-music-d308e8da-9390-4d06-b9ec-7f84c805460a.png", thumbnail: ""},
         {key: 15, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
         {key: 16, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
+        {key: 17, original: "https://i.ibb.co/QN21QJ2/maskedinvader-two-roman-clocks-bound-by-quantum-entanglement-wi-73d600d8-33a1-4f28-85cf-aa562e053be9.png", thumbnail: ""},
       ];
   } 
   
