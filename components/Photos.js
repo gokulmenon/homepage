@@ -48,7 +48,7 @@ class Photos extends React.Component {
         { original: "https://i.ibb.co/kQvZg9h/nyc4-small.jpg", thumbnail: "https://i.ibb.co/HY814DS/nyc4-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "The Empire State, New York"}
       ];
       this.images2 = [
-        {key: 1, original: "https://i.ibb.co/98qNsFb/maskedinvader-A-bee-sitting-under-a-palm-tree-listing-to-music-d308e8da-9390-4d06-b9ec-7f84c805460a.png", thumbnail: ""},
+        {key: 1, original: "https://i.ibb.co/B28RJqs/maskedinvader-two-clocks-in-space-entangled-by-quantum-entangle-c8bd77a9-1da4-49db-93a1-f1d8d62dbef5.png", thumbnail: ""},
         {key: 2, original: "https://i.ibb.co/qjXv01P/maskedinvader-a-total-solar-eclipse-as-seen-from-a-hill-top-bey-dd1e6d48-d88d-442c-84aa-83c403965521.png", thumbnail: ""},
         {key: 3, original: "https://i.ibb.co/1KqRTYR/maskedinvader-batman-will-always-find-a-way-out-of-the-well-afd030f9-19dc-4020-b4a8-c7e4111b7f82.png", thumbnail: ""},
         {key: 4, original: "https://i.ibb.co/tQLZHmP/maskedinvader-beyond-good-and-evil-92aeaf41-f67b-482c-9b21-4a039cd2af05.png", thumbnail: ""},
@@ -61,9 +61,9 @@ class Photos extends React.Component {
         {key: 11, original: "https://i.ibb.co/DRqb1Fk/maskedinvader-the-moons-of-jupiter-all-colliding-and-exploding-d0b01252-4ba9-40bf-a9f1-1862c9a64a67.png", thumbnail: ""},
         {key: 12, original: "https://i.ibb.co/XkcVkfZ/maskedinvader-the-sun-as-seen-from-pluto-super-photorealistic-966eddaa-c147-43ca-ad7a-6ef53d4e3f9d.png", thumbnail: ""},
         {key: 13, original: "https://i.ibb.co/3d6Mq1G/maskedinvader-windows-wallpaper-in-2050-87be6791-d5f4-4a3e-b7e8-a32fce07f660.png", thumbnail: ""},
-        {key: 14, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
-        {key: 15, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
-        {key: 16, original: "https://i.ibb.co/B28RJqs/maskedinvader-two-clocks-in-space-entangled-by-quantum-entangle-c8bd77a9-1da4-49db-93a1-f1d8d62dbef5.png", thumbnail: ""},
+        {key: 14, original: "https://i.ibb.co/98qNsFb/maskedinvader-A-bee-sitting-under-a-palm-tree-listing-to-music-d308e8da-9390-4d06-b9ec-7f84c805460a.png", thumbnail: ""},
+        {key: 15, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
+        {key: 16, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
       ];
   } 
   
