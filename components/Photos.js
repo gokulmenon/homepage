@@ -62,7 +62,8 @@ class Photos extends React.Component {
         {key: 12, original: "https://i.ibb.co/DRqb1Fk/maskedinvader-the-moons-of-jupiter-all-colliding-and-exploding-d0b01252-4ba9-40bf-a9f1-1862c9a64a67.png", thumbnail: ""},
         {key: 13, original: "https://i.ibb.co/XkcVkfZ/maskedinvader-the-sun-as-seen-from-pluto-super-photorealistic-966eddaa-c147-43ca-ad7a-6ef53d4e3f9d.png", thumbnail: ""},
         {key: 14, original: "https://i.ibb.co/3d6Mq1G/maskedinvader-windows-wallpaper-in-2050-87be6791-d5f4-4a3e-b7e8-a32fce07f660.png", thumbnail: ""},
-        {key: 15, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
+        {key: 15, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
+        {key: 16, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
       ];
   } 
   
