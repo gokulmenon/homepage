@@ -13,6 +13,9 @@ class Photos extends React.Component {
       this.state = {
         showPlayButton: true,
         showGalleryPlayButton: true,
+        showFullscreenButton: true,
+        useBrowserFullscreen: true,
+        showGalleryFullscreenButton: true,
         showVideo: {},
       };
       this.images = [
@@ -76,6 +79,9 @@ class Photos extends React.Component {
     if (this.state.showPlayButton) {
       this.setState({showGalleryPlayButton: true});
     }
+    if (this.state.showFullscreenButton) {
+      this.setState({ showGalleryFullscreenButton: true });
+    }
   }
 
   render() {
@@ -92,7 +98,8 @@ class Photos extends React.Component {
       <ImageGallery 
         items={this.images} 
         showNav={true}
-        showFullscreenButton={false}
+        useBrowserFullscreen={this.useBrowserFullscreen}
+        showFullscreenButton={this.state.showFullscreenButton && this.state.showGalleryFullscreenButton}
         showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
       />
       <br />
