@@ -20,12 +20,12 @@ const Header = (props) => (
         </div>
         <nav>
             <ul>
-                <li><Link href="/intro"><a><strong>Intro</strong></a></Link></li>
-                <li><Link href="/photos"><a><strong>Photos</strong></a></Link></li>
-                <li><Link href="/videos"><a><strong>&nbsp;&nbsp;Videos&nbsp;&nbsp;</strong></a></Link></li>
-                <li><Link href="/podcasts"><a><strong>Podcasts</strong></a></Link></li>
-                <li><Link href="/blog"><a><strong>Blog</strong></a></Link></li>
-                <li><Link href="/contact"><a><strong>Contact</strong></a></Link></li>
+                <li><Link href="/intro"><strong>Intro</strong></Link></li>
+                <li><Link href="/photos"><strong>Photos</strong></Link></li>
+                <li><Link href="/videos"><strong>&nbsp;&nbsp;Videos&nbsp;&nbsp;</strong></Link></li>
+                <li><Link href="/podcasts"><strong>Podcasts</strong></Link></li>
+                <li><Link href="/blog"><strong>Blog</strong></Link></li>
+                <li><Link href="/contact"><strong>Contact</strong></Link></li>
             </ul>
         </nav>
     </header>

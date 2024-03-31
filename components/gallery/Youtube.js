@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { formatDistance } from "date-fns";
 import Image from "next/image";
-import linkifyHtml from "linkifyjs/html";
+import linkifyHtml from "linkify-html";
 import { useRef, useState } from "react";
 
 export default function Youtube({ videos }) {
@@ -162,5 +162,5 @@ export default function Youtube({ videos }) {
       </div>
     </div>
   </div>
-);
+  );
 }

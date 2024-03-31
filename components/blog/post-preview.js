@@ -21,8 +21,8 @@ export default function PostPreview({
         <tr>
           <td width="75%">
           <h4 className="text-1xl mb-2 leading-snug">
-            <Link as={`/posts/${slug}`} href="/posts/[slug]">
-              <a className="hover:underline">{title}</a>
+            <Link as={`/posts/${slug}`} href="/posts/[slug]" className="hover:underline">
+              {title}
             </Link>
           </h4>
         </td>
@@ -37,5 +37,5 @@ export default function PostPreview({
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
       {/* <Avatar name={author?.name} picture={author?.picture} /> */}
     </div>
-  )
+  );
 }
