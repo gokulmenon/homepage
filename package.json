@@ -27,7 +27,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 8080",
-    "deploy": "npm run build && gcloud app deploy --project nextjs-homepage --version beta"
+    "deploy": "npm run build && gcloud app deploy --project nextjs-homepage --version beta",
+    "gcp-build":""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
