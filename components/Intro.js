@@ -11,7 +11,7 @@ class Intro extends React.Component {
             <span className="image main"><img src="/static/images/gokul_menon_intro_photo.jpg" alt="" /></span>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;
                 My name is Gokul Menon and I work as a Software Engineer
-                at  <strike>Facebook</strike> Meta in the New York office and have over 10 years of software development and engineering experience
+                at  <strike>Facebook</strike> Meta in the New York office and have over 14 years of software development and engineering experience
                 building enterprise software. You can read about some of the work my team and I are doing &nbsp;
                 <a href="https://techcrunch.com/2021/12/09/meta-rolls-out-a-suite-of-new-features-and-discovery-tools-for-facebook-live-creators/">here </a>
                 and an episode of hackerrank radio podcasts series <a href="https://open.spotify.com/playlist/6IxmDVVYOP0mxz0P6dTBxS">here </a>.
