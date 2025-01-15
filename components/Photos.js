@@ -129,7 +129,6 @@ class Photos extends React.Component {
         
         'If you look up at the Milky Way through the eyes of Carl Sagan, you get a feeling in your chest of something greater than yourself. And it is. But it\'s not supernatural.' - Richard Dawkins.
       </p> 
-      <script src='https://embedsocial.com/js/iframe.js'></script>
       <div style={{maxWidth: '900px'}}>
         <h3 className="minor">
           <a href="https://www.instagram.com/gokulsmenon/">
@@ -140,8 +139,7 @@ class Photos extends React.Component {
       <script src='https://embedsocial.com/js/iframe.js'>
       </script>
         <iframe 
-          style={{border: 0, width: '100%', height: '1800px'}}  
-          scrolling="yes" 
+          style={{border: 0, width: '100%', height: '540px'}} 
           src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
         </iframe>
       </div>
