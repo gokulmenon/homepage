@@ -16,7 +16,8 @@ class Intro extends React.Component {
                 <a href="https://techcrunch.com/2021/12/09/meta-rolls-out-a-suite-of-new-features-and-discovery-tools-for-facebook-live-creators/">here </a>
                 and an episode of hackerrank radio podcasts series <a href="https://open.spotify.com/playlist/6IxmDVVYOP0mxz0P6dTBxS">here </a>.
                 I am a full stack developer mostly focussed on backend. 
-                Before <strike>Facebook</strike> Meta I worked in fintech (Bank Of America & Deutsche Bank) building things like electronic trading systems, marketdata/reference data plumbing enabling and 
+                Before <strike>Facebook</strike> Meta I worked ~9 years in fintech (Bank Of America & Deutsche Bank) 
+                building electronic trading systems, marketdata/reference data plumbing enabling human and
                 algorithmic trading applications. <br /><br />
 
                 &nbsp;&nbsp;&nbsp;&nbsp;I am passionate about all things Computer Science , Football, 
