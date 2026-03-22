@@ -17,7 +17,6 @@ pipelines:
       - step:
           name: Security Scan
           script:
-            # Run a security scan for sensitive data.
             - pipe: atlassian/git-secrets-scan:0.4.3
       - step:
           name: Lint the node package
@@ -35,7 +34,7 @@ pipelines:
               - node
               - nextcache
             script:
-              # Populate .env.production.local file
+              # We keep a test build here to ensure code is compiling before we deploy
               - echo "NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID" >> .env.production.local
               - echo "NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
               - echo "NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
@@ -48,17 +47,10 @@ pipelines:
               - echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env.production.local
               - echo "CLARITY_ID=$CLARITY_ID" >> .env.production.local
               - echo "YOUTUBE_API=$YOUTUBE_API" >> .env.production.local
-              # Verify .env.production.local file is there and load env variables for build step
-              - export $(cat .env.production.local | xargs)
               
-              # Install NextJs app and dependencies
+              - export $(cat .env.production.local | xargs)
               - npm install
-              # Build NextJs app
               - npm run build
-            artifacts: 
-              - .env.production.local
-              - .next/**
-              - node_modules/**
         - step:
             name: Security Scan
             script:
@@ -70,14 +62,45 @@ pipelines:
             - nextcache
           deployment: Production
           script:
-            # Load env variables
-            - export $(cat .env.production.local | xargs)
+            # 1. Rebuild the .env file locally for the deployment step
+            - echo "NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID" >> .env.production.local
+            - echo "NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
+            - echo "NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
+            - echo "NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY" >> .env.production.local
+            - echo "SANITY_API_TOKEN=$SANITY_API_TOKEN" >> .env.production.local
+            - echo "NEXT_PUBLIC_SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+            - echo "NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
+            - echo "SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+            - echo "SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
+            - echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env.production.local
+            - echo "CLARITY_ID=$CLARITY_ID" >> .env.production.local
+            - echo "YOUTUBE_API=$YOUTUBE_API" >> .env.production.local
             
-            # 1. Save secret to file, then Base64 encode it into a new variable
+            # 2. Build the app directly in this step to guarantee .next exists
+            - export $(cat .env.production.local | xargs)
+            - npm install
+            - npm run build
+            
+            # 3. Inject variables directly into app.yaml so App Engine can read them!
+            - echo "" >> app.yaml
+            - echo "env_variables:" >> app.yaml
+            - echo "  NEXT_PUBLIC_EMAIL_JS_SERVICE_ID: '$EMAIL_JS_SERVICE_ID'" >> app.yaml
+            - echo "  NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID: '$EMAIL_JS_TEMPLATE_ID'" >> app.yaml
+            - echo "  NEXT_PUBLIC_EMAIL_JS_USER_ID: '$EMAIL_JS_USER_ID'" >> app.yaml
+            - echo "  NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY: '$RECAPTCHA_V2_SITE_KEY'" >> app.yaml
+            - echo "  SANITY_API_TOKEN: '$SANITY_API_TOKEN'" >> app.yaml
+            - echo "  NEXT_PUBLIC_SANITY_PROJECT_ID: '$SANITY_PROJECT_ID'" >> app.yaml
+            - echo "  NEXT_PUBLIC_SANITY_DATASET: '$SANITY_DATASET'" >> app.yaml
+            - echo "  SANITY_STUDIO_API_PROJECT_ID: '$SANITY_PROJECT_ID'" >> app.yaml
+            - echo "  SANITY_STUDIO_API_DATASET: '$SANITY_DATASET'" >> app.yaml
+            - echo "  NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: '$GOOGLE_ANALYTICS_ID'" >> app.yaml
+            - echo "  CLARITY_ID: '$CLARITY_ID'" >> app.yaml
+            - echo "  YOUTUBE_API: '$YOUTUBE_API'" >> app.yaml
+
+            # 4. Auth and Deploy
             - echo "${GOOGLE_CLIENT_SECRET}" > ./gcloud-api-key.json
             - export BASE64_ENCODED_KEY=$(base64 -w 0 ./gcloud-api-key.json)
             
-            # 2. Use the official Atlassian pipe with the encoded string
             - echo "Attempting to deploy to gcloud via Atlassian Pipe"
             - pipe: atlassian/google-app-engine-deploy:1.3.0
               variables:
