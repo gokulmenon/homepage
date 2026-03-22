@@ -1,4 +1,4 @@
-image: node:18.20.0
+image: node:20
 
 definitions:
   caches:
@@ -18,7 +18,6 @@ pipelines:
           name: Security Scan
           script:
             # Run a security scan for sensitive data.
-            # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
             - pipe: atlassian/git-secrets-scan:0.4.3
       - step:
           name: Lint the node package
@@ -49,31 +48,20 @@ pipelines:
               - echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env.production.local
               - echo "CLARITY_ID=$CLARITY_ID" >> .env.production.local
               - echo "YOUTUBE_API=$YOUTUBE_API" >> .env.production.local
-              #verify .env.production.local file is there and load env variables for build step
+              # Verify .env.production.local file is there and load env variables for build step
               - export $(cat .env.production.local | xargs)
-              - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
-              - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
-              - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
-              - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
-              - echo $SANITY_API_TOKEN
-              - echo $NEXT_PUBLIC_SANITY_PROJECT_ID
-              - echo $NEXT_PUBLIC_SANITY_DATASET
-              - echo $SANITY_STUDIO_API_PROJECT_ID
-              - echo $SANITY_STUDIO_API_DATASET
-              - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
-              - echo $CLARITY_ID
-              - echo $YOUTUBE_API
-              # About to Install NextJs app and dependencies
+              
+              # Install NextJs app and dependencies
               - npm install
-              # About to build NextJs app
+              # Build NextJs app
               - npm run build
-            artifacts: # define the artifacts to be passed to each future step
+            artifacts: 
               - .env.production.local
+              - .next/**
+              - node_modules/**
         - step:
             name: Security Scan
             script:
-              # Run a security scan for sensitive data.
-              # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
               - pipe: atlassian/git-secrets-scan:0.4.3
       - step:
           name: Deploy to Production
@@ -82,34 +70,20 @@ pipelines:
             - nextcache
           deployment: Production
           script:
-            #verify .env.production.local file is there and load env variables for build step
+            # Load env variables (Build files and node_modules are already here via artifacts!)
             - export $(cat .env.production.local | xargs)
-            - echo $NEXT_PUBLIC_EMAIL_JS_SERVICE_ID
-            - echo $NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID
-            - echo $NEXT_PUBLIC_EMAIL_JS_USER_ID
-            - echo $NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY
-            - echo $SANITY_API_TOKEN
-            - echo $NEXT_PUBLIC_SANITY_PROJECT_ID
-            - echo $NEXT_PUBLIC_SANITY_DATASET
-            - echo $SANITY_STUDIO_API_PROJECT_ID
-            - echo $SANITY_STUDIO_API_DATASET
-            - echo $NEXT_PUBLIC_GOOGLE_ANALYTICS
-            - echo $CLARITY_ID
-            - echo $YOUTUBE_API
-            # About to Install NextJs app and dependencies
-            - npm install
-            # About to build NextJs app
-            - npm run build
-            # About to install gcloud sdk
-            - echo "About to install gcloud sdk v470.0.0"
-            - curl -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-470.0.0-linux-x86_64.tar.gz
-            - tar -xvf /tmp/google-cloud-sdk.tar.gz -C /tmp/
-            - /tmp/google-cloud-sdk/install.sh -q
-            - source /tmp/google-cloud-sdk/path.bash.inc
+            
+            # 1. Create the key file for authentication
             - echo ${GOOGLE_CLIENT_SECRET} > ./gcloud-api-key.json
-            - gcloud auth activate-service-account --key-file gcloud-api-key.json
-            - gcloud config set project $CLOUDSDK_CORE_PROJECT
-            # Deployment of the application to glcoud
-            - echo "Attempting to deploy to gcloud"
-            - gcloud -q --verbosity=error app deploy app.yaml --promote --version prod
+            
+            # 2. Use the official Atlassian pipe for deployment
+            - echo "Attempting to deploy to gcloud via Atlassian Pipe"
+            - pipe: atlassian/google-app-engine-deploy:1.3.0
+              variables:
+                KEY_FILE: 'gcloud-api-key.json'
+                PROJECT: $CLOUDSDK_CORE_PROJECT
+                DEPLOYABLES: 'app.yaml'
+                PROMOTE: 'true'
+                VERSION: 'prod'
+                
             - echo "Deploy attempt done, check https://nextjs-homepage.uc.r.appspot.com"
