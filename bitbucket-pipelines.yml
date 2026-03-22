@@ -70,17 +70,18 @@ pipelines:
             - nextcache
           deployment: Production
           script:
-            # Load env variables (Build files and node_modules are already here via artifacts!)
+            # Load env variables
             - export $(cat .env.production.local | xargs)
             
-            # 1. Create the key file for authentication
-            - echo ${GOOGLE_CLIENT_SECRET} > ./gcloud-api-key.json
+            # 1. Save secret to file, then Base64 encode it into a new variable
+            - echo "${GOOGLE_CLIENT_SECRET}" > ./gcloud-api-key.json
+            - export BASE64_ENCODED_KEY=$(base64 -w 0 ./gcloud-api-key.json)
             
-            # 2. Use the official Atlassian pipe for deployment
+            # 2. Use the official Atlassian pipe with the encoded string
             - echo "Attempting to deploy to gcloud via Atlassian Pipe"
             - pipe: atlassian/google-app-engine-deploy:1.3.0
               variables:
-                KEY_FILE: 'gcloud-api-key.json'
+                KEY_FILE: $BASE64_ENCODED_KEY
                 PROJECT: $CLOUDSDK_CORE_PROJECT
                 DEPLOYABLES: 'app.yaml'
                 PROMOTE: 'true'
