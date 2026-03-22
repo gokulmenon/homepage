@@ -82,20 +82,24 @@ pipelines:
             - npm run build
             
             # 3. Inject variables directly into app.yaml so App Engine can read them!
-            - echo "" >> app.yaml
-            - echo "env_variables:" >> app.yaml
-            - echo "  NEXT_PUBLIC_EMAIL_JS_SERVICE_ID: '$EMAIL_JS_SERVICE_ID'" >> app.yaml
-            - echo "  NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID: '$EMAIL_JS_TEMPLATE_ID'" >> app.yaml
-            - echo "  NEXT_PUBLIC_EMAIL_JS_USER_ID: '$EMAIL_JS_USER_ID'" >> app.yaml
-            - echo "  NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY: '$RECAPTCHA_V2_SITE_KEY'" >> app.yaml
-            - echo "  SANITY_API_TOKEN: '$SANITY_API_TOKEN'" >> app.yaml
-            - echo "  NEXT_PUBLIC_SANITY_PROJECT_ID: '$SANITY_PROJECT_ID'" >> app.yaml
-            - echo "  NEXT_PUBLIC_SANITY_DATASET: '$SANITY_DATASET'" >> app.yaml
-            - echo "  SANITY_STUDIO_API_PROJECT_ID: '$SANITY_PROJECT_ID'" >> app.yaml
-            - echo "  SANITY_STUDIO_API_DATASET: '$SANITY_DATASET'" >> app.yaml
-            - echo "  NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: '$GOOGLE_ANALYTICS_ID'" >> app.yaml
-            - echo "  CLARITY_ID: '$CLARITY_ID'" >> app.yaml
-            - echo "  YOUTUBE_API: '$YOUTUBE_API'" >> app.yaml
+            # The "|" creates a literal block, bypassing YAML syntax errors with colons
+            - |
+              cat <<EOF >> app.yaml
+              
+              env_variables:
+                NEXT_PUBLIC_EMAIL_JS_SERVICE_ID: '$EMAIL_JS_SERVICE_ID'
+                NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID: '$EMAIL_JS_TEMPLATE_ID'
+                NEXT_PUBLIC_EMAIL_JS_USER_ID: '$EMAIL_JS_USER_ID'
+                NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY: '$RECAPTCHA_V2_SITE_KEY'
+                SANITY_API_TOKEN: '$SANITY_API_TOKEN'
+                NEXT_PUBLIC_SANITY_PROJECT_ID: '$SANITY_PROJECT_ID'
+                NEXT_PUBLIC_SANITY_DATASET: '$SANITY_DATASET'
+                SANITY_STUDIO_API_PROJECT_ID: '$SANITY_PROJECT_ID'
+                SANITY_STUDIO_API_DATASET: '$SANITY_DATASET'
+                NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: '$GOOGLE_ANALYTICS_ID'
+                CLARITY_ID: '$CLARITY_ID'
+                YOUTUBE_API: '$YOUTUBE_API'
+              EOF
 
             # 4. Auth and Deploy
             - echo "${GOOGLE_CLIENT_SECRET}" > ./gcloud-api-key.json
