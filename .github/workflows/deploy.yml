@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Tells GitHub to grab the full git history
 
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -37,10 +39,6 @@ jobs:
       # but TruffleHog is a widely used open-source equivalent for secret scanning.
       - name: Security Scan (TruffleHog)
         uses: trufflesecurity/trufflehog@main
-        with:
-          path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
 
   deploy:
     name: Deploy to Production
