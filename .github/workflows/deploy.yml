@@ -16,10 +16,10 @@ jobs:
         with:
           fetch-depth: 0 # Tells GitHub to grab the full git history
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm' # Replaces Bitbucket node cache
 
       - name: Install Dependencies
@@ -48,10 +48,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
+      - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install Dependencies
