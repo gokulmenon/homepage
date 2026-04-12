@@ -1,0 +1,131 @@
+name: Deploy Next.js to Google App Engine
+
+on:
+  push:
+    branches:
+      - master # Change to 'main' if you rename your default branch
+
+jobs:
+  build-and-test:
+    name: Build, Test, and Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # Replaces Bitbucket node cache
+
+      - name: Install Dependencies
+        run: npm ci # 'npm ci' is faster and more reliable for CI/CD than 'npm install'
+
+      # Note: 'npm test' isn't explicitly defined in your package.json, 
+      # but if you add it later, uncomment the lines below:
+      # - name: Run Tests
+      #   run: npm test
+
+      - name: Lint the node package
+        run: |
+          npm install eslint --no-save
+          npx eslint .
+
+      # GitHub Actions doesn't have the Atlassian git-secrets-scan pipe, 
+      # but TruffleHog is a widely used open-source equivalent for secret scanning.
+      - name: Security Scan (TruffleHog)
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+
+  deploy:
+    name: Deploy to Production
+    needs: build-and-test # Ensures this job only runs if the build/test job passes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js App
+        env:
+          EMAIL_JS_SERVICE_ID: ${{ secrets.EMAIL_JS_SERVICE_ID }}
+          EMAIL_JS_TEMPLATE_ID: ${{ secrets.EMAIL_JS_TEMPLATE_ID }}
+          EMAIL_JS_USER_ID: ${{ secrets.EMAIL_JS_USER_ID }}
+          RECAPTCHA_V2_SITE_KEY: ${{ secrets.RECAPTCHA_V2_SITE_KEY }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+          SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          CLARITY_ID: ${{ secrets.CLARITY_ID }}
+          YOUTUBE_API: ${{ secrets.YOUTUBE_API }}
+        run: |
+          echo "NEXT_PUBLIC_EMAIL_JS_SERVICE_ID=$EMAIL_JS_SERVICE_ID" >> .env.production.local
+          echo "NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID=$EMAIL_JS_TEMPLATE_ID" >> .env.production.local
+          echo "NEXT_PUBLIC_EMAIL_JS_USER_ID=$EMAIL_JS_USER_ID" >> .env.production.local
+          echo "NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY=$RECAPTCHA_V2_SITE_KEY" >> .env.production.local
+          echo "SANITY_API_TOKEN=$SANITY_API_TOKEN" >> .env.production.local
+          echo "NEXT_PUBLIC_SANITY_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+          echo "NEXT_PUBLIC_SANITY_DATASET=$SANITY_DATASET" >> .env.production.local
+          echo "SANITY_STUDIO_API_PROJECT_ID=$SANITY_PROJECT_ID" >> .env.production.local
+          echo "SANITY_STUDIO_API_DATASET=$SANITY_DATASET" >> .env.production.local
+          echo "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" >> .env.production.local
+          echo "CLARITY_ID=$CLARITY_ID" >> .env.production.local
+          echo "YOUTUBE_API=$YOUTUBE_API" >> .env.production.local
+          
+          export $(cat .env.production.local | xargs)
+          npm run build
+
+      - name: Inject variables into app.yaml
+        env:
+          EMAIL_JS_SERVICE_ID: ${{ secrets.EMAIL_JS_SERVICE_ID }}
+          EMAIL_JS_TEMPLATE_ID: ${{ secrets.EMAIL_JS_TEMPLATE_ID }}
+          EMAIL_JS_USER_ID: ${{ secrets.EMAIL_JS_USER_ID }}
+          RECAPTCHA_V2_SITE_KEY: ${{ secrets.RECAPTCHA_V2_SITE_KEY }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+          SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+          SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+          CLARITY_ID: ${{ secrets.CLARITY_ID }}
+          YOUTUBE_API: ${{ secrets.YOUTUBE_API }}
+        run: |
+          cat <<EOF >> app.yaml
+          
+          env_variables:
+            NEXT_PUBLIC_EMAIL_JS_SERVICE_ID: '$EMAIL_JS_SERVICE_ID'
+            NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID: '$EMAIL_JS_TEMPLATE_ID'
+            NEXT_PUBLIC_EMAIL_JS_USER_ID: '$EMAIL_JS_USER_ID'
+            NEXT_PUBLIC_RECAPTCHA_V2_SITE_KEY: '$RECAPTCHA_V2_SITE_KEY'
+            SANITY_API_TOKEN: '$SANITY_API_TOKEN'
+            NEXT_PUBLIC_SANITY_PROJECT_ID: '$SANITY_PROJECT_ID'
+            NEXT_PUBLIC_SANITY_DATASET: '$SANITY_DATASET'
+            SANITY_STUDIO_API_PROJECT_ID: '$SANITY_PROJECT_ID'
+            SANITY_STUDIO_API_DATASET: '$SANITY_DATASET'
+            NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: '$GOOGLE_ANALYTICS_ID'
+            CLARITY_ID: '$CLARITY_ID'
+            YOUTUBE_API: '$YOUTUBE_API'
+          EOF
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CLIENT_SECRET }}'
+
+      - name: Deploy to App Engine
+        uses: google-github-actions/deploy-appengine@v2
+        with:
+          project_id: ${{ secrets.CLOUDSDK_CORE_PROJECT }}
+          deliverables: app.yaml
+          promote: true
+          version: prod
