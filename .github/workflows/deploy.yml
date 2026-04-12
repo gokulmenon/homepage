@@ -30,7 +30,7 @@ jobs:
 
       - name: Lint the node package
         run: |
-          npm install eslint --no-save
+          npm install eslint@8 --no-save
           npx eslint .
 
       # GitHub Actions doesn't have the Atlassian git-secrets-scan pipe, 
