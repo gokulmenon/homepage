@@ -11,8 +11,7 @@ import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
 import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
 import Footer from "../../components/Footer"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
+// Using inline SVG for back icon to avoid loading FontAwesome for a single icon
 import Form from '../../components/blog/form'
 
 export default function Post({ post, morePosts, preview }) {
@@ -22,7 +21,7 @@ export default function Post({ post, morePosts, preview }) {
   }
   let close = <div className="close" onClick={() => { router.push('/') }}></div>
   let back = <div className="back" onClick={() => { router.back() }}>
-              <FontAwesomeIcon icon={faArrowLeft} width="30px"/>
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"/></svg>
             </div>
   return (
     <div className="body is-article-visible">
@@ -76,7 +75,7 @@ export async function getStaticProps({ params, preview = false }) {
       post: data?.post || null,
       morePosts: data?.morePosts || null,
     },
-    revalidate: 1
+    revalidate: 3600
   }
 }
 

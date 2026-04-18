@@ -1,11 +1,11 @@
-import ImageGallery  from 'react-image-gallery';
+import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types';
 import React from "react"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faInstagram } from "@fortawesome/free-brands-svg-icons"
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+const ImageGallery = dynamic(() => import('react-image-gallery'), { ssr: false })
+const { Carousel } = require('react-responsive-carousel')
 
 class Photos extends React.Component {
   constructor(){
@@ -67,6 +67,11 @@ class Photos extends React.Component {
         {key: 17, original: "https://i.ibb.co/QN21QJ2/maskedinvader-two-roman-clocks-bound-by-quantum-entanglement-wi-73d600d8-33a1-4f28-85cf-aa562e053be9.png", thumbnail: ""},
       ];
   } 
+  componentDidMount() {
+    // Load gallery and carousel styles lazily to avoid blocking initial paint
+    import('react-responsive-carousel/lib/styles/carousel.min.css')
+    import('react-image-gallery/styles/css/image-gallery.css')
+  }
   
   _onSlide(index) {
     this._resetVideo();
@@ -87,9 +92,9 @@ class Photos extends React.Component {
   render() {
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
     const renderImages = this.images2.map(item => (
-      <div>
-            <img src={item.original} key={item.key}/>
-        </div>
+      <div key={item.key}>
+        <img src={item.original} loading="lazy" decoding="async" alt="gallery item" />
+      </div>
     ))
     return (
     <div>
@@ -98,7 +103,7 @@ class Photos extends React.Component {
       <ImageGallery 
         items={this.images} 
         showNav={true}
-        useBrowserFullscreen={this.useBrowserFullscreen}
+        useBrowserFullscreen={this.state.useBrowserFullscreen}
         showFullscreenButton={this.state.showFullscreenButton && this.state.showGalleryFullscreenButton}
         showPlayButton={this.state.showPlayButton && this.state.showGalleryPlayButton}
       />
