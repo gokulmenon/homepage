@@ -63,11 +63,12 @@ export default withRouter(VideosPage)
 
 
 
-export async function getServerSideProps({ }) {
-  const youtubeVideos = await getAllPlaylistItems();
-  return {
-    props: {
-      youtubeVideos,
-    },
-  };
+export async function getStaticProps() {
+    const youtubeVideos = await getAllPlaylistItems();
+    return {
+        props: {
+            youtubeVideos,
+        },
+        revalidate: 3600,
+    };
 }
