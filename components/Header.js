@@ -21,6 +21,7 @@ const Header = (props) => (
                 <li><Link href="/intro"><strong>Intro</strong></Link></li>
                 <li><Link href="/photos"><strong>Photos</strong></Link></li>
                 <li><Link href="/videos"><strong>&nbsp;&nbsp;Videos&nbsp;&nbsp;</strong></Link></li>
+                <li><Link href="/games"><strong>Games</strong></Link></li>
                 <li><Link href="/podcasts"><strong>Podcasts</strong></Link></li>
                 <li><Link href="/blog"><strong>Blog</strong></Link></li>
                 <li><Link href="/contact"><strong>Contact</strong></Link></li>
