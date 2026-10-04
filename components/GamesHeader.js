@@ -3,11 +3,9 @@ import Link from 'next/link';
 /**
  * GamesHeader — compact sticky header for the Games Arcade (/games).
  *
- * The shared Dimension <Header> (home icon, title block, welcome paragraph,
- * tall nav) eats ~2 screens on mobile before the first game card. This
- * header is slim and sticky: a ‹ Home link, the arcade title, and a
- * horizontally scrollable nav row. Used only by pages/games/index.js so the
- * rest of the site keeps its theme header.
+ * Speaks the Dimension theme's visual dialect so the arcade feels native:
+ * #1b1f22 ground, hairline white borders, uppercase micro-type with wide
+ * tracking. (The shared <Header> stays untouched for the rest of the site.)
  */
 const NAV_ITEMS = [
   { href: '/intro', label: 'Intro' },
@@ -20,31 +18,40 @@ const NAV_ITEMS = [
 ];
 
 const GamesHeader = () => (
-  <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur border-b border-gray-800">
+  <header
+    className="sticky top-0 z-50 border-b border-white/15 backdrop-blur-md"
+    style={{ backgroundColor: 'rgba(27, 31, 34, 0.95)' }}
+  >
     <div className="max-w-7xl mx-auto px-4">
       <div className="flex items-center justify-between h-11">
-        <Link href="/" className="text-sm font-semibold text-gray-400 hover:text-white">
+        <Link
+          href="/"
+          className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors"
+        >
           &#8249; Home
         </Link>
-        <span className="text-sm font-extrabold tracking-[0.2em] text-white">
-          GAMES ARCADE
+        <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white">
+          Games Arcade
         </span>
         {/* spacer keeps the title centered */}
         <span className="w-12" aria-hidden="true" />
       </div>
       <nav aria-label="Site" className="overflow-x-auto -mx-4 px-4">
-        <ul className="flex gap-1.5 pb-2 whitespace-nowrap">
+        <ul className="flex whitespace-nowrap border-t border-white/10">
           {NAV_ITEMS.map((item) => {
             const active = item.href === '/games';
             return (
-              <li key={item.href}>
+              <li
+                key={item.href}
+                className="border-l border-white/10 first:border-l-0"
+              >
                 <Link
                   href={item.href}
                   aria-current={active ? 'page' : undefined}
-                  className={`inline-block text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full transition-colors ${
+                  className={`block px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors ${
                     active
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                      ? 'text-white bg-white/10'
+                      : 'text-white/55 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {item.label}

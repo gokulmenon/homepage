@@ -26,7 +26,7 @@ function GameTile({ game }) {
       <span className="text-7xl font-black text-white/25 select-none">
         {game.title.charAt(0)}
       </span>
-      <span className="absolute top-3 right-3 bg-indigo-600/90 text-white text-xs font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">
+      <span className="absolute top-3 right-3 bg-black/50 border border-white/20 text-white text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded backdrop-blur-sm">
         {game.category}
       </span>
       {!game.live && (
@@ -40,25 +40,25 @@ function GameTile({ game }) {
 
 function GameCard({ game }) {
   const cardClass =
-    'group relative bg-gray-800 rounded-2xl overflow-hidden border border-gray-700/60 shadow-lg transition-all duration-200 flex flex-col';
+    'group relative bg-white/[0.04] rounded overflow-hidden border border-white/15 shadow-lg transition-all duration-200 flex flex-col';
   const body = (
     <>
       <GameTile game={game} />
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+          <h2 className="text-xl font-bold text-white">
             {game.title}
           </h2>
-          <p className="mt-2 text-sm text-gray-400 line-clamp-2">{game.description}</p>
+          <p className="mt-2 text-sm text-white/55 line-clamp-2">{game.description}</p>
         </div>
-        <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
+        <div className="mt-4 flex items-center justify-between text-xs text-white/40">
           <span>Ages {game.ageGroup}</span>
           {game.live ? (
-            <span className="text-indigo-400 font-medium group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            <span className="text-white font-medium uppercase tracking-[0.15em] text-[11px] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
               Play Now &rarr;
             </span>
           ) : (
-            <span className="text-gray-600 font-medium">Not deployed yet</span>
+            <span className="text-white/30 font-medium">Not deployed yet</span>
           )}
         </div>
       </div>
@@ -73,7 +73,7 @@ function GameCard({ game }) {
     );
   }
   return (
-    <Link key={game.id} href={`/games/${game.slug}`} className={`${cardClass} hover:border-indigo-500/80`}>
+    <Link key={game.id} href={`/games/${game.slug}`} className={`${cardClass} hover:border-white/40`}>
       {body}
     </Link>
   );
@@ -81,7 +81,7 @@ function GameCard({ game }) {
 
 export default function GamesHub() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-between">
+    <div className="min-h-screen bg-[#1b1f22] text-white flex flex-col justify-between">
       <Head>
         <title>Games Arcade | Gokul Menon</title>
         <meta
@@ -95,7 +95,7 @@ export default function GamesHub() {
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-10 flex-1 w-full">
-        <p className="mb-5 text-sm text-gray-400 text-center sm:text-left">
+        <p className="mb-5 text-sm text-white/50 text-center sm:text-left">
           Pick a game to play. Progress is saved on this device.
         </p>
 
