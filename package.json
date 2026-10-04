@@ -29,6 +29,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:local": "MOCK_EXTERNAL_APIS=1 next build",
     "start": "next start -p 8080",
     "deploy": "npm run build && gcloud app deploy --project nextjs-homepage --version beta",
     "gcp-build": ""
