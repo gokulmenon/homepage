@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '../../components/Header';
+import Header from '../../components/GamesHeader';
 import Footer from '../../components/Footer';
 import { GAMES } from '../../lib/games';
 
@@ -94,15 +94,10 @@ export default function GamesHub() {
 
       <Header />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-1 w-full">
-        <header className="mb-8 text-center sm:text-left">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl text-white">
-            Games Arcade
-          </h1>
-          <p className="mt-2 text-sm sm:text-base text-gray-400">
-            Pick a game to play. Progress is saved on this device.
-          </p>
-        </header>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-10 flex-1 w-full">
+        <p className="mb-5 text-sm text-gray-400 text-center sm:text-left">
+          Pick a game to play. Progress is saved on this device.
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {GAMES.map((game) => (
