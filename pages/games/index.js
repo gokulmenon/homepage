@@ -4,7 +4,13 @@ import Link from 'next/link';
 import SiteHeader from '../../components/SiteHeader';
 import Footer from '../../components/Footer';
 import GameSearch from '../../components/games/GameSearch';
-import { listGames, searchGames, getCategories } from '../../lib/games-registry';
+import { listGames, loadGames, searchGames, getCategories } from '../../lib/games-registry';
+
+// Build-time catalog: Supabase when configured, static JSON fallback otherwise.
+export async function getStaticProps() {
+  const initialGames = await loadGames();
+  return { props: { initialGames } };
+}
 
 // Real per-game screenshots (public/images/games/<slug>.jpg), captured with
 // headless Firefox and cropped to 16:9. Re-capture with
@@ -71,22 +77,27 @@ function GameCard({ game }) {
   );
 }
 
-export default function GamesHub() {
+export default function GamesHub({ initialGames }) {
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState('featured');
   const [category, setCategory] = useState('all');
   const [maxAge, setMaxAge] = useState('all');
 
-  const allGames = useMemo(() => listGames(), []);
-  const categories = useMemo(() => getCategories(), []);
+  const allGames =
+    initialGames && initialGames.length ? initialGames : listGames();
+  const categories = useMemo(() => getCategories(allGames), [allGames]);
   const results = useMemo(
     () =>
-      searchGames(query, {
-        sort,
-        category,
-        maxAge: maxAge === 'all' ? null : Number(maxAge),
-      }),
-    [query, sort, category, maxAge]
+      searchGames(
+        query,
+        {
+          sort,
+          category,
+          maxAge: maxAge === 'all' ? null : Number(maxAge),
+        },
+        allGames
+      ),
+    [query, sort, category, maxAge, allGames]
   );
 
   return (
