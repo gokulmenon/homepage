@@ -11,6 +11,7 @@ import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
 import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
 import Footer from "../../components/Footer"
+import SiteHeader from '../../components/SiteHeader'
 // Using inline SVG for back icon to avoid loading FontAwesome for a single icon
 import Form from '../../components/blog/form'
 
@@ -19,19 +20,20 @@ export default function Post({ post, morePosts, preview }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
-  let close = <div className="close" onClick={() => { router.push('/') }}></div>
+  let close = <div className="close" onClick={() => { router.push('/blog') }}></div>
   let back = <div className="back" onClick={() => { router.back() }}>
               <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"/></svg>
             </div>
   return (
-    <div className="body is-article-visible">
+    <div className="body">
       <div>
         <Head>
           <title>{post ? post.title: ""} - Gokul Menon Blog</title>
         </Head>
         <div id="wrapper">
+          <SiteHeader active="blog" />
           <div id="main" style={{ display: 'flex' }}>
-            <article id="blog posts" className="active timeout" style={{ display: 'none' }}>
+            <article id="blog-post" className="active timeout">
               <Layout preview={preview}>
                 <Container>
                   {router.isFallback ? (
@@ -59,7 +61,7 @@ export default function Post({ post, morePosts, preview }) {
               {close}
             </article>
           </div>
-          <Footer timeout={true} />
+          <Footer />
         </div>
         <div id="bg" />
       </div>

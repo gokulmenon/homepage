@@ -6,7 +6,6 @@ import Youtube from '../components/gallery/Youtube'
 class Videos extends React.Component {
 
   render() {
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
     return (
     <div>
       <h2 className="major">Videos</h2>   
@@ -14,7 +13,7 @@ class Videos extends React.Component {
       <Youtube videos={this.props.youtubeVideos}/>
       <br />  
       
-      {close}
+      
     </div>
     );
   }

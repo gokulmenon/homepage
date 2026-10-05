@@ -67,7 +67,6 @@ class Photos extends React.Component {
   }
 
   render() {
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
     return (
     <div>
       <h2 className="major">Photos</h2>   
@@ -105,7 +104,7 @@ class Photos extends React.Component {
         
         'If you look up at the Milky Way through the eyes of Carl Sagan, you get a feeling in your chest of something greater than yourself. And it is. But it\'s not supernatural.' - Richard Dawkins.
       </p> 
-      {close}
+      
     </div>
     );
   }

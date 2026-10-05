@@ -29,7 +29,6 @@ function reducer(state, action) {
 }
 
 function Contact(props) {
-    let close = <div className="close" onClick={() => { props.onCloseArticle(); resetForm() }}></div>;
     let social_icons =
         <div>
             <ul className="icons">
@@ -46,7 +45,7 @@ function Contact(props) {
                     <FontAwesomeIcon icon={faGithub} />
                 </a></li>
             </ul>
-            {close}
+            
         </div>;
     const [formState, dispatch] = useReducer(reducer, initialState);
     const [showFormErr, setShowFormErr] = useState(false);

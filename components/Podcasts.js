@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Podcasts extends React.Component {
 
   render(){      
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
       return (
         <div
             ><h2 className="major">Podcasts</h2>
@@ -40,7 +39,7 @@ class Podcasts extends React.Component {
               allowfullScreen=""
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
             </iframe>
-            {close}
+            
         </div>
     );
   }

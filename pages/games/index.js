@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '../../components/GamesHeader';
+import SiteHeader from '../../components/SiteHeader';
 import Footer from '../../components/Footer';
 import { GAMES } from '../../lib/games';
 
@@ -83,7 +83,7 @@ export default function GamesHub() {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
 
-      <Header />
+      <SiteHeader active="games" title="Games Arcade" />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-10 flex-1 w-full">
         <p className="mb-5 text-sm text-white/50 text-center sm:text-left">

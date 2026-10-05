@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Intro extends React.Component {
 
   render(){      
-    let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
       return (
         <div
             ><h2 className="major">Intro</h2>
@@ -41,7 +40,7 @@ class Intro extends React.Component {
                  google app engine using the python standard environment. I plan to put up the source code on github 
                  as a template for anyone else to use for their own personal website very soon.
             </p>
-            {close}
+            
         </div>
     );
   }
