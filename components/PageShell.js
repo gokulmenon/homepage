@@ -12,7 +12,7 @@ import Footer from './Footer';
  * top instead of the open/close hero dance. Keeps the starfield (#bg) and
  * the Dimension panel aesthetic.
  */
-const PageShell = ({ active, articleId, title, headerTitle, children }) => (
+const PageShell = ({ active, articleId, title, children }) => (
   <div>
     <Head>
       <title>{title} | Gokul Menon</title>
@@ -20,8 +20,9 @@ const PageShell = ({ active, articleId, title, headerTitle, children }) => (
       <meta name="description" content="Gokul Menon, personal website" />
     </Head>
 
+    <SiteHeader active={active} />
+
     <div id="wrapper">
-      <SiteHeader active={active} title={headerTitle} />
       <div id="main" style={{ display: 'flex' }}>
         <article id={articleId} className="active timeout">
           {children}
@@ -38,7 +39,6 @@ PageShell.propTypes = {
   active: PropTypes.string.isRequired,
   articleId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  headerTitle: PropTypes.string,
   children: PropTypes.node,
 };
 

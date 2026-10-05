@@ -30,8 +30,8 @@ export default function Post({ post, morePosts, preview }) {
         <Head>
           <title>{post ? post.title: ""} - Gokul Menon Blog</title>
         </Head>
+        <SiteHeader active="blog" />
         <div id="wrapper">
-          <SiteHeader active="blog" />
           <div id="main" style={{ display: 'flex' }}>
             <article id="blog-post" className="active timeout">
               <Layout preview={preview}>
