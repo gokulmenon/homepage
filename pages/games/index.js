@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import SiteHeader from '../../components/SiteHeader';
 import Footer from '../../components/Footer';
-import { GAMES } from '../../lib/games';
+import GameSearch from '../../components/games/GameSearch';
+import { listGames, searchGames, getCategories } from '../../lib/games-registry';
 
 // Real per-game screenshots (public/images/games/<slug>.jpg), captured with
 // headless Firefox and cropped to 16:9. Re-capture with
@@ -71,6 +72,23 @@ function GameCard({ game }) {
 }
 
 export default function GamesHub() {
+  const [query, setQuery] = useState('');
+  const [sort, setSort] = useState('featured');
+  const [category, setCategory] = useState('all');
+  const [maxAge, setMaxAge] = useState('all');
+
+  const allGames = useMemo(() => listGames(), []);
+  const categories = useMemo(() => getCategories(), []);
+  const results = useMemo(
+    () =>
+      searchGames(query, {
+        sort,
+        category,
+        maxAge: maxAge === 'all' ? null : Number(maxAge),
+      }),
+    [query, sort, category, maxAge]
+  );
+
   return (
     <div className="min-h-screen bg-[#1b1f22] text-white flex flex-col justify-between">
       <Head>
@@ -90,11 +108,34 @@ export default function GamesHub() {
           Pick a game to play. Progress is saved on this device.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {GAMES.map((game) => (
-            <GameCard key={game.id} game={game} />
-          ))}
-        </div>
+        <GameSearch
+          query={query}
+          onQueryChange={setQuery}
+          sort={sort}
+          onSortChange={setSort}
+          category={category}
+          onCategoryChange={setCategory}
+          categories={categories}
+          maxAge={maxAge}
+          onMaxAgeChange={setMaxAge}
+          resultCount={results.length}
+          totalCount={allGames.length}
+        />
+
+        {results.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {results.map((game) => (
+              <GameCard key={game.id} game={game} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded border border-white/10 bg-white/[0.03] px-6 py-14 text-center">
+            <p className="text-lg font-semibold text-white/80">No games found</p>
+            <p className="mt-2 text-sm text-white/50">
+              Try a different word, or clear the filters to see everything.
+            </p>
+          </div>
+        )}
       </main>
 
       <Footer />
