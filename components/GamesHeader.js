@@ -37,7 +37,7 @@ const GamesHeader = () => (
         <span className="w-12" aria-hidden="true" />
       </div>
       <nav aria-label="Site" className="overflow-x-auto -mx-4 px-4">
-        <ul className="flex whitespace-nowrap border-t border-white/10">
+        <ul className="flex whitespace-nowrap border-t border-white/10 list-none">
           {NAV_ITEMS.map((item) => {
             const active = item.href === '/games';
             return (
