@@ -2,10 +2,7 @@ import dynamic from 'next/dynamic'
 import PropTypes from 'prop-types';
 import React from "react"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faInstagram } from "@fortawesome/free-brands-svg-icons"
 const ImageGallery = dynamic(() => import('react-image-gallery'), { ssr: false })
-const { Carousel } = require('react-responsive-carousel')
 
 class Photos extends React.Component {
   constructor(){
@@ -47,29 +44,9 @@ class Photos extends React.Component {
         { original: "https://i.ibb.co/CK79SWY/nyc3-small.jpg", thumbnail: "https://i.ibb.co/pyw3kZB/nyc3-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "Central Park as seen from top of the rock, New York"},
         { original: "https://i.ibb.co/kQvZg9h/nyc4-small.jpg", thumbnail: "https://i.ibb.co/HY814DS/nyc4-thumbnail.jpg", originalTitle: "Manhattan, New York", description: "The Empire State, New York"}
       ];
-      this.images2 = [
-        {key: 1, original: "https://i.ibb.co/B28RJqs/maskedinvader-two-clocks-in-space-entangled-by-quantum-entangle-c8bd77a9-1da4-49db-93a1-f1d8d62dbef5.png", thumbnail: ""},
-        {key: 2, original: "https://i.ibb.co/qjXv01P/maskedinvader-a-total-solar-eclipse-as-seen-from-a-hill-top-bey-dd1e6d48-d88d-442c-84aa-83c403965521.png", thumbnail: ""},
-        {key: 3, original: "https://i.ibb.co/1KqRTYR/maskedinvader-batman-will-always-find-a-way-out-of-the-well-afd030f9-19dc-4020-b4a8-c7e4111b7f82.png", thumbnail: ""},
-        {key: 4, original: "https://i.ibb.co/tQLZHmP/maskedinvader-beyond-good-and-evil-92aeaf41-f67b-482c-9b21-4a039cd2af05.png", thumbnail: ""},
-        {key: 5, original: "https://i.ibb.co/34SKBXM/maskedinvader-cat-smoking-a-cigerrate-ultra-detailedphotoreali-9ea12cc9-bb7b-49ac-a24d-197f5e5f8181.png", thumbnail: ""},
-        {key: 6, original: "https://i.ibb.co/mCvPsMx/maskedinvader-dont-be-afraid-cause-its-dark-at-night-octane-ren-6215777a-c40d-4026-8caa-cc7b836c7170.png", thumbnail: ""},
-        {key: 7, original: "https://i.ibb.co/DWBxQrK/maskedinvader-I-love-you-to-the-moon-and-back-photorealisticoct-bedb189a-62b1-4882-bc59-4421cf9b40f5.png", thumbnail: ""},
-        {key: 8, original: "https://i.ibb.co/pRyFB75/maskedinvader-knowledge-is-meaningless-without-action-a5870d52-dc8c-49e8-87bc-bbc16f8772d9.png", thumbnail: ""},
-        {key: 9, original: "https://i.ibb.co/b2Sq9Y9/maskedinvader-Lord-Vishnu-and-Lord-Shiva-as-one-highly-detaile-5b12efdb-9c2f-4ea1-a6d8-d4ce78f2a469.png", thumbnail: ""},
-        {key: 10, original: "https://i.ibb.co/Lnpg4WR/maskedinvader-siddhartha-sitting-alone-under-a-banyan-tree-medi-e52208b3-d2cb-46f6-b176-6314db9fd4eb.png", thumbnail: ""},
-        {key: 11, original: "https://i.ibb.co/DRqb1Fk/maskedinvader-the-moons-of-jupiter-all-colliding-and-exploding-d0b01252-4ba9-40bf-a9f1-1862c9a64a67.png", thumbnail: ""},
-        {key: 12, original: "https://i.ibb.co/XkcVkfZ/maskedinvader-the-sun-as-seen-from-pluto-super-photorealistic-966eddaa-c147-43ca-ad7a-6ef53d4e3f9d.png", thumbnail: ""},
-        {key: 13, original: "https://i.ibb.co/3d6Mq1G/maskedinvader-windows-wallpaper-in-2050-87be6791-d5f4-4a3e-b7e8-a32fce07f660.png", thumbnail: ""},
-        {key: 14, original: "https://i.ibb.co/98qNsFb/maskedinvader-A-bee-sitting-under-a-palm-tree-listing-to-music-d308e8da-9390-4d06-b9ec-7f84c805460a.png", thumbnail: ""},
-        {key: 15, original: "https://i.ibb.co/R7wM5jV/maskedinvader-two-atomic-clocks-in-quantum-entanglement-beautif-693516e4-f1c7-48a8-9e6b-73362065bad6.png", thumbnail: ""},
-        {key: 16, original: "https://i.ibb.co/nQ03Yrz/supermassive-blackhole-midjourney-image.png", thumbnail: ""},
-        {key: 17, original: "https://i.ibb.co/QN21QJ2/maskedinvader-two-roman-clocks-bound-by-quantum-entanglement-wi-73d600d8-33a1-4f28-85cf-aa562e053be9.png", thumbnail: ""},
-      ];
   } 
   componentDidMount() {
-    // Load gallery and carousel styles lazily to avoid blocking initial paint
-    import('react-responsive-carousel/lib/styles/carousel.min.css')
+    // Load gallery styles lazily to avoid blocking initial paint
     import('react-image-gallery/styles/css/image-gallery.css')
   }
   
@@ -91,11 +68,6 @@ class Photos extends React.Component {
 
   render() {
     let close = <div className="close" onClick={() => {this.props.onCloseArticle()}}></div>;
-    const renderImages = this.images2.map(item => (
-      <div key={item.key}>
-        <img src={item.original} loading="lazy" decoding="async" alt="gallery item" />
-      </div>
-    ))
     return (
     <div>
       <h2 className="major">Photos</h2>   
@@ -113,9 +85,8 @@ class Photos extends React.Component {
         camera. Starting from a camera with a limited physical reel to digital 
         cameras to mobile cameras.The best camera is the one you have they say, 
         its very true. <br /><br />
-        &nbsp;&nbsp;&nbsp;&nbsp; This page hosts a collection of my photos starting with
-        some curated photographs above showcasing my best astrophotography exploits, 
-        followed with some of my most recent Instagram feed photos below.
+        &nbsp;&nbsp;&nbsp;&nbsp; This page hosts a collection of my photos — a curated
+        set showcasing my best astrophotography exploits.
         Please consider copyright and request permission before any usage.
       </p>
       <p> &nbsp;&nbsp;&nbsp;&nbsp; I have taken a keen interest in astrophotography and amateur astronomy in general.
@@ -134,31 +105,6 @@ class Photos extends React.Component {
         
         'If you look up at the Milky Way through the eyes of Carl Sagan, you get a feeling in your chest of something greater than yourself. And it is. But it\'s not supernatural.' - Richard Dawkins.
       </p> 
-      <div style={{maxWidth: '900px'}}>
-        <h3 className="minor">
-          <a href="https://www.instagram.com/gokulsmenon/">
-            <FontAwesomeIcon icon={faInstagram}  width="16px" />
-            &nbsp;&nbsp; Instagram Feed
-          </a> 
-        </h3>
-      <script src='https://embedsocial.com/js/iframe.js'>
-      </script>
-        <iframe 
-          style={{border: 0, width: '100%', height: '540px'}} 
-          src='https://embedsocial.com/facebook_album/pro_instagram/9964b269b53d447ae1fbd625d714012921152253'>
-        </iframe>
-      </div>
-      <script>iFrameResize();</script> 
-      <br />
-      <h3> Photo Gallery Beta</h3>   
-      <div className="carousel-wrapper">
-            <Carousel infiniteLoop useKeyboardArrows autoPlay>
-              {renderImages}
-            </Carousel>
-      </div>  
-      <br />
-      <p> &nbsp;&nbsp;&nbsp;&nbsp; Above are some images generated using midjourney ai. Using them to beta test a new responsive gallery.
-        </p>
       {close}
     </div>
     );
