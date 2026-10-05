@@ -5,27 +5,18 @@ import Header from '../../components/GamesHeader';
 import Footer from '../../components/Footer';
 import { GAMES } from '../../lib/games';
 
-// Placeholder tile art until per-game screenshots land (Phase 3).
-// One gradient per category; swapped for real thumbnails later.
-const CATEGORY_STYLES = {
-  Memory: 'from-violet-600 to-indigo-900',
-  Board: 'from-amber-600 to-orange-900',
-  Quiz: 'from-sky-600 to-blue-900',
-  Math: 'from-emerald-600 to-teal-900',
-  Language: 'from-rose-600 to-pink-900',
-  Geography: 'from-cyan-600 to-sky-900',
-};
-
+// Real per-game screenshots (public/images/games/<slug>.jpg), captured with
+// headless Firefox and cropped to 16:9. Re-capture with
+// ~/workspace/thumbs/capture.js if a game's look changes.
 function GameTile({ game }) {
-  const gradient = CATEGORY_STYLES[game.category] || 'from-slate-600 to-slate-900';
   return (
-    <div
-      className={`relative w-full h-48 bg-gradient-to-br ${gradient} flex items-center justify-center overflow-hidden`}
-      aria-hidden="true"
-    >
-      <span className="text-7xl font-black text-white/25 select-none">
-        {game.title.charAt(0)}
-      </span>
+    <div className="relative w-full h-48 overflow-hidden" aria-hidden="true">
+      <img
+        src={game.thumbnail}
+        alt=""
+        loading="lazy"
+        className="w-full h-full object-cover object-top"
+      />
       <span className="absolute top-3 right-3 bg-black/50 border border-white/20 text-white text-[10px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded backdrop-blur-sm">
         {game.category}
       </span>
