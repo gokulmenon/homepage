@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 /**
  * Splash landing — the site's front door.
@@ -7,10 +8,20 @@ import Link from 'next/link';
  * Starfield hero with the site title and a single Enter button leading to
  * /intro. Content pages (intro, photos, …) carry the sticky SiteHeader nav;
  * the old overlay open/close flow is retired.
+ *
+ * The is-loading class drives the theme's intro reveal animation (header
+ * fades/slides in once the class is removed shortly after mount).
  */
 export default function Splash() {
+  const [loading, setLoading] = useState('is-loading');
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(''), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <div>
+    <div className={`body ${loading}`}>
       <Head>
         <title>Gokul Menon</title>
         <meta
@@ -20,7 +31,7 @@ export default function Splash() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <div id="wrapper">
+      <div id="wrapper" className="splash">
         <header id="header">
           <div className="content">
             <div className="inner">

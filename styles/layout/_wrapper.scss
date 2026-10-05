@@ -37,4 +37,13 @@
 		&.page {
 			@include vendor('justify-content', 'flex-start');
 		}
+
+		// Splash landing: hero sits in the upper third, not vertically centered.
+		&.splash {
+			@include vendor('justify-content', 'flex-start');
+
+			#header {
+				margin-top: 8vh;
+			}
+		}
 	}

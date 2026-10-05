@@ -83,7 +83,7 @@ export default function GamesHub() {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
 
-      <SiteHeader active="games" title="Games Arcade" />
+      <SiteHeader active="games" />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-10 flex-1 w-full">
         <p className="mb-5 text-sm text-white/50 text-center sm:text-left">

@@ -19,7 +19,10 @@ const NAV_ITEMS = [
   { slug: 'contact', href: '/contact', label: 'Contact' },
 ];
 
-const SiteHeader = ({ active, title = 'Gokul Menon' }) => (
+const SiteHeader = ({ active }) => {
+  const activeItem = NAV_ITEMS.find((item) => item.slug === active);
+  const title = activeItem ? `Gokul Menon | ${activeItem.label}` : 'Gokul Menon';
+  return (
   <header
     className="sticky top-0 z-50 w-full border-b border-white/15 backdrop-blur-md"
     style={{ backgroundColor: 'rgba(27, 31, 34, 0.95)' }}
@@ -65,11 +68,11 @@ const SiteHeader = ({ active, title = 'Gokul Menon' }) => (
       </nav>
     </div>
   </header>
-);
+  );
+};
 
 SiteHeader.propTypes = {
   active: PropTypes.string,
-  title: PropTypes.string,
 };
 
 export default SiteHeader;

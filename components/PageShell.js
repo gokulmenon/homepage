@@ -22,7 +22,7 @@ const PageShell = ({ active, articleId, title, headerTitle, children }) => (
 
     <div id="wrapper">
       <SiteHeader active={active} title={headerTitle} />
-      <div id="main">
+      <div id="main" style={{ display: 'flex' }}>
         <article id={articleId} className="active timeout">
           {children}
         </article>
