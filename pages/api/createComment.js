@@ -141,7 +141,7 @@ export default async function handler(req, res) {
         commenter_name: cleanName,
         commenter_email: cleanEmail,
         comment_text: cleanComment,
-        approve_url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/comments/approve?token=${token}`,
+        approve_url: `https://gokulmenon.com/api/comments/approve?token=${token}`,
       },
       {
         publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID,
