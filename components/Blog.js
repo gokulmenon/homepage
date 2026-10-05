@@ -15,7 +15,7 @@ class Blog extends React.Component {
     return (
       <div>
         <h2 className="major">Blog</h2>        
-        <Layout preview={this.props.preview}>
+        <Layout>
           <Head>
             <title>Gokul Menon Blog</title>
           </Head>
@@ -43,7 +43,6 @@ class Blog extends React.Component {
 Blog.propTypes = {
   onCloseArticle: PropTypes.func,
   allPosts:PropTypes.array,
-  preview:PropTypes.bool
 }
 
 export default Blog

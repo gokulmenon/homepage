@@ -1,5 +1,4 @@
 import Container from './container'
-import { CMS_URL } from '../../lib/constants'
 
 export default function Footer() {
   return (
@@ -17,10 +16,10 @@ export default function Footer() {
             </a>{' '}
             and{' '}
             <a
-              href={CMS_URL}
+              href="https://supabase.com/"
               className="underline hover:text-success duration-200 transition-colors"
             >
-              Sanity.io
+              Supabase
             </a>
             .
           </p>

@@ -1,8 +1,10 @@
 import cn from 'classnames'
 import Link from 'next/link'
-import { imageBuilder } from '../../lib/sanity'
 
-export default function CoverImage({ title, url, imageObject, slug }) {
+// src is a plain image URL (local /images/blog/... or remote). The old Sanity
+// image-builder pipeline is gone with the Sanity migration.
+export default function CoverImage({ title, src, slug }) {
+  if (!src) return null
   const image = (
     <img
       width={620}
@@ -11,19 +13,19 @@ export default function CoverImage({ title, url, imageObject, slug }) {
       className={cn('shadow-small', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
-      src={imageBuilder(imageObject).width(480).height(270).url()}
+      src={src}
     />
   )
 
   return (
     <div className="-mx-5 sm:mx-0">
-      {slug && imageObject ? (
+      {slug ? (
         <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
           {image}
         </Link>
       ) : (
-        null
+        image
       )}
     </div>
-  );
+  )
 }

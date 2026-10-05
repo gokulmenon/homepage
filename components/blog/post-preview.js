@@ -2,7 +2,6 @@ import Avatar from './avatar'
 import Date from './date'
 import CoverImage from './cover-image'
 import Link from 'next/link'
-import {imageBuilder} from '../../lib/sanity'
 export default function PostPreview({
   title,
   coverImage,
@@ -14,7 +13,7 @@ export default function PostPreview({
   return (
     <div>
       <div className="mb-5">
-        <CoverImage slug={slug} title={title} imageObject={coverImage} url={imageBuilder(coverImage).url()} />
+        <CoverImage slug={slug} title={title} src={coverImage} />
       </div>
       <table>
         <tbody>

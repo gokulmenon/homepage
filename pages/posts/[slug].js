@@ -7,7 +7,7 @@ import PostHeader from '../../components/blog/post-header'
 import Comments from '../../components/blog/comments'
 import SectionSeparator from '../../components/blog/section-separator'
 import Layout from '../../components/blog/layout'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api'
+import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/blog'
 import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
 import Footer from "../../components/Footer"
@@ -15,7 +15,7 @@ import SiteHeader from '../../components/SiteHeader'
 // Using inline SVG for back icon to avoid loading FontAwesome for a single icon
 import Form from '../../components/blog/form'
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post, morePosts }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
@@ -34,7 +34,7 @@ export default function Post({ post, morePosts, preview }) {
         <div id="wrapper">
           <div id="main" style={{ display: 'flex' }}>
             <article id="blog-post" className="active timeout">
-              <Layout preview={preview}>
+              <Layout>
                 <Container>
                   {router.isFallback ? (
                     <PostTitle>Loading…</PostTitle>
@@ -46,10 +46,10 @@ export default function Post({ post, morePosts, preview }) {
                         date={post.date}
                         author={post.author}
                       />
-                      <PostBody content={post.body} />
+                      <PostBody markdown={post.body_markdown} />
 
                       <Comments comments={post.comments} />
-                      <Form _id={post._id} />
+                      <Form postSlug={post.slug} />
 
                       <SectionSeparator />
                       {morePosts.length > 0 && <MoreStories posts={morePosts} />}
@@ -69,11 +69,10 @@ export default function Post({ post, morePosts, preview }) {
   )
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const data = await getPostAndMorePosts(params.slug, preview)
+export async function getStaticProps({ params }) {
+  const data = await getPostAndMorePosts(params.slug)
   return {
     props: {
-      preview,
       post: data?.post || null,
       morePosts: data?.morePosts || null,
     },

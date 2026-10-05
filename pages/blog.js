@@ -1,19 +1,19 @@
 import PageShell from '../components/PageShell';
 import Blog from '../components/Blog';
-import { getAllPostsForHome } from '../lib/api';
+import { getAllPostsForHome } from '../lib/blog';
 
-export default function BlogPage({ allPosts, preview }) {
+export default function BlogPage({ allPosts }) {
   return (
     <PageShell active="blog" articleId="blog" title="Blog">
-      <Blog allPosts={allPosts} preview={preview} />
+      <Blog allPosts={allPosts} />
     </PageShell>
   );
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = await getAllPostsForHome(preview);
+export async function getStaticProps() {
+  const allPosts = await getAllPostsForHome();
   return {
-    props: { allPosts, preview },
+    props: { allPosts },
     revalidate: 3600,
   };
 }
