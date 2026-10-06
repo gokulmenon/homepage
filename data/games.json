@@ -274,5 +274,124 @@
     "featured": false,
     "sortOrder": 13,
     "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-subtraction",
+    "slug": "number-hero-subtraction",
+    "thumbnail": "/images/games/number-hero-subtraction.jpg",
+    "title": "Subtraction",
+    "description": "Take-away equations read aloud in 3 languages. Answers stay friendly and non-negative.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "subtraction",
+      "numbers",
+      "audio"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/number-hero/subtraction",
+    "featured": false,
+    "sortOrder": 14,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-missing",
+    "slug": "number-hero-missing",
+    "thumbnail": "/images/games/number-hero-missing.jpg",
+    "title": "Missing Number",
+    "description": "What comes next? Complete the number sequence \u2014 by 1s, 2s, 5s and 10s.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "sequences",
+      "patterns",
+      "numbers"
+    ],
+    "minAge": 5,
+    "maxAge": null,
+    "href": "/games/number-hero/missing-number",
+    "featured": false,
+    "sortOrder": 15,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-compare",
+    "slug": "number-hero-compare",
+    "thumbnail": "/images/games/number-hero-compare.jpg",
+    "title": "Bigger or Smaller",
+    "description": "Two big numbers \u2014 tap the bigger one. Or the smaller one. Tricky!",
+    "category": "Math",
+    "tags": [
+      "math",
+      "comparison",
+      "numbers"
+    ],
+    "minAge": 4,
+    "maxAge": null,
+    "href": "/games/number-hero/bigger-smaller",
+    "featured": false,
+    "sortOrder": 16,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-bonds",
+    "slug": "number-hero-bonds",
+    "thumbnail": "/images/games/number-hero-bonds.jpg",
+    "title": "Number Bonds",
+    "description": "Which number completes the bond? Pairs that make 10, then 20.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "addition",
+      "number-bonds",
+      "numbers"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/number-hero/number-bonds",
+    "featured": false,
+    "sortOrder": 17,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "world-explorer-capitals",
+    "slug": "world-explorer-capitals",
+    "thumbnail": "/images/games/world-explorer-capitals.jpg",
+    "title": "Capitals",
+    "description": "10 timed rounds: read the country, tap its capital city. 40 countries to master.",
+    "category": "Geography",
+    "tags": [
+      "geography",
+      "capitals",
+      "quiz",
+      "timed"
+    ],
+    "minAge": 8,
+    "maxAge": null,
+    "href": "/games/world-explorer/capitals",
+    "featured": false,
+    "sortOrder": 18,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "world-explorer-uscapitals",
+    "slug": "world-explorer-uscapitals",
+    "thumbnail": "/images/games/world-explorer-uscapitals.jpg",
+    "title": "US Capitals",
+    "description": "10 timed rounds: read the state, tap its capital. All 50 capitals to master.",
+    "category": "Geography",
+    "tags": [
+      "geography",
+      "capitals",
+      "usa",
+      "timed"
+    ],
+    "minAge": 8,
+    "maxAge": null,
+    "href": "/games/world-explorer/us-capitals",
+    "featured": false,
+    "sortOrder": 19,
+    "extraAssetPrefixes": []
   }
 ]
