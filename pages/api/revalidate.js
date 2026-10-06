@@ -7,6 +7,11 @@
 // calls this after saving so new/edited posts appear within seconds instead
 // of waiting out the hourly ISR window.
 export default async function handler(req, res) {
+  // The publisher app calls this cross-origin from localhost; the shared
+  // secret in the query string is the auth, so open CORS is fine.
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS')
+  if (req.method === 'OPTIONS') return res.status(200).end()
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' })
   }
