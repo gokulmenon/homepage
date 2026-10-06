@@ -142,6 +142,9 @@ export default async function handler(req, res) {
         commenter_email: cleanEmail,
         comment_text: cleanComment,
         approve_url: `https://gokulmenon.com/api/comments/approve?token=${token}`,
+        // EmailJS enforces its own reCAPTCHA check on server-side sends;
+        // forward the token we already verified with Google above.
+        'g-recaptcha-response': captcha,
       },
       {
         publicKey: process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID,
