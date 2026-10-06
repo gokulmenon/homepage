@@ -71,7 +71,7 @@ function GameCard({ game }) {
     );
   }
   return (
-    <Link key={game.id} href={`/games/${game.slug}`} className={`${cardClass} hover:border-white/40`}>
+    <Link key={game.id} href={game.href || `/games/${game.slug}`} className={`${cardClass} hover:border-white/40`}>
       {body}
     </Link>
   );

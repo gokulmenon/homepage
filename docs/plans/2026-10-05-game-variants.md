@@ -1,6 +1,7 @@
 # Game Variants Plan — 2026-10-05
 
-Status: **approved by Gokul** (Oct 5, 2026). Implementation in progress.
+Status: **approved by Gokul** (Oct 5, 2026). **Implemented** Oct 5–6, 2026 —
+all 4 variants live, registry entries + thumbnails shipped on the homepage.
 
 ## Goal
 
