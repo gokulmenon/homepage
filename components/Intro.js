@@ -14,10 +14,16 @@ class Intro extends React.Component {
                 building enterprise software. You can read about some of the work my team and I have done &nbsp;
                 <a href="https://techcrunch.com/2021/12/09/meta-rolls-out-a-suite-of-new-features-and-discovery-tools-for-facebook-live-creators/">here </a>
                 and an episode of hackerrank radio podcasts series <a href="https://open.spotify.com/playlist/6IxmDVVYOP0mxz0P6dTBxS">here </a>.
-                I am a full stack developer mostly focussed on backend. 
+                I am a full stack developer mostly focussed on backend.
+                I spent several years in the video org working across the full stack on Reels and live video;
+                I now work in the applied AI org on the AI Model Foundations team.
                 Before <strike>Facebook</strike> Meta I worked ~9 years in fintech (Bank Of America & Deutsche Bank) 
                 building electronic trading systems, marketdata/reference data plumbing enabling human and
                 algorithmic trading applications. <br /><br />
+
+                &nbsp;&nbsp;&nbsp;&nbsp;On the personal front, I live in New Jersey with my wife Akhila and our two young boys.
+                Most of my free time goes to them, the house, and a lawn that refuses to stay green on its own.
+                <br /><br />
 
                 &nbsp;&nbsp;&nbsp;&nbsp;I am passionate about all things Computer Science , Football, 
                 Astronomy &amp; Astrophotography. I also love to paint acrylic over canvas panels,
@@ -28,17 +34,18 @@ class Intro extends React.Component {
                 <br /><br />
 
                 &nbsp;&nbsp;&nbsp;&nbsp;This website is a pet project and 
-                I plan to use it as a scratch pad to learn cool web technologies,
-                hack and glue together arbitrary pieces of code to make a simple static homepage. 
-                I plan to keep this website purely static
-                and keep it simple. It is running on google app engine platform with a 
-                standard node js environment, running on nextJs and react. It uses a template designed by&nbsp; 
+                I use it as a scratch pad to learn cool web technologies,
+                hack and glue together arbitrary pieces of code.
+                It is still mostly static at heart: Next.js and React,
+                now deployed on Vercel (migrated off Google App Engine),
+                with the blog running on Supabase (migrated off Sanity.io).
+                It uses a template designed by&nbsp; 
                 <a href="https://html5up.net">HTML5 UP</a> and released for free under the&nbsp;
                 <a href="https://html5up.net/license"> Creative Commons</a> license.<br /><br />
                 &nbsp;&nbsp;&nbsp;&nbsp;This version is a full rewrite from an <a href="https://deprecated.gokulmenon.com"> old version </a> 
                  which was using the web.py python web framework and jinja2 templating engine also running on 
-                 google app engine using the python standard environment. I plan to put up the source code on github 
-                 as a template for anyone else to use for their own personal website very soon.
+                 google app engine using the python standard environment. The source code is on <a href="https://github.com/gokulmenon/homepage">GitHub</a> 
+                 as a template for anyone else to use for their own personal website.
             </p>
             
         </div>
