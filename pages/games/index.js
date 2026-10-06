@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import SiteHeader from '../../components/SiteHeader';
@@ -82,10 +82,25 @@ export default function GamesHub({ initialGames }) {
   const [sort, setSort] = useState('featured');
   const [category, setCategory] = useState('all');
   const [maxAge, setMaxAge] = useState('all');
+  const [games, setGames] = useState(
+    initialGames && initialGames.length ? initialGames : listGames()
+  );
 
-  const allGames =
-    initialGames && initialGames.length ? initialGames : listGames();
-  const categories = useMemo(() => getCategories(allGames), [allGames]);
+  // Self-heal the catalog on mount: rows added to Supabase after the build
+  // (e.g. while a migration was still applying) show up without a redeploy.
+  useEffect(() => {
+    let cancelled = false;
+    loadGames().then((fresh) => {
+      if (cancelled || !fresh.length) return;
+      const sig = (list) => list.map((g) => g.slug).join(',');
+      setGames((prev) => (sig(prev) === sig(fresh) ? prev : fresh));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const categories = useMemo(() => getCategories(games), [games]);
   const results = useMemo(
     () =>
       searchGames(
@@ -95,9 +110,9 @@ export default function GamesHub({ initialGames }) {
           category,
           maxAge: maxAge === 'all' ? null : Number(maxAge),
         },
-        allGames
+        games
       ),
-    [query, sort, category, maxAge, allGames]
+    [query, sort, category, maxAge, games]
   );
 
   return (
@@ -130,7 +145,7 @@ export default function GamesHub({ initialGames }) {
           maxAge={maxAge}
           onMaxAgeChange={setMaxAge}
           resultCount={results.length}
-          totalCount={allGames.length}
+          totalCount={games.length}
         />
 
         {results.length > 0 ? (
