@@ -97,10 +97,20 @@ export default async function handler(req, res) {
     if (action === 'approve') {
       await sb.from('blog_comments').update({ approved: true }).eq('id', comment.id)
       const slug = comment.blog_posts?.slug
+      // On-demand ISR so the newly approved comment appears immediately
+      // instead of waiting out the revalidate window. A revalidation
+      // failure must not undo the approval.
+      if (slug) {
+        try {
+          await res.revalidate(`/posts/${slug}`)
+        } catch (err) {
+          console.error('revalidate failed', err?.message || err)
+        }
+      }
       return res.status(200).send(
         page(
           'Comment approved',
-          `<p>The comment is now approved and will appear on the post within the hour.</p>` +
+          `<p>The comment is now approved and visible on the post.</p>` +
             (slug ? `<p><a href="/posts/${esc(slug)}">View post</a></p>` : '')
         )
       )
