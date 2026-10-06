@@ -66,7 +66,7 @@
   {
     "category": "Math",
     "defaultUrl": "https://number-hero.vercel.app",
-    "description": "Learn numbers 1\u2013100 in English, Hindi and Spanish, with spoken audio.",
+    "description": "Learn numbers 1–100 in English, Hindi and Spanish, with spoken audio.",
     "envName": "NEXT_PUBLIC_NUMBER_HERO_URL",
     "extraAssetPrefixes": [],
     "featured": true,
@@ -300,7 +300,7 @@
     "slug": "number-hero-missing",
     "thumbnail": "/images/games/number-hero-missing.jpg",
     "title": "Missing Number",
-    "description": "What comes next? Complete the number sequence \u2014 by 1s, 2s, 5s and 10s.",
+    "description": "What comes next? Complete the number sequence — by 1s, 2s, 5s and 10s.",
     "category": "Math",
     "tags": [
       "math",
@@ -320,7 +320,7 @@
     "slug": "number-hero-compare",
     "thumbnail": "/images/games/number-hero-compare.jpg",
     "title": "Bigger or Smaller",
-    "description": "Two big numbers \u2014 tap the bigger one. Or the smaller one. Tricky!",
+    "description": "Two big numbers — tap the bigger one. Or the smaller one. Tricky!",
     "category": "Math",
     "tags": [
       "math",
@@ -392,6 +392,186 @@
     "href": "/games/world-explorer/us-capitals",
     "featured": false,
     "sortOrder": 19,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-telling-time",
+    "slug": "number-hero-telling-time",
+    "thumbnail": "/images/games/number-hero-telling-time.jpg",
+    "title": "Telling Time",
+    "description": "Read the analog clock. Hours and halves, then quarter hours.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "time",
+      "clock",
+      "numbers"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/number-hero/telling-time",
+    "featured": false,
+    "sortOrder": 20,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-counting-coins",
+    "slug": "number-hero-counting-coins",
+    "thumbnail": "/images/games/number-hero-counting-coins.jpg",
+    "title": "Counting Coins",
+    "description": "Pennies, nickels, dimes, quarters. How much money?",
+    "category": "Math",
+    "tags": [
+      "math",
+      "money",
+      "coins",
+      "numbers"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/number-hero/counting-coins",
+    "featured": false,
+    "sortOrder": 21,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-skip-counting",
+    "slug": "number-hero-skip-counting",
+    "thumbnail": "/images/games/number-hero-skip-counting.jpg",
+    "title": "Skip Counting",
+    "description": "Count by 2s, 5s and 10s. Find the missing number.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "skip-counting",
+      "sequences",
+      "numbers"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/number-hero/skip-counting",
+    "featured": false,
+    "sortOrder": 22,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-number-order",
+    "slug": "number-hero-number-order",
+    "thumbnail": "/images/games/number-hero-number-order.jpg",
+    "title": "Number Order",
+    "description": "Tap five numbers from smallest to biggest.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "ordering",
+      "comparison",
+      "numbers"
+    ],
+    "minAge": 5,
+    "maxAge": null,
+    "href": "/games/number-hero/number-order",
+    "featured": false,
+    "sortOrder": 23,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "number-hero-odd-even",
+    "slug": "number-hero-odd-even",
+    "thumbnail": "/images/games/number-hero-odd-even.jpg",
+    "title": "Odd & Even",
+    "description": "Tap all the even numbers. Then all the odd ones.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "odd-even",
+      "parity",
+      "numbers"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/number-hero/odd-even",
+    "featured": false,
+    "sortOrder": 24,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "world-explorer-continents",
+    "slug": "world-explorer-continents",
+    "thumbnail": "/images/games/world-explorer-continents.jpg",
+    "title": "Continents",
+    "description": "Which continent is it in? 10 timed rounds across 33 countries.",
+    "category": "Geography",
+    "tags": [
+      "geography",
+      "continents",
+      "quiz",
+      "world"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/world-explorer/continents",
+    "featured": false,
+    "sortOrder": 25,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "world-explorer-landmarks",
+    "slug": "world-explorer-landmarks",
+    "thumbnail": "/images/games/world-explorer-landmarks.jpg",
+    "title": "Landmarks",
+    "description": "See a famous landmark, name its country.",
+    "category": "Geography",
+    "tags": [
+      "geography",
+      "landmarks",
+      "quiz",
+      "world"
+    ],
+    "minAge": 6,
+    "maxAge": null,
+    "href": "/games/world-explorer/landmarks",
+    "featured": false,
+    "sortOrder": 26,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "world-explorer-currencies",
+    "slug": "world-explorer-currencies",
+    "thumbnail": "/images/games/world-explorer-currencies.jpg",
+    "title": "Currencies",
+    "description": "What money do they use? Yen, euros, rupees and more.",
+    "category": "Geography",
+    "tags": [
+      "geography",
+      "currencies",
+      "money",
+      "quiz"
+    ],
+    "minAge": 7,
+    "maxAge": null,
+    "href": "/games/world-explorer/currencies",
+    "featured": false,
+    "sortOrder": 27,
+    "extraAssetPrefixes": []
+  },
+  {
+    "id": "world-explorer-languages",
+    "slug": "world-explorer-languages",
+    "thumbnail": "/images/games/world-explorer-languages.jpg",
+    "title": "Languages",
+    "description": "What language do they speak? 10 timed rounds.",
+    "category": "Geography",
+    "tags": [
+      "geography",
+      "languages",
+      "quiz",
+      "world"
+    ],
+    "minAge": 7,
+    "maxAge": null,
+    "href": "/games/world-explorer/languages",
+    "featured": false,
+    "sortOrder": 28,
     "extraAssetPrefixes": []
   }
 ]
