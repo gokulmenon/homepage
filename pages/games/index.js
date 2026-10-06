@@ -5,6 +5,7 @@ import SiteHeader from '../../components/SiteHeader';
 import Footer from '../../components/Footer';
 import GameSearch from '../../components/games/GameSearch';
 import { listGames, loadGames, searchGames, getCategories } from '../../lib/games-registry';
+import { getRecentlyPlayedSlugs, recordPlay } from '../../lib/recently-played';
 
 // Build-time catalog: Supabase when configured, static JSON fallback otherwise.
 export async function getStaticProps() {
@@ -36,7 +37,7 @@ function GameTile({ game }) {
   );
 }
 
-function GameCard({ game }) {
+function GameCard({ game, onPlay }) {
   const cardClass =
     'group relative bg-white/[0.04] rounded overflow-hidden border border-white/15 shadow-lg transition-all duration-200 flex flex-col';
   const body = (
@@ -65,14 +66,38 @@ function GameCard({ game }) {
 
   if (!game.live) {
     return (
-      <div key={game.id} className={`${cardClass} opacity-70 cursor-default`}>
+      <div className={`${cardClass} opacity-70 cursor-default`}>
         {body}
       </div>
     );
   }
   return (
-    <Link key={game.id} href={game.href || `/games/${game.slug}`} className={`${cardClass} hover:border-white/40`}>
+    <Link
+      href={game.href || `/games/${game.slug}`}
+      onClick={() => onPlay?.(game)}
+      className={`${cardClass} hover:border-white/40`}
+    >
       {body}
+    </Link>
+  );
+}
+
+function RecentCard({ game, onPlay }) {
+  return (
+    <Link
+      href={game.href || `/games/${game.slug}`}
+      onClick={() => onPlay?.(game)}
+      className="group relative flex-shrink-0 w-40 bg-white/[0.04] rounded overflow-hidden border border-white/15 hover:border-white/40 transition-all duration-200"
+    >
+      <div className="w-full h-24 overflow-hidden">
+        <img
+          src={game.thumbnail}
+          alt=""
+          loading="lazy"
+          className="w-full h-full object-cover object-top"
+        />
+      </div>
+      <p className="px-3 py-2 text-sm font-bold text-white truncate">{game.title}</p>
     </Link>
   );
 }
@@ -85,11 +110,17 @@ export default function GamesHub({ initialGames }) {
   const [games, setGames] = useState(
     initialGames && initialGames.length ? initialGames : listGames()
   );
+  const [recentSlugs, setRecentSlugs] = useState([]);
+
+  const handlePlay = (game) => {
+    setRecentSlugs(recordPlay(game.slug));
+  };
 
   // Self-heal the catalog on mount: rows added to Supabase after the build
   // (e.g. while a migration was still applying) show up without a redeploy.
   useEffect(() => {
     let cancelled = false;
+    setRecentSlugs(getRecentlyPlayedSlugs());
     loadGames().then((fresh) => {
       if (cancelled || !fresh.length) return;
       const sig = (list) => list.map((g) => g.slug).join(',');
@@ -101,6 +132,14 @@ export default function GamesHub({ initialGames }) {
   }, []);
 
   const categories = useMemo(() => getCategories(games), [games]);
+  const recentGames = useMemo(
+    () =>
+      recentSlugs
+        .map((slug) => games.find((g) => g.slug === slug))
+        .filter(Boolean)
+        .slice(0, 6),
+    [recentSlugs, games]
+  );
   const results = useMemo(
     () =>
       searchGames(
@@ -132,7 +171,21 @@ export default function GamesHub({ initialGames }) {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 pb-10 flex-1 w-full">
         <p className="mb-5 text-sm text-white/50 text-center sm:text-left">
           Pick a game to play. Progress is saved on this device.
+          <span className="text-white/30"> · {games.length} games</span>
         </p>
+
+        {recentGames.length > 0 && (
+          <section aria-label="Recently played" className="mb-6">
+            <h2 className="mb-3 text-sm font-bold uppercase tracking-[0.15em] text-white/50">
+              Recently played
+            </h2>
+            <div className="flex gap-4 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+              {recentGames.map((game) => (
+                <RecentCard key={game.slug} game={game} onPlay={handlePlay} />
+              ))}
+            </div>
+          </section>
+        )}
 
         <GameSearch
           query={query}
@@ -151,7 +204,7 @@ export default function GamesHub({ initialGames }) {
         {results.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.map((game) => (
-              <GameCard key={game.id} game={game} />
+              <GameCard key={game.id} game={game} onPlay={handlePlay} />
             ))}
           </div>
         ) : (

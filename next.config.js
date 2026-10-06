@@ -29,6 +29,7 @@ module.exports = {
           destination: `${base}/:path*`,
         });
         for (const prefix of game.extraAssetPrefixes || []) {
+          if (!prefix) continue; // guard: an empty prefix would emit a `/:path*` rule and hijack the whole site
           rules.push({
             source: `${prefix}/:path*`,
             destination: `${base}${prefix}/:path*`,
