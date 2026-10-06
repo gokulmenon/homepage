@@ -10,10 +10,12 @@ const ok = (res, message) => res.status(200).json({ message })
 // Comment submission pipeline:
 //  1. honeypot (bots fill it -> fake success, dropped silently)
 //  2. input validation + link-count heuristic
-//  3. reCAPTCHA v2 server-side verification
+//  3. captcha token presence (verified once by EmailJS in step 7 —
+//     reCAPTCHA tokens are single-use, so only one verifier may consume it)
 //  4. per-IP rate limit (DB-backed; serverless has no memory)
 //  5. insert as approved=false
 //  6. single-use 7-day approval token -> EmailJS notify to Gokul
+//     (EmailJS verifies the captcha; on rejection the insert is rolled back)
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' })
@@ -43,25 +45,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ message: 'Too many links in comment' })
   }
 
-  // 3. reCAPTCHA
+  // 3. reCAPTCHA token must be present. It is verified exactly once by
+  //    EmailJS during the notify send (step 7) — verifying it here as well
+  //    would consume the single-use token and break EmailJS's check.
   if (!captcha) return res.status(400).json({ message: 'Captcha required' })
-  try {
-    const verify = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: process.env.RECAPTCHA_V2_SECRET_KEY,
-        response: captcha,
-      }),
-    })
-    const result = await verify.json()
-    if (!result.success) {
-      return res.status(400).json({ message: 'Captcha verification failed' })
-    }
-  } catch (err) {
-    console.error('recaptcha verify error', err)
-    return res.status(500).json({ message: "Couldn't verify captcha" })
-  }
 
   const sb = db()
 
@@ -152,7 +139,14 @@ export default async function handler(req, res) {
       }
     )
   } catch (err) {
-    console.error('comment notify email failed', err?.message || err)
+    const errText = err?.text || err?.message || ''
+    if (/captcha/i.test(errText)) {
+      // EmailJS rejected the captcha (bot or expired token): roll back the
+      // unapproved insert so spam never accumulates in the table.
+      await sb.from('blog_comments').delete().eq('id', row.id)
+      return res.status(400).json({ message: 'Captcha verification failed' })
+    }
+    console.error('comment notify email failed', err?.message || err?.text || err)
   }
 
   return ok(res, 'Comment submitted')
