@@ -2,7 +2,7 @@ import Avatar from './avatar'
 import Date from './date'
 import CoverImage from './cover-image'
 import PostTitle from './post-title'
-export default function PostHeader({ title, coverImage, date, author }) {
+export default function PostHeader({ title, coverImage, date, author, readingTime }) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -18,6 +18,7 @@ export default function PostHeader({ title, coverImage, date, author }) {
         </div>
         <div className="mb-3 text-md">
           <Date dateString={date} />
+          {readingTime ? <span> &middot; {readingTime} min read</span> : null}
         </div>
       </div>
     </>

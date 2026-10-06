@@ -15,7 +15,7 @@ import SiteHeader from '../../components/SiteHeader'
 // Using inline SVG for back icon to avoid loading FontAwesome for a single icon
 import Form from '../../components/blog/form'
 
-export default function Post({ post, morePosts }) {
+export default function Post({ post, morePosts, readingTime }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
@@ -45,6 +45,7 @@ export default function Post({ post, morePosts }) {
                         coverImage={post.coverImage}
                         date={post.date}
                         author={post.author}
+                        readingTime={readingTime}
                       />
                       <PostBody markdown={post.body_markdown} />
 
@@ -71,10 +72,12 @@ export default function Post({ post, morePosts }) {
 
 export async function getStaticProps({ params }) {
   const data = await getPostAndMorePosts(params.slug)
+  const words = (data?.post?.body_markdown || '').trim().split(/\s+/).filter(Boolean).length
   return {
     props: {
       post: data?.post || null,
       morePosts: data?.morePosts || null,
+      readingTime: Math.max(1, Math.round(words / 200)),
     },
     revalidate: 3600
   }
