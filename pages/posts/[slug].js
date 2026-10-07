@@ -12,6 +12,7 @@ import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
 import Footer from "../../components/Footer"
 import SiteHeader from '../../components/SiteHeader'
+import SeoMeta from '../../components/SeoMeta'
 // Using inline SVG for back icon to avoid loading FontAwesome for a single icon
 import Form from '../../components/blog/form'
 
@@ -30,6 +31,15 @@ export default function Post({ post, morePosts, readingTime }) {
         <Head>
           <title>{post ? post.title: ""} - Gokul Menon Blog</title>
         </Head>
+        {post && (
+          <SeoMeta
+            title={`${post.title} - Gokul Menon Blog`}
+            description={post.excerpt || post.title}
+            path={`/posts/${post.slug}`}
+            image={post.coverImage}
+            type="article"
+          />
+        )}
         <SiteHeader active="blog" />
         <div id="wrapper">
           <div id="main" style={{ display: 'flex' }}>

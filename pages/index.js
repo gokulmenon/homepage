@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import SeoMeta from '../components/SeoMeta';
 
 /**
  * Splash landing — the site's front door.
@@ -30,6 +31,11 @@ export default function Splash() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      <SeoMeta
+        title="Gokul Menon"
+        description="Gokul Menon — personal website: blog, photos, videos, podcasts and a kids' games arcade."
+        path="/"
+      />
 
       <div id="wrapper" className="splash">
         <header id="header">

@@ -23,13 +23,28 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 This repo is inspired from https://codebushi.com/nextjs-website-starters/#getStarted
 uses next v10 and newer versions of react
 
-## Deploy on Google App Engine
+## Deploy
+
+Production deploys on **Vercel** (project `homepage`). Every push to `master`
+triggers a production build automatically — there is no manual deploy step.
 
 ```bash
-
-npm run deploy
-# or
-yarn deploy
+npm run build        # what Vercel runs: next build (unmocked)
+npm run build:local  # offline build with mocked external APIs (MOCK_EXTERNAL_APIS=1)
 ```
 
-Note bitbucket-pipelines.yml is setup to auto deploy upon push to master.
+### Domain routing
+
+- `www.gokulmenon.com` and the apex `gokulmenon.com` both route to Vercel
+  (cut over from Google App Engine on Oct 5, 2026).
+- Cloudflare sits in front as the DNS/proxy layer; mail (Zoho MX) is untouched.
+- The old Google App Engine deployment no longer serves production traffic.
+  It is retained as a rollback target; full decommission is still pending.
+
+### Games Arcade
+
+The `/games` hub reverse-proxies each game from its own deployment via
+`next.config.js` rewrites (games keep their own repos and Vercel projects;
+the homepage is only the router). Game metadata lives in `data/games.json`
+and the Supabase `games` table (applied via migrations in
+`supabase/migrations/`).
