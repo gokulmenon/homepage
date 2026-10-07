@@ -164,6 +164,26 @@ export default function GamesHub({ initialGames }) {
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta
+          name="description"
+          content="Fun learning games for kids — math, geography, phonics, memory and more. Pick a game and play."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Gokul Menon" />
+        <meta property="og:title" content="Games Arcade | Gokul Menon" />
+        <meta
+          property="og:description"
+          content="Fun learning games for kids — math, geography, phonics, memory and more. Pick a game and play."
+        />
+        <meta property="og:url" content="https://gokulmenon.com/games" />
+        <meta property="og:image" content="https://gokulmenon.com/images/games/number-hero.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Games Arcade | Gokul Menon" />
+        <meta
+          name="twitter:description"
+          content="Fun learning games for kids — math, geography, phonics, memory and more. Pick a game and play."
+        />
+        <meta name="twitter:image" content="https://gokulmenon.com/images/games/number-hero.jpg" />
       </Head>
 
       <SiteHeader active="games" />
