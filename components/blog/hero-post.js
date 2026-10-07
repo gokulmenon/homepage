@@ -10,6 +10,7 @@ export default function HeroPost({
   excerpt,
   author,
   slug,
+  readingTime,
 }) {
   return (
     <section>
@@ -25,6 +26,7 @@ export default function HeroPost({
           </h3>
           <div className="mb-4 md:mb-0 text-lg">
             <Date dateString={date} />
+            {readingTime != null && <span> &middot; {readingTime} min read</span>}
           </div>
         </div>
         <div>

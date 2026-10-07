@@ -9,6 +9,7 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
+  readingTime,
 }) {
   return (
     <div>
@@ -18,13 +19,20 @@ export default function PostPreview({
       <table>
         <tbody>
         <tr>
-          <td width="75%">
+          <td width="60%">
           <h4 className="text-1xl mb-2 leading-snug">
             <Link as={`/posts/${slug}`} href="/posts/[slug]" className="hover:underline">
               {title}
             </Link>
           </h4>
         </td>
+        {readingTime != null && (
+          <td width="15%">
+            <div className="text-sm mb-2">
+              {readingTime} min read
+            </div>
+          </td>
+        )}
         <td width="25%">
           <div  className="text-sm mb-2">
             <Date dateString={date} />

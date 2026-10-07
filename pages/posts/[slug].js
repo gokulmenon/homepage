@@ -7,7 +7,7 @@ import PostHeader from '../../components/blog/post-header'
 import Comments from '../../components/blog/comments'
 import SectionSeparator from '../../components/blog/section-separator'
 import Layout from '../../components/blog/layout'
-import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/blog'
+import { getAllPostsWithSlug, getPostAndMorePosts, readingTimeFor } from '../../lib/blog'
 import PostTitle from '../../components/blog/post-title'
 import Head from 'next/head'
 import Footer from "../../components/Footer"
@@ -72,12 +72,11 @@ export default function Post({ post, morePosts, readingTime }) {
 
 export async function getStaticProps({ params }) {
   const data = await getPostAndMorePosts(params.slug)
-  const words = (data?.post?.body_markdown || '').trim().split(/\s+/).filter(Boolean).length
   return {
     props: {
       post: data?.post || null,
       morePosts: data?.morePosts || null,
-      readingTime: Math.max(1, Math.round(words / 200)),
+      readingTime: readingTimeFor(data?.post?.body_markdown),
     },
     revalidate: 3600
   }

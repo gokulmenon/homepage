@@ -6,7 +6,7 @@ export default function MoreStories({ posts }) {
       <h3 className="mb-4 text-left tracking-tighter leading-tight">
         More Stories
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-1 md:col-gap-16 lg:col-gap-32 row-gap-20 md:row-gap-32 mb-32">
+      <div className="grid grid-cols-1 md:grid-cols-1 md:col-gap-16 lg:col-gap-32 row-gap-20 md:row-gap-32 mb-32 divide-y divide-accent-2">
         {posts.map((post) => (
           <PostPreview
             key={post.slug}
@@ -16,6 +16,7 @@ export default function MoreStories({ posts }) {
             author={post.author}
             slug={post.slug}
             excerpt={post.excerpt}
+            readingTime={post.readingTime}
           />
         ))}
       </div>

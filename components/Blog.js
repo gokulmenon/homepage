@@ -52,7 +52,7 @@ class Blog extends React.Component {
                 {results.length === 0 ? (
                   <p>No posts match that search. Try something else.</p>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-1 md:col-gap-16 lg:col-gap-32 row-gap-20 md:row-gap-32 mb-32">
+                  <div className="grid grid-cols-1 md:grid-cols-1 md:col-gap-16 lg:col-gap-32 row-gap-20 md:row-gap-32 mb-32 divide-y divide-accent-2">
                     {results.map((post) => (
                       <PostPreview
                         key={post.slug}
@@ -62,6 +62,7 @@ class Blog extends React.Component {
                         author={post.author}
                         slug={post.slug}
                         excerpt={post.excerpt}
+                        readingTime={post.readingTime}
                       />
                     ))}
                   </div>
@@ -77,6 +78,7 @@ class Blog extends React.Component {
                     author={heroPost.author}
                     slug={heroPost.slug}
                     excerpt={heroPost.excerpt}
+                    readingTime={heroPost.readingTime}
                   />
                 )}
                 {morePosts.length > 0 && <MoreStories posts={morePosts} />}
