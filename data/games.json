@@ -107,6 +107,25 @@
     "title": "Zero Hero"
   },
   {
+    "id": "number-hero-ai-builder",
+    "slug": "number-hero-ai-builder",
+    "thumbnail": "/images/games/ai-math-game-builder.jpg",
+    "title": "AI Math Game Builder",
+    "description": "Describe any math game and watch AI build it — with custom pictures. 10 rounds, endless ideas.",
+    "category": "Math",
+    "tags": [
+      "math",
+      "ai",
+      "creative"
+    ],
+    "minAge": 4,
+    "maxAge": null,
+    "href": "/games/number-hero/ai-math-game-builder",
+    "featured": true,
+    "sortOrder": 5,
+    "extraAssetPrefixes": []
+  },
+  {
     "category": "Language",
     "defaultUrl": "https://gokulmenon.github.io/vowel_sounds",
     "description": "Practice vowel sounds with the chart and audio.",
