@@ -10,7 +10,13 @@ const gameBaseUrl = (game) =>
 module.exports = {
     distDir: 'build',
     images: {
-      domains: ['yt3.ggpht.com','i.ytimg.com','i.ibb.co'],
+      // Next 16 removed images.domains; remotePatterns with hostname-only
+      // entries preserve the old domains semantics (any protocol/port).
+      remotePatterns: [
+        { hostname: 'yt3.ggpht.com' },
+        { hostname: 'i.ytimg.com' },
+        { hostname: 'i.ibb.co' },
+      ],
     },
     // Games Arcade: reverse-proxy each deployed game under /games/<slug>.
     // Games with no URL (no env var, no defaultUrl) get no rule and render
